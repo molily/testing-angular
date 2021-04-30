@@ -500,16 +500,6 @@ pre {
   }
 }
 
-#page-footer-contact {
-  & > * {
-    display: block;
-
-    @include large {
-      padding-right: 1rem;
-    }
-  }
-}
-
 /**
  * @section Cover image
  *
