@@ -164,57 +164,6 @@ li p {
 }
 
 /**
- * @subsection Compact lists
- *
- */
-
-.compact-list li,
-.ultra-compact-list li {
-  margin: 0 0 0.2rem;
-}
-
-.compact-list,
-.ultra-compact-list {
-  .compact-list,
-  .ultra-compact-list {
-    margin-bottom: 0;
-  }
-}
-
-.ultra-compact-list {
-  @extend %clearfix;
-
-  li {
-    float: left;
-    width: 33%;
-  }
-}
-
-@media (max-width: 57rem) {
-  .ultra-compact-list li {
-    width: 50%;
-  }
-}
-
-/**
- * @section Definition lists
- *
- */
-
-dt {
-  margin: 0 0 0.5rem;
-  font-weight: bold;
-}
-
-dd {
-  margin: 0 0 0.5rem 2.5rem;
-}
-
-dd p {
-  margin: 0 0 0.5rem;
-}
-
-/**
  * @section Preformatted text and code
  *
  */

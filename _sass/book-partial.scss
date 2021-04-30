@@ -516,25 +516,9 @@ pre {
  */
 
 #cover-image {
-  margin: 4rem 0;
+  margin: 2rem 0;
   text-align: center;
   font-size: 0.75rem;
-
-  @include large {
-    margin-left: -2rem;
-    margin-right: -2rem;
-  }
-}
-
-.main-testing-angular #cover-image {
-  margin: 2rem 0;
-}
-
-#cover-image-tokio-tower {
-  display: block;
-  margin: auto;
-  max-width: 70vw;
-  max-height: 48vh;
 }
 
 /* Placeholder with the right aspect ratio
@@ -563,17 +547,13 @@ to prevent layout shifts */
   }
 }
 
-#cover-credits-link {
-  border: 0;
-}
-
 /**
- * @section Main heading
+ * @section Cover heading
  *
  */
 
 // Boost specificity to override #main h1
-h1#main-heading {
+h1#cover-heading {
   margin: 3rem 0;
   font-size: 2.5rem;
   text-align: center;
@@ -591,7 +571,7 @@ h1#main-heading {
     display: none;
   }
 
-  .main-title,
+  .cover-title,
   .subheading,
   .subheading-small {
     display: block;
