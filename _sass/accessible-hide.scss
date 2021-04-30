@@ -1,0 +1,33 @@
+// Hide and show content accessibly. The content is visually hidden, but
+// screen readers and other assistive technology should still read it.
+// http://snook.ca/archives/html_and_css/hiding-content-for-accessibility
+@mixin accessible-hide {
+  position: absolute;
+  // Without any top/right/bottom/left declaration, the element would be
+  // positioned at its position in the normal flow. This may cause scrollbars
+  // so we move it to top/left position of the containing block.
+  left: 0;
+  top: 0;
+  height: 1px;
+  width: 1px;
+  overflow: hidden;
+  // Legacy syntax for IE6 and IE7
+  clip: rect(1px 1px 1px 1px);
+  clip: rect(1px, 1px, 1px, 1px);
+}
+
+@mixin accessible-show {
+  position: static;
+  height: auto;
+  width: auto;
+  overflow: visible;
+  clip: auto;
+}
+
+%accessible-hide {
+  @include accessible-hide;
+}
+
+%accessible-show {
+  @include accessible-hide;
+}

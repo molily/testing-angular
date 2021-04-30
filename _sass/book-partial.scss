@@ -1,0 +1,853 @@
+/**
+ * Book styles
+ *
+ */
+
+@import 'reset';
+@import 'fonts';
+@import 'content';
+@import 'highlight';
+
+/**
+ * @section Variables
+ *
+ */
+
+$breakpoint-medium: 30rem;
+$breakpoint-large: 55rem;
+$toc-width: 25rem;
+$main-max-width: 42rem;
+
+$angular-primary-color: #1976d2;
+
+$toc-background: #f9f9f9;
+$toc-background-inverted: $dark-background-color-inverted;
+
+$sticky-menu-background: #f0f0f0;
+$sticky-menu-background-inverted: $dark-background-color-inverted;
+
+$dark-highlight-background-color: adjust-color(
+  $highlight-background-color,
+  $lightness: -2%
+);
+$dark-highlight-background-color-inverted: adjust-color(
+  $highlight-background-color,
+  $lightness: -2%
+);
+
+$font-size-small: percentage(16 / 18);
+
+/**
+ * @section Mixins
+ *
+ */
+
+ @mixin medium {
+  @media screen and (min-width: $breakpoint-medium) {
+    @content;
+  }
+}
+
+@mixin large {
+  @media screen and (min-width: $breakpoint-large) {
+    @content;
+  }
+}
+
+@mixin high-dpi {
+  @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 2dppx) {
+    @content;
+  }
+}
+
+/**
+ * @section Root element and Body
+ *
+ */
+
+html {
+  @include dark-scheme {
+    background-color: $medium-background-color-inverted;
+  }
+}
+
+body {
+  counter-reset: h2 h3 h4;
+  padding: 1rem;
+
+  @include large {
+    padding: 0;
+  }
+}
+
+/**
+ * @section Tables
+ *
+ */
+
+table {
+  // Do not use rem, use unit relative to parent font-size
+  font-size: $font-size-small;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+caption {
+  text-align: center;
+}
+
+th,
+td {
+  border-style: none none solid;
+}
+
+th {
+  font-weight: bold;
+}
+
+.wide-table-wrapper {
+  margin-left: -1rem;
+  margin-right: -1rem;
+  overflow: auto;
+}
+
+.wide-table {
+  font-size: 80%;
+}
+
+/**
+ * @section Code
+ *
+ */
+
+pre {
+  border-radius: 0.5px;
+  margin-left: -1rem;
+  margin-right: -1rem;
+  font-size: $font-size-small;
+
+  @include large {
+    margin-left: -2rem;
+    margin-right: -2rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+}
+
+/**
+ * @section Base layout
+ *
+ */
+
+@include large {
+  #sidebar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: $toc-width;
+    overflow: auto;
+    resize: horizontal;
+    background-color: $toc-background;
+
+    @include dark-scheme {
+      background-color: $toc-background-inverted;
+    }
+  }
+
+  #main-container {
+    margin-left: $toc-width;
+    padding: 0 2rem;
+  }
+}
+
+/**
+ * @section Sticky menu
+ *
+ */
+
+#sticky-menu {
+  position: sticky;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-evenly;
+  border-bottom: 1px solid
+    adjust-color($sticky-menu-background, $lightness: -2%);
+  margin: -1rem -1rem 1rem;
+  height: 2.5rem;
+  background-color: $sticky-menu-background;
+  font-size: 0.8rem;
+  text-align: center;
+
+  @include large {
+    display: none;
+  }
+
+  @include dark-scheme {
+    border-bottom: 0;
+    background-color: $sticky-menu-background-inverted;
+  }
+
+  .tokyo-tower {
+    font-size: 250%;
+    line-height: 1;
+  }
+
+  a:link {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 0;
+    padding: 0 1rem;
+    text-decoration: none;
+    line-height: 1.4;
+  }
+
+  .link-type {
+    display: none;
+  }
+}
+
+/**
+ * Scroll margins
+ */
+
+[id] {
+  // Larger margin because of the sticky menu
+  scroll-margin-top: 4rem;
+
+  @include large {
+    scroll-margin-top: 2rem;
+  }
+}
+
+/**
+ * @section Table of contents
+ *
+ */
+
+@include large {
+  #toc {
+    padding: 2rem;
+  }
+}
+
+#home-link {
+  display: none;
+
+  @include large {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  a {
+    text-decoration: none;
+  }
+}
+
+#toc-book-title,
+#toc-heading {
+  margin: 2rem 0;
+
+  &::before {
+    counter-increment: none;
+    content: none;
+  }
+}
+
+#toc-book-title {
+  font-size: 2rem;
+  line-height: 1.6;
+  text-align: center;
+  color: $heading-color;
+
+  @include large {
+    font-size: 1.8rem;
+  }
+
+  @include dark-scheme {
+    color: inherit;
+  }
+
+  small {
+    display: block;
+  }
+}
+
+#toc-heading {
+  font-size: 1.2rem;
+  text-align: center;
+
+  @include large {
+    @include accessible-hide;
+  }
+
+  @include dark-scheme {
+    color: inherit;
+  }
+}
+
+#toc-epub-link {
+  margin-bottom: 2rem;
+
+  a {
+    display: block;
+    padding: 0.5rem;
+    text-align: center;
+    text-decoration: none;
+
+    @include dark-scheme {
+      background-color: $highlight-background-color-inverted;
+    }
+  }
+}
+
+#toc-tree {
+  ol {
+    margin: 0.5rem 0;
+    font-size: 0.95rem;
+  }
+
+  .collapsed {
+    display: none;
+  }
+
+  li {
+    margin-bottom: 0.5rem;
+  }
+
+  li li {
+    margin-bottom: 0;
+    list-style-type: none;
+  }
+
+  $a-padding-left: 0.5rem;
+
+  a {
+    padding: 0 1rem 0 $a-padding-left;
+  }
+
+  // ol a {}
+
+  ol ol a {
+    padding-left: $a-padding-left + 1rem;
+  }
+
+  a {
+    display: block;
+    text-decoration: none;
+
+    &:hover {
+      background-color: $dark-highlight-background-color;
+      color: $link-color;
+
+      @include dark-scheme {
+        background-color: $highlight-background-color-inverted;
+        color: $link-color-inverted;
+      }
+    }
+  }
+
+  a.active {
+    color: $toc-background;
+    background-color: $link-color;
+
+    @include dark-scheme {
+      color: $toc-background-inverted;
+      background-color: $link-color-inverted;
+    }
+  }
+
+  .link-type {
+    display: none;
+  }
+}
+
+#cover-toc-tree {
+  ol ol {
+    display: none;
+  }
+}
+
+#sidebar-toc-tree {
+  @include large {
+    margin: 0 -2rem;
+  }
+}
+
+/**
+ * @section Main
+ *
+ */
+
+#main {
+  overflow-wrap: break-word;
+
+  @include medium {
+    // Slightly larger font size than the default
+    font-size: 1.125rem;
+    letter-spacing: 0.2px;
+    word-spacing: 0.2px;
+  }
+
+  @include large {
+    margin: auto;
+    max-width: $main-max-width;
+  }
+
+  counter-reset: h2 h3 h4;
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    margin: 4rem 0 2rem;
+
+    @include dark-scheme {
+      margin-left: -1rem;
+      margin-right: -1rem;
+      padding: 2rem 1rem;
+      background-color: $highlight-background-color-inverted;
+      border-radius: 0.5px;
+
+      @include large {
+        margin-left: -2rem;
+        margin-right: -2rem;
+        padding-left: 2rem;
+        padding-right: 2rem;
+      }
+    }
+  }
+
+  // Use percent for heading font-size instead of rem
+  // since #main has its own font-size
+
+  h1 {
+    font-size: 180%;
+    counter-reset: h2 h3 h4;
+  }
+
+  h2 {
+    font-size: 160%;
+    counter-reset: h3 h4;
+  }
+
+  h2::before {
+    counter-increment: h2;
+    content: counter(h2) '.';
+  }
+
+  h3 {
+    font-size: 150%;
+    counter-reset: h4;
+  }
+
+  h3::before {
+    counter-increment: h3;
+    content: counter(h2) '.' counter(h3);
+  }
+
+  h4 {
+    font-size: 140%;
+  }
+
+  h4::before {
+    counter-increment: h4;
+    content: counter(h2) '.' counter(h3) '.' counter(h4);
+  }
+
+  h2::before,
+  h3::before,
+  h4::before {
+    display: inline-block;
+    vertical-align: top;
+    margin-right: 1rem;
+  }
+
+  &.main-testing-angular {
+    h2::before,
+    h3::before,
+    h4::before {
+      display: none;
+    }
+  }
+}
+
+/**
+ * Footer
+ */
+
+#page-footer {
+  font-size: 90%;
+
+  @include dark-scheme {
+  }
+
+  p {
+    margin-bottom: 1rem;
+  }
+}
+
+#page-footer-inner {
+  @include large {
+    margin: auto;
+    max-width: $main-max-width;
+  }
+}
+
+#page-footer-contact {
+  & > * {
+    display: block;
+
+    @include large {
+      padding-right: 1rem;
+    }
+  }
+}
+
+/**
+ * @section Cover image
+ *
+ */
+
+#cover-image {
+  margin: 4rem 0;
+  text-align: center;
+  font-size: 0.75rem;
+
+  @include large {
+    margin-left: -2rem;
+    margin-right: -2rem;
+  }
+}
+
+.main-testing-angular #cover-image {
+  margin: 2rem 0;
+}
+
+#cover-image-tokio-tower {
+  display: block;
+  margin: auto;
+  max-width: 70vw;
+  max-height: 48vh;
+}
+
+/* Placeholder with the right aspect ratio
+to prevent layout shifts */
+#cover-image-flying-probe-container {
+  position: relative;
+  display: block;
+  margin: auto;
+  padding-top: percentage(504 / 800);
+  max-width: 800px;
+}
+
+#cover-image-flying-probe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+@supports (aspect-ratio: 800 / 504) {
+  #cover-image-flying-probe-container {
+    padding-top: 0;
+    aspect-ratio: 800 / 504;
+  }
+}
+
+#cover-credits-link {
+  border: 0;
+}
+
+/**
+ * @section Main heading
+ *
+ */
+
+// Boost specificity to override #main h1
+h1#main-heading {
+  margin: 3rem 0;
+  font-size: 2.5rem;
+  text-align: center;
+
+  @include dark-scheme {
+    color: inherit;
+  }
+
+  @include large {
+    margin: 4rem 0;
+    font-size: 4rem;
+  }
+
+  br {
+    display: none;
+  }
+
+  .main-title,
+  .subheading,
+  .subheading-small {
+    display: block;
+    margin-bottom: 2rem;
+  }
+
+  .subheading {
+    font-size: 1.5rem;
+
+    @include large {
+      font-size: 2.5rem;
+    }
+  }
+
+  .subheading-small {
+    margin-bottom: 0;
+    font-size: 1.3rem;
+  }
+}
+
+/**
+ * Introduction
+ */
+
+.intro {
+  font-size: 1.2rem;
+
+  @include large {
+    font-size: 1.25rem;
+  }
+}
+
+.intro-caps {
+  font-style: normal;
+  font-variant: small-caps;
+  text-transform: capitalize;
+}
+
+/**
+ * @section Link types
+ *
+ */
+
+.link-type {
+  font-size: 0.8rem;
+  color: gray;
+
+  @include dark-scheme {
+    color: inherit;
+  }
+}
+
+/**
+ * @section Erroneous code
+ *
+ */
+
+.erroneous {
+  pre {
+    @include dark-scheme {
+      background-color: adjust-color(
+        $highlight-background-color-inverted,
+        $red: 15
+      );
+    }
+  }
+}
+
+/**
+ * @section Typographic separator
+ *
+ */
+
+.separator {
+  display: block;
+  margin: 4.5rem auto;
+  width: 3rem;
+  height: 3rem;
+  color: #e0e0e0;
+}
+
+/**
+ * @section List of source links
+ */
+
+.book-sources {
+  font-size: $font-size-small;
+
+  ul {
+    margin-left: 0;
+    list-style-type: none;
+  }
+
+  li {
+    margin: 0;
+  }
+
+  li + li {
+    margin-top: 1px;
+  }
+
+  a {
+    display: block;
+    padding: 0.5rem 1rem;
+    text-decoration: none;
+    background-color: $highlight-background-color;
+
+    @include dark-scheme {
+      background-color: $highlight-background-color-inverted;
+    }
+
+    &:hover {
+      background-color: adjust-color(
+        $highlight-background-color,
+        $lightness: -2%
+      );
+
+      @include dark-scheme {
+        background-color: adjust-color(
+          $highlight-background-color-inverted,
+          $lightness: -2%
+        );
+      }
+    }
+
+    &::before {
+      content: '🔗';
+      margin-right: 1rem;
+    }
+  }
+}
+
+/**
+ * @section Iframes
+ */
+
+.responsive-iframe {
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 1000px;
+  height: 0;
+  padding-top: percentage(1 / 1);
+
+  @include large {
+    padding-top: percentage(9 / 16);
+  }
+}
+
+.responsive-iframe__iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+
+  border: 2px solid $darker-text-color;
+  @include dark-scheme {
+    border: 2px solid white;
+  }
+}
+
+.load-iframe {
+  display: block;
+  width: 100%;
+  padding: 0.5rem 1rem;
+  border: 0;
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  color: inherit;
+  cursor: pointer;
+
+  background-color: $link-color;
+  color: white;
+
+  &:hover {
+    background-color: adjust-color($link-color, $lightness: -5%);
+  }
+
+  @include dark-scheme {
+    background-color: $highlight-background-color-inverted;
+    color: $link-color-inverted;
+
+    &:hover {
+      background-color: adjust-color(
+        $highlight-background-color-inverted,
+        $lightness: -2%
+      );
+    }
+  }
+}
+
+/**
+ * @section Margin notes
+ */
+
+$margin-note-inner-width: 8rem;
+$margin-note-gap: 2rem;
+$margin-note-outer-width: $margin-note-inner-width + $margin-note-gap;
+$margin-note-breakpoint: $toc-width + $main-max-width +
+  (2 * $margin-note-outer-width);
+
+.margin-note {
+  margin: 0 0 1rem 0;
+  font-size: 80%;
+  line-height: 2;
+  text-transform: uppercase;
+  text-align: center;
+  letter-spacing: 0.5px;
+  word-spacing: 1px;
+  page-break-after: avoid;
+  color: $heading-color;
+
+  @include dark-scheme {
+    color: $heading-color-inverted;
+  }
+
+  @media screen and (min-width: $margin-note-breakpoint) {
+    float: left;
+    display: block;
+    width: $margin-note-inner-width;
+    margin-left: -$margin-note-outer-width;
+    margin-top: 0.3rem;
+    line-height: 1.6;
+    text-align: right;
+    text-transform: none;
+    letter-spacing: inherit;
+    word-spacing: inherit;
+    color: inherit;
+  }
+
+  p {
+    margin: 0;
+    line-height: inherit;
+  }
+}
+
+/**
+ * Next chapter link
+ */
+
+#next-chapter-link {
+  margin: 4rem 0;
+
+  a {
+    display: block;
+    text-align: right;
+    text-decoration: none;
+
+    &::before {
+      content: 'Next chapter: ';
+    }
+
+    &::after {
+      content: ' →';
+    }
+  }
+}

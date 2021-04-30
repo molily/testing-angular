@@ -1,0 +1,81 @@
+/**
+  * Careful Reset
+  */
+
+/**
+  * @section Block Elements: Reset margin, padding and border
+  *
+  */
+
+html, body,
+h1, h2, h3, h4, h5, h6,
+div,
+p,
+blockquote,
+pre,
+dl, dt, dd,
+ol, ul, li,
+form, fieldset,
+table, caption, tbody, tfoot, thead, tr, th, td {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+/**
+  * @section Reset Headline Font
+  *
+  */
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: normal;
+  font-size: 100%;
+}
+
+/**
+  * @section Lists
+  *
+  * No list numbering and item markers
+  */
+
+ol, ul {
+  list-style: none;
+}
+
+/**
+  * @section Tables
+  *
+  * Collapse borders and reset table headers
+  */
+
+table {
+  border-collapse: collapse;
+}
+
+caption, th, td {
+  text-align: left;
+  font-weight: normal;
+}
+
+/**
+  * @section Quotes
+  *
+  */
+
+:lang(en) q {
+  quotes: "“" "”" "‘" "’";
+}
+
+:lang(de) q {
+  quotes: "»" "«" "›" "‹";
+}
+
+/**
+  * @section Images
+  *
+  * Suppress border
+  */
+
+a img {
+  border: 0;
+}

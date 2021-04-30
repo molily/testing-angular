@@ -1,0 +1,18 @@
+# Site settings
+title: Testing Angular
+email: molily@mailbox.org
+description: "How do we take advantage of Angular’s testability?"
+keywords: JavaScript, Angular, testing, automated tests, test automation, unit tests, integration tests, end-to-end tests
+baseurl: "" # the subpath of your site, e.g. /blog/
+url: "https://testing-angular.com"
+permalink: /:title/
+collections:
+  testing-angular:
+    output: true
+
+# Build settings
+host: 0.0.0.0
+markdown: kramdown
+
+sass:
+  style: compressed

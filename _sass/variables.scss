@@ -1,0 +1,72 @@
+/**
+ * Variables
+ *
+ */
+
+/**
+ * @section Colors
+ *
+ */
+
+// Accent colors
+$hue: 258;
+$hue2: 220;
+
+// Text and background colors
+$background-color: white;
+$text-color: #252527;
+$darker-text-color: #666;
+$heading-color: hsl($hue, 60%, 25%);
+$highlight-background-color: hsl($hue2, 50%, 98%);
+$code-text-color: #009;
+$citation-text-color: #4a4a60;
+
+// Inverted text and background colors
+$background-color-inverted: #3c3d5b;
+$text-color-inverted: #d7d7db;
+// Original: #8a77b3
+$darker-text-color-inverted: hsl(259, 35%, 70%);
+$heading-color-inverted: $darker-text-color-inverted;
+$medium-background-color-inverted: #31324c;
+$dark-background-color-inverted: #140a32;
+$highlight-background-color-inverted: #22233d;
+// TODO
+$code-text-color-inverted: hsl(170, 55%, 70%);
+$citation-text-color-inverted: #b0b0b0;
+
+// Link colors
+$link-color: hsl($hue2, 100%, 30%);
+$link-border-color: desaturate(lighten($link-color, 40%), 60%);
+
+$link-visited-color: $text-color;
+$link-visited-border-color: lighten($link-border-color, 1%);
+
+$link-hover-border-color: #8080c0;
+
+// Inverted link colors
+// $link-color-inverted-hue: 57;
+
+$link-color-inverted: #17c6d4;
+$link-border-color-inverted: #118db9;
+
+$link-visited-color-inverted: #0f8e9a;
+$link-visited-border-color-inverted: $link-visited-color-inverted;
+
+$link-hover-border-color-inverted: lighten($link-border-color-inverted, 5%);
+
+/**
+ * @section Typography
+ *
+ */
+
+// Font stack without webfont
+$sans-serif-font: 'Segoe UI', Corbel, '-apple-system', system-ui, BlinkMacSystemFont, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+// Font stack with webfont
+$base-font: 'Noto Sans', $sans-serif-font;
+
+$monospace-font: 'Monaco', 'Consolas', 'Droid Sans Mono', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', 'Lucida Console', 'Liberation Mono', 'Courier New', monospace;
+
+$citation-font: 'Century Schoolbook', 'Book Antiqua', 'Palatino Linotype', Baskerville, Didot, 'URW Palladio L', Georgia, serif;
+
+$content-line-height: 2;
+$heading-line-height: 1.5;

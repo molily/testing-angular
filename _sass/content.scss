@@ -1,0 +1,490 @@
+/**
+ * Content Styles
+ *
+ */
+
+@import 'variables';
+
+/**
+  * @section Mixins
+  *
+  */
+
+@import 'clearfix';
+@import 'accessible-hide';
+@import 'dark-scheme';
+
+/**
+ * @section Box model fix
+ *
+ */
+
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+
+/**
+ * @section Text selection
+ *
+ */
+
+::selection {
+  color: $text-color;
+  background-color: hsl($hue, 100%, 90%);
+}
+
+/**
+ * @section Root element
+ *
+ */
+
+html {
+  background-color: $background-color;
+  color: $text-color;
+  font-family: $base-font;
+  text-rendering: optimizeLegibility;
+  font-variant-ligatures: common-ligatures;
+  text-decoration-skip-ink: auto;
+
+  @include dark-scheme {
+    background-color: $background-color-inverted;
+    color: $text-color-inverted;
+  }
+}
+
+/**
+ * @section Base styles for new HTML5 elements, for old browsers
+ *
+ */
+
+main,
+section,
+nav,
+article,
+aside,
+header,
+footer {
+  display: block;
+}
+
+/**
+ * @section Headings
+ *
+ */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 3rem 0 1rem;
+  color: $heading-color;
+  line-height: $heading-line-height;
+  page-break-after: avoid;
+  font-variant-ligatures: common-ligatures discretionary-ligatures contextual;
+
+  @include dark-scheme {
+    color: $heading-color-inverted;
+  }
+}
+
+h1 {
+  font-size: 1.5rem;
+}
+
+h2 {
+  font-size: 1.4rem;
+}
+
+h3 {
+  font-size: 1.3rem;
+}
+
+h4 {
+  font-size: 1.2rem;
+}
+
+h5,
+h6 {
+  font-size: inherit;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  code {
+    font-family: inherit;
+  }
+}
+
+/**
+ * @section All copy text elements
+ *
+ */
+
+p,
+ul,
+ol,
+dl,
+pre,
+address,
+blockquote {
+  margin: 0 0 1rem 0;
+  line-height: $content-line-height;
+}
+
+/**
+ * @section Lists
+ *
+ */
+
+ul,
+ol {
+  margin-left: 2rem;
+  padding-left: 0;
+}
+
+ul {
+  list-style-type: disc;
+}
+
+ol {
+  list-style-type: decimal;
+}
+
+li,
+li p {
+  margin: 0 0 1rem;
+}
+
+/**
+ * @subsection Compact lists
+ *
+ */
+
+.compact-list li,
+.ultra-compact-list li {
+  margin: 0 0 0.2rem;
+}
+
+.compact-list,
+.ultra-compact-list {
+  .compact-list,
+  .ultra-compact-list {
+    margin-bottom: 0;
+  }
+}
+
+.ultra-compact-list {
+  @extend %clearfix;
+
+  li {
+    float: left;
+    width: 33%;
+  }
+}
+
+@media (max-width: 57rem) {
+  .ultra-compact-list li {
+    width: 50%;
+  }
+}
+
+/**
+ * @section Definition lists
+ *
+ */
+
+dt {
+  margin: 0 0 0.5rem;
+  font-weight: bold;
+}
+
+dd {
+  margin: 0 0 0.5rem 2.5rem;
+}
+
+dd p {
+  margin: 0 0 0.5rem;
+}
+
+/**
+ * @section Preformatted text and code
+ *
+ */
+
+pre,
+code,
+samp {
+  background-color: $highlight-background-color;
+  font-family: $monospace-font;
+  font-size: 100%;
+  color: $code-text-color;
+  overflow-wrap: break-word;
+  font-variant-ligatures: none;
+
+  @include dark-scheme {
+    background-color: $highlight-background-color-inverted;
+    color: $code-text-color-inverted;
+  }
+}
+
+pre {
+  padding: 1rem;
+  overflow: auto;
+  font-size: 90%;
+  line-height: 1.8;
+  border-radius: 3px;
+
+  @include dark-scheme {
+    scrollbar-color: $text-color-inverted $background-color-inverted;
+  }
+}
+
+pre code {
+  background-color: transparent;
+  color: inherit;
+}
+
+p,
+li,
+th,
+td {
+  code {
+    font-family: inherit;
+    padding: 0 0.2rem;
+
+    @include dark-scheme {
+      padding: 0;
+      background-color: transparent;
+    }
+  }
+}
+
+/**
+ * @section Block quotations
+ *
+ */
+
+blockquote {
+  padding: 1px 2rem;
+  background-color: $highlight-background-color;
+  color: $citation-text-color;
+
+  @include dark-scheme {
+    background-color: $highlight-background-color-inverted;
+    color: inherit;
+  }
+
+  blockquote {
+    border: 1px solid #eaeaf0;
+  }
+
+  h2,
+  p,
+  ol,
+  ul {
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  cite {
+    font-style: normal;
+  }
+}
+
+/**
+ * @section Addresses
+ *
+ */
+
+address {
+  font-size: 80%;
+  font-style: normal;
+}
+
+/**
+ * @section Links
+ *
+ */
+
+a {
+  text-decoration: none;
+
+  &:link {
+    color: $link-color;
+    text-decoration: underline;
+    text-decoration-color: $link-border-color;
+    transition: text-decoration-color 250ms ease;
+
+    @include dark-scheme {
+      color: $link-color-inverted;
+      text-decoration-color: $link-border-color-inverted;
+    }
+  }
+
+  &:visited {
+    color: $link-visited-color;
+    text-decoration-color: $link-visited-border-color;
+
+    @include dark-scheme {
+      color: $link-visited-color-inverted;
+      text-decoration-color: $link-visited-border-color-inverted;
+    }
+  }
+
+  &:hover {
+    text-decoration-color: $link-hover-border-color;
+
+    @include dark-scheme {
+      text-decoration-color: $link-hover-border-color-inverted;
+    }
+  }
+
+  &:focus,
+  &:active {
+    color: $link-color;
+    text-decoration-color: transparent;
+    outline: 1px solid hsl($hue, 90%, 75%);
+    outline-offset: 2px;
+
+    @include dark-scheme {
+      color: $link-color-inverted;
+      outline-color: $link-color-inverted;
+    }
+  }
+
+  & img {
+    text-decoration: none;
+  }
+}
+
+/**
+ * @section Inline quotations
+ *
+ */
+
+q {
+  color: $citation-text-color;
+
+  @include dark-scheme {
+    color: $citation-text-color-inverted;
+  }
+}
+
+/**
+ * @section Abbreviations
+ *
+ */
+
+abbr,
+acronym {
+  text-decoration: underline dotted $darker-text-color;
+  border-bottom-style: none;
+  cursor: help;
+  font-style: normal;
+}
+
+/**
+ * @section Data tables
+ *
+ */
+
+table {
+  border-spacing: 0;
+  margin: 1rem auto;
+}
+
+caption {
+  font-size: 110%;
+  font-weight: bold;
+  margin: 0 0 0.5rem;
+}
+
+th,
+td {
+  border: 1px solid gray;
+  padding: 0.5rem;
+}
+
+th {
+  background-color: #fefefe;
+
+  @include dark-scheme {
+    background-color: transparent;
+  }
+}
+
+table.compact th {
+  font-size: 80%;
+}
+
+td p:last-child {
+  margin-bottom: 0;
+}
+
+/**
+ * @section Clearfix utility class
+ *
+ */
+
+.clearfix {
+  @extend %clearfix;
+}
+
+/**
+ * @section Accessible hide utility class
+ *
+ */
+
+.accessible-hide {
+  @extend %accessible-hide;
+}
+
+/**
+ * @section Less important annotations
+ *
+ */
+
+.unwichtig {
+  font-size: 90%;
+}
+
+/**
+ * @section Images
+ *
+ */
+
+.image-full {
+  display: block;
+  width: 100%;
+}
+
+.image-max-full {
+  display: block;
+  margin: auto;
+  max-width: 100%;
+}
+
+/**
+ * @section Responsive Media (img, picture, video, iframe)
+ *
+ */
+
+.responsive-media-container {
+  position: relative;
+  padding-bottom: 60%;
+}
+
+.responsive-media-object {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
