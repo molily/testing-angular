@@ -3,12 +3,12 @@ title: Testing Angular
 email: molily@mailbox.org
 description: "How do we take advantage of Angular’s testability?"
 keywords: JavaScript, Angular, testing, automated tests, test automation, unit tests, integration tests, end-to-end tests
+twitter_card: summary_large_image
+twitter_image: /assets/img/flying-probe-2-1-2085-cwebp-q80.webp
+og_image: /assets/img/flying-probe-1200-ogimage-85.jpg
 baseurl: "" # the subpath of your site, e.g. /blog/
 url: "https://testing-angular.com"
 permalink: /:title/
-collections:
-  testing-angular:
-    output: true
 
 # Build settings
 host: 0.0.0.0
@@ -16,3 +16,10 @@ markdown: kramdown
 
 sass:
   style: compressed
+
+plugins:
+  - jekyll-last-modified-at
+
+# Optional. The default date format, used if none is specified in the tag.
+last-modified-at:
+    date-format: '%Y-%m-%d'

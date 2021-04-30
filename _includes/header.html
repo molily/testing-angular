@@ -1,0 +1,31 @@
+{% include symbols.html %}
+
+<p id="sticky-menu">
+  <a href="#toc-tree" class="toc-link">
+    Table of Contents
+  </a>
+  <a href="https://molily.de">molily</a>
+  <a href="https://twitter.com/molily" target="_blank" rel="noopener" title="molily on Twitter">@molily</a>
+</p>
+
+<div id="sidebar">
+  <nav id="toc">
+    <p id="home-link">
+      <a href="https://molily.de">molily</a>
+      <a href="https://twitter.com/molily" target="_blank" rel="noopener" title="molily on Twitter">@molily</a>
+    </p>
+    <p id="toc-book-title">
+      Testing Angular<br>
+      <small>A Guide to Robust Angular Applications</small>
+    </p>
+    <p id="toc-epub-link">
+      <a href="/assets/testing-angular.epub" download>Download this book as EPUB (2 MB)</a>
+    </p>
+    <h2 id="toc-heading">Table of Contents</h2>
+    {% include toc-tree.html %}
+    <script src="/assets/js/collapse-toc.js"></script>
+  </nav>
+</div><!-- /sidebar -->
+
+<div id="main-container">
+<main id="main" class="main-testing-angular" markdown="1">

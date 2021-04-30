@@ -13,15 +13,61 @@ layout: default
 
 <link rel="stylesheet" href="{{ "/assets/css/book.css" | prepend: site.baseurl }}">
 
-<link rel="icon" type="image/x-icon" href="/assets/images/favicons/favicon.ico">
-<link rel="icon" type="image/png" href="/assets/images/favicons/favicon-32x32.png" sizes="32x32">
-<link rel="icon" type="image/png" href="assets/images/favicons/favicon-194x194.png" sizes="194x194">
-<link rel="icon" type="image/png" href="assets/images/favicons/favicon-96x96.png" sizes="96x96">
-<link rel="icon" type="image/png" href="assets/images/favicons/favicon-16x16.png" sizes="16x16">
-<link rel="apple-touch-icon" sizes="144x144" href="assets/images/favicons/favicon-144x144.png">
-<link rel="apple-touch-icon-precomposed" sizes="144x144" href="assets/images/favicons/favicon-144x144.png">
+<link rel="icon" type="image/x-icon" href="/assets/img/favicons/favicon.ico">
+<link rel="icon" type="image/png" href="/assets/img/favicons/favicon-32x32.png" sizes="32x32">
+<link rel="icon" type="image/png" href="/assets/img/favicons/favicon-194x194.png" sizes="194x194">
+<link rel="icon" type="image/png" href="/assets/img/favicons/favicon-96x96.png" sizes="96x96">
+<link rel="icon" type="image/png" href="/assets/img/favicons/favicon-16x16.png" sizes="16x16">
+<link rel="apple-touch-icon" sizes="144x144" href="/assets/img/favicons/favicon-144x144.png">
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="/assets/img/favicons/favicon-144x144.png">
 
-{% include head-common.html %}
+{% capture canonical_url %}{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}{% endcapture %}
+
+{% capture description %}
+  {% if page.description %}
+    {{ page.description }}
+  {% else %}
+    {{ site.description }}
+  {% endif %}
+{% endcapture %}
+
+<link rel="preload" href="/assets/fonts/noto-sans-normal-normal-latin.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+
+<link rel="canonical" href="{{ canonical_url }}">
+<link rel="author" href="mailto:molily@mailbox.org" title="E-Mail">
+<link rel="me" href="https://mastodon.social/@molily">
+
+<meta name="viewport" content="width=device-width">
+<meta name="description" content="{{ description | strip }}">
+<meta name="keywords" content="{% if page.keywords %}{{ page.keywords | strip | strip_newlines }}{% else %}{{ site.keywords }}{% endif %}">
+<meta name="theme-color" content="#6f53b2">
+
+<meta property="twitter:account_id" content="1494951763">
+
+<meta name="twitter:card" content="{% if page.twitter_card %}{{ page.twitter_card }}{% else %}summary{% endif %}">
+<meta name="twitter:site" content="@molily">
+<meta name="twitter:title" content="{{ title | strip }}">
+<meta name="twitter:description" content="{{ description | strip }}">
+<meta name="twitter:image" content="{{ site.url }}{% if page.twitter_image %}{{ page.twitter_image }}{% else %}{{ site.twitter_image }}{% endif %}">
+
+<meta property="og:url" content="{{ canonical_url }}">
+<meta property="og:type" content="article">
+<meta property="og:title" content="{{ title | strip }}">
+<meta property="og:description" content="{{ description | strip }}">
+<meta property="og:image" content="{% if page.og_image %}{{ page.og_image }}{% else %}{{ site.og_image }}{% endif %}">
+
+<link rel="icon" type="image/x-icon" href="/assets/img/favicons/favicon.ico">
+<link rel="icon" type="image/png" href="/assets/img/favicons/favicon-32x32.png" sizes="32x32">
+<link rel="icon" type="image/png" href="/assets/img/favicons/favicon-194x194.png" sizes="194x194">
+<link rel="icon" type="image/png" href="/assets/img/favicons/favicon-96x96.png" sizes="96x96">
+<link rel="icon" type="image/png" href="/assets/img/favicons/favicon-16x16.png" sizes="16x16">
+<link rel="apple-touch-icon" sizes="144x144" href="/assets/img/favicons/favicon-144x144.png">
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="/assets/img/favicons/favicon-144x144.png">
+
+{% if page.robots %}
+  <meta name="robots" content="{{ page.robots }}">
+{% endif %}
+
 </head>
 <body>
 
