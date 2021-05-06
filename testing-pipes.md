@@ -46,7 +46,7 @@ In a Component template, we transform a value using the Pipe:
 {% raw %}{{ 'Julie' | greet }}{% endraw %}
 ```
 
-The `GreetPipe` take the string `'Julie'` and computes a new string, `'Hello , Julie!'`.
+The `GreetPipe` take the string `'Julie'` and computes a new string, `'Hello, Julie!'`.
 
 <aside class="margin-note">Simple vs. complex setup</aside>
 
@@ -74,7 +74,7 @@ describe('GreetPipe', () => {
   });
 
   it('says Hello', () => {
-    expect(greetPipe.transform('Julie')).toBe('Hello , Julie!');
+    expect(greetPipe.transform('Julie')).toBe('Hello, Julie!');
   });
 });
 ```
