@@ -72,7 +72,6 @@ html {
 }
 
 body {
-  counter-reset: h2 h3 h4;
   padding: 1rem;
 
   @include large {
@@ -225,6 +224,38 @@ pre {
 }
 
 /**
+ * @section Skip navigation links
+ *
+ */
+
+.skip-navigation {
+  @include accessible-hide;
+
+  &:link {
+    text-decoration: none;
+    transition: none;
+  }
+
+  // Make visible on focus
+  &:focus {
+    @include accessible-show;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    z-index: 1;
+    transform: translateX(-50%);
+    background-color: white;
+    padding: 0.5rem 1rem;
+    outline-offset: 0;
+
+    @include dark-scheme {
+      background-color: $highlight-background-color-inverted;
+    }
+  }
+}
+
+
+/**
  * @section Table of contents
  *
  */
@@ -251,11 +282,6 @@ pre {
 #toc-book-title,
 #toc-heading {
   margin: 2rem 0;
-
-  &::before {
-    counter-increment: none;
-    content: none;
-  }
 }
 
 #toc-book-title {
@@ -398,8 +424,6 @@ pre {
     max-width: $main-max-width;
   }
 
-  counter-reset: h2 h3 h4;
-
   h1,
   h2,
   h3,
@@ -429,52 +453,18 @@ pre {
 
   h1 {
     font-size: 180%;
-    counter-reset: h2 h3 h4;
   }
 
   h2 {
     font-size: 160%;
-    counter-reset: h3 h4;
-  }
-
-  h2::before {
-    counter-increment: h2;
-    content: counter(h2) '.';
   }
 
   h3 {
     font-size: 150%;
-    counter-reset: h4;
-  }
-
-  h3::before {
-    counter-increment: h3;
-    content: counter(h2) '.' counter(h3);
   }
 
   h4 {
     font-size: 140%;
-  }
-
-  h4::before {
-    counter-increment: h4;
-    content: counter(h2) '.' counter(h3) '.' counter(h4);
-  }
-
-  h2::before,
-  h3::before,
-  h4::before {
-    display: inline-block;
-    vertical-align: top;
-    margin-right: 1rem;
-  }
-
-  &.main-testing-angular {
-    h2::before,
-    h3::before,
-    h4::before {
-      display: none;
-    }
   }
 }
 
@@ -738,19 +728,28 @@ h1#cover-heading {
   background-color: $link-color;
   color: white;
 
-  &:hover {
-    background-color: adjust-color($link-color, $lightness: -5%);
-  }
-
   @include dark-scheme {
     background-color: $highlight-background-color-inverted;
     color: $link-color-inverted;
+  }
 
-    &:hover {
+  &:hover {
+    background-color: adjust-color($link-color, $lightness: -5%);
+
+    @include dark-scheme {
       background-color: adjust-color(
         $highlight-background-color-inverted,
         $lightness: -2%
       );
+    }
+  }
+
+  &:focus {
+    outline: 1px solid hsl($hue, 90%, 75%);
+    outline-offset: 3px;
+
+    @include dark-scheme {
+      outline-color: $link-color-inverted;
     }
   }
 }
