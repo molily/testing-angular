@@ -5,6 +5,7 @@
 
 @import 'reset';
 @import 'fonts';
+@import 'mixins';
 @import 'content';
 @import 'highlight';
 
@@ -13,8 +14,6 @@
  *
  */
 
-$breakpoint-medium: 30rem;
-$breakpoint-large: 55rem;
 $toc-width: 25rem;
 $main-max-width: 42rem;
 
@@ -36,29 +35,6 @@ $dark-highlight-background-color-inverted: adjust-color(
 );
 
 $font-size-small: percentage(16 / 18);
-
-/**
- * @section Mixins
- *
- */
-
- @mixin medium {
-  @media screen and (min-width: $breakpoint-medium) {
-    @content;
-  }
-}
-
-@mixin large {
-  @media screen and (min-width: $breakpoint-large) {
-    @content;
-  }
-}
-
-@mixin high-dpi {
-  @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 2dppx) {
-    @content;
-  }
-}
 
 /**
  * @section Root element and Body
@@ -215,12 +191,7 @@ pre {
  */
 
 [id] {
-  // Larger margin because of the sticky menu
   scroll-margin-top: 4rem;
-
-  @include large {
-    scroll-margin-top: 2rem;
-  }
 }
 
 /**
@@ -254,14 +225,13 @@ pre {
   }
 }
 
-
 /**
  * @section Table of contents
  *
  */
 
-@include large {
-  #toc {
+#toc {
+  @include large {
     padding: 2rem;
   }
 }
@@ -805,6 +775,7 @@ $margin-note-breakpoint: $toc-width + $main-max-width +
 
 #next-chapter-link {
   margin: 4rem 0;
+  font-size: 1.1rem;
 
   a {
     display: block;

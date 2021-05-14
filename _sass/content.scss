@@ -122,6 +122,9 @@ address,
 blockquote {
   margin: 0 0 1rem 0;
   line-height: $content-line-height;
+  @include medium {
+    line-height: $content-line-height-medium;
+  }
 }
 
 /**

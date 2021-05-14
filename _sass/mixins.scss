@@ -1,0 +1,22 @@
+/**
+ * @section Mixins
+ *
+ */
+
+ @mixin medium {
+  @media screen and (min-width: $breakpoint-medium) {
+    @content;
+  }
+}
+
+@mixin large {
+  @media screen and (min-width: $breakpoint-large) {
+    @content;
+  }
+}
+
+@mixin high-dpi {
+  @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 2dppx) {
+    @content;
+  }
+}
