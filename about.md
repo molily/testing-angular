@@ -1,6 +1,6 @@
 ---
 layout: chapter
-title: "About – Testing Angular"
+title: About
 description: About the author of this book and how to send feedback
 ---
 

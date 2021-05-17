@@ -1,6 +1,6 @@
 ---
 layout: chapter
-title: "Testing Components with children – Testing Angular"
+title: Testing Components with children
 description: How to write unit and integration tests for Components with children
 ---
 

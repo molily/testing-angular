@@ -3,13 +3,13 @@ layout: default
 ---
 {% capture title %}
   {% if page.title %}
-    {{ page.title }}
+    {{ page.title }}{% if page.append_site_title != false %} – {{ site.title }}{% endif %}
   {% else %}
     {{ site.title }}
   {% endif %}
 {% endcapture %}
 
-<title>{{ title | strip }}</title>
+<title>{{ title | strip | strip_newlines }}</title>
 
 <link rel="stylesheet" href="{{ "/assets/css/book.css" | prepend: site.baseurl }}">
 
@@ -38,7 +38,7 @@ layout: default
 <link rel="me" href="https://mastodon.social/@molily">
 
 <meta name="viewport" content="width=device-width">
-<meta name="description" content="{% if page.description %}{{ page.description | strip | strip_newlines }}{% else %}{{ site.description }}{% endif %}">
+<meta name="description" content="{{ description | strip }}">
 <meta name="keywords" content="{% if page.keywords %}{{ page.keywords | strip | strip_newlines }}{% else %}{{ site.keywords }}{% endif %}">
 <meta name="theme-color" content="#6f53b2">
 

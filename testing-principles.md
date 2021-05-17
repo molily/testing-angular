@@ -1,6 +1,6 @@
 ---
 layout: chapter
-title: "Testing principles – Testing Angular"
+title: Testing principles
 description: Why do we test? How to test? What makes a good test?
 ---
 

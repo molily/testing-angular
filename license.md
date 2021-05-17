@@ -1,7 +1,7 @@
 ---
 layout: chapter
-title: "License – Testing Angular"
-description: Copyright information for this book
+title: License
+description: Copyright and contact information for this book
 ---
 
 # License

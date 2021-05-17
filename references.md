@@ -1,6 +1,6 @@
 ---
 layout: chapter
-title: "References – Testing Angular"
+title: References
 description: Recommended books on JavaScript, Angular and testing
 ---
 

@@ -1,6 +1,6 @@
 ---
 layout: chapter
-title: "Testing Components with Spectator – Testing Angular"
+title: Testing Components with Spectator
 description: How to use the Spectator testing library for testing Angular Components
 ---
 

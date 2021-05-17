@@ -1,6 +1,6 @@
 ---
 layout: chapter
-title: "Acknowledgements – Testing Angular"
+title: Acknowledgements
 description: Thanks to those who helped me writing this book
 ---
 

@@ -1,6 +1,6 @@
 ---
 layout: chapter
-title: "Test suites with Jasmine – Testing Angular"
+title: Test suites with Jasmine
 description: How to create and structure efficient tests using the Jasmine library
 ---
 

@@ -1,6 +1,6 @@
 ---
 layout: chapter
-title: "Debugging tests – Testing Angular"
+title: Debugging tests
 description: How to find flaws in your Angular unit and integration tests
 ---
 
