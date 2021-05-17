@@ -1,6 +1,7 @@
 ---
 layout: chapter
 title: "Testing Directives – Testing Angular"
+description: How to write automated tests for Attribute and Structural Directives
 ---
 
 # Testing Directives

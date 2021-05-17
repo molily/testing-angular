@@ -1,6 +1,7 @@
 ---
 layout: chapter
 title: "Index of example applications – Testing Angular"
+description: Angular example projects with tests used across this book
 ---
 
 # Index of example applications

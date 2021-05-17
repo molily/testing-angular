@@ -1,6 +1,7 @@
 ---
 layout: chapter
 title: "End-to-end testing – Testing Angular"
+description: Using Cypress to test Angular applications
 ---
 
 # End-to-end testing

@@ -1,6 +1,7 @@
 ---
 layout: chapter
 title: "Testing Components with children – Testing Angular"
+description: How to write unit and integration tests for Components with children
 ---
 
 # Testing Components with children
@@ -15,7 +16,6 @@ So far, we have tested an independent Component that renders plain HTML elements
 - They have little to none dependencies.
 - They are easy to reason about and therefore easy to test.
 - The preferred way of testing them is a unit test.
-
 
 These Components are called **presentational Components** since they directly present a part of the user interface using HTML and CSS. Presentational Components need to be combined and wired to form a working user interface.
 

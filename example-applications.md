@@ -1,6 +1,7 @@
 ---
 layout: chapter
 title: "Example applications – Testing Angular"
+description: Fully-tested Angular projects used as example in this book
 ---
 
 # Example applications

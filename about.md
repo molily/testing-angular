@@ -1,6 +1,7 @@
 ---
 layout: chapter
 title: "About – Testing Angular"
+description: About the author of this book and how to send feedback
 ---
 
 # About
@@ -13,7 +14,7 @@ Mathias is working for [9elements](https://9elements.com), a software and design
 
 Twitter: [@molily](https://twitter.com/molily)
 
-**Please send feedback and corrections to [molily@mailbox.org](mailto:molily@mailbox.org).**
+**Please send feedback and corrections to [molily@mailbox.org](mailto:molily@mailbox.org) or <a href="https://github.com/molily/testing-angular/">file an issue on GitHub</a>.**
 
 Published on <time datetime="2021-02-17">February 17th, 2021</time>.
 

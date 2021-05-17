@@ -1,6 +1,7 @@
 ---
 layout: chapter
 title: "Measuring code coverage – Testing Angular"
+description: How to measure test coverage of Angular applications
 ---
 
 # Measuring code coverage

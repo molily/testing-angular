@@ -1,6 +1,7 @@
 ---
 layout: chapter
 title: "Testing Services – Testing Angular"
+description: How to write automated tests for Angular Services that send HTTP requests
 ---
 
 # Testing Services

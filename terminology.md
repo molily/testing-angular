@@ -1,6 +1,7 @@
 ---
 layout: chapter
 title: "Terminology – Testing Angular"
+description: How this book uses Angular technical terms
 ---
 
 # Terminology

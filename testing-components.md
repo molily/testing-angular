@@ -1,6 +1,7 @@
 ---
 layout: chapter
 title: "Testing Components – Testing Angular"
+description: Introduction to testing Angular Components with Angular’s TestBed
 ---
 
 # Testing Components

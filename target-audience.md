@@ -1,6 +1,7 @@
 ---
 layout: chapter
 title: "Target Audience – Testing Angular"
+description: What you should know when reading this book
 ---
 
 # Target audience

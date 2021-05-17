@@ -1,6 +1,7 @@
 ---
 layout: chapter
 title: "Acknowledgements – Testing Angular"
+description: Thanks to those who helped me writing this book
 ---
 
 # Acknowledgements
@@ -13,6 +14,6 @@ Thanks to [Netanel Basal](https://netbasal.com/) for valuable feedback on the bo
 
 Thanks to [Nils Binder](https://ichimnetz.com/) for helping with the design, including the dark color scheme. Thanks to Melina Jacob for designing the e-book cover.
 
-Thanks to [Tim Deschryver](https://timdeschryver.dev/), [Kent C. Dodds](https://kentcdodds.com/), [Kara Erickson](https://twitter.com/karaforthewin), [Asim Hussain](https://asim.dev/), [Tracy Lee](https://twitter.com/ladyleet), [Brandon Roberts](https://brandonroberts.dev/), [Jesse Palmer](https://jesselpalmer.com/), Corinna Cohn, [Mike Giambalvo](https://twitter.com/heathkit) and [Craig Nishina](https://twitter.com/cnishina) for insights on Angular, RxJS and automated testing.
+Thanks to [Tim Deschryver](https://timdeschryver.dev/), [Kent C. Dodds](https://kentcdodds.com/), [Kara Erickson](https://twitter.com/karaforthewin), [Asim Hussain](https://asim.dev/), [Tracy Lee](https://twitter.com/ladyleet), [Brandon Roberts](https://brandonroberts.dev/), [Jesse Palmer](https://jesselpalmer.com/), Corinna Cohn, [Mike Giambalvo](https://twitter.com/heathkit), [Craig Nishina](https://twitter.com/cnishina) and [Lucas F. Costa](https://lucasfcosta.com/) for insights on Angular, RxJS and automated testing.
 
 <p id="next-chapter-link"><a href="../about/#about">About</a></p>

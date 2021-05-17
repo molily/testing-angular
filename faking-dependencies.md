@@ -1,6 +1,7 @@
 ---
 layout: chapter
 title: "Faking dependencies (Mocking) – Testing Angular"
+description: How to mock dependencies to test Components and Services in isolation
 ---
 
 # Faking dependencies

@@ -1,6 +1,7 @@
 ---
 layout: chapter
 title: "Summary – Testing Angular"
+description: Recommendations on how to approach testing Angular applications
 ---
 
 # Summary

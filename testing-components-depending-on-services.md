@@ -1,6 +1,7 @@
 ---
 layout: chapter
 title: "Testing Components depending on Services – Testing Angular"
+description: How to write unit and integration tests for Components with Service dependencies
 ---
 
 # Testing Components depending on Services

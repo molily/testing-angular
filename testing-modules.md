@@ -1,6 +1,7 @@
 ---
 layout: chapter
 title: "Testing Modules – Testing Angular"
+description: Automated smoke tests for Angular Modules
 ---
 
 # Testing Modules

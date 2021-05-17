@@ -1,6 +1,7 @@
 ---
 layout: chapter
 title: "Testing Pipes – Testing Angular"
+description: How to test simple and complex, pure and impure Angular Pipes
 ---
 
 # Testing Pipes

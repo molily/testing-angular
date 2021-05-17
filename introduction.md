@@ -1,6 +1,7 @@
 ---
 layout: chapter
 title: "Introduction – Testing Angular"
+description: Why is automated testing so controversial and contested?
 ---
 
 # Introduction

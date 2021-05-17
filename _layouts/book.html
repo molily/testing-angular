@@ -38,7 +38,7 @@ layout: default
 <link rel="me" href="https://mastodon.social/@molily">
 
 <meta name="viewport" content="width=device-width">
-<meta name="description" content="{{ description | strip }}">
+<meta name="description" content="{% if page.description %}{{ page.description | strip | strip_newlines }}{% else %}{{ site.description }}{% endif %}">
 <meta name="keywords" content="{% if page.keywords %}{{ page.keywords | strip | strip_newlines }}{% else %}{{ site.keywords }}{% endif %}">
 <meta name="theme-color" content="#6f53b2">
 

@@ -1,6 +1,7 @@
 ---
 layout: chapter
 title: "Angular testing principles – Testing Angular"
+description: Starting the Angular test suite
 ---
 
 # Angular testing principles
