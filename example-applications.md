@@ -1,6 +1,6 @@
 ---
 layout: chapter
-title: Example applications
+title: Angular example applications with tests
 description: Fully-tested Angular projects used as example in this book
 ---
 

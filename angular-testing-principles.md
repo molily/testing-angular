@@ -1,7 +1,7 @@
 ---
 layout: chapter
 title: Angular testing principles
-description: Starting the Angular test suite
+description: Dependency injection, mocking, starting the Karma test suite
 ---
 
 # Angular testing principles

@@ -1,7 +1,7 @@
 ---
 layout: chapter
 title: Testing complex forms
-description: How to test the logic and accessibility of Reactive Forms
+description: How to test the logic and accessibility of Angular Reactive Forms
 ---
 
 # Testing complex forms
