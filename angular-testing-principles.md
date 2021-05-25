@@ -49,15 +49,15 @@ Angular provides solid testing tools out of the box. When you create an Angular 
 
 <aside class="margin-note">Balanced defaults</aside>
 
-The Angular team already made decisions for you: [Jasmine](https://jasmine.github.io/) as testing framework, [Karma](https://karma-runner.github.io/) as test runner as well as [Protractor](https://www.protractortest.org/) for running end-to-end tests. Implementation and test code is bundled with [Webpack](https://webpack.js.org). Application parts are typically tested inside Angular’s [TestBed](https://angular.io/api/core/testing/TestBed).
+The Angular team already made decisions for you: [Jasmine](https://jasmine.github.io/) as testing framework and [Karma](https://karma-runner.github.io/) as test runner. Implementation and test code is bundled with [Webpack](https://webpack.js.org). Application parts are typically tested inside Angular’s [TestBed](https://angular.io/api/core/testing/TestBed).
 
 This setup is a trade-off with strengths and weaknesses. Since it is just one possible way to test Angular applications, you can compile your own testing tool chain.
 
 <aside class="margin-note">Alternatives</aside>
 
-For example, some Angular developers use [Jest](https://jestjs.io/) instead of Jasmine and Karma. Some swap Protractor with [Cypress](../end-to-end-testing/#introducing-cypress). Some use [Spectator](../testing-components-with-spectator/#testing-components-with-spectator) or the [Angular Testing Library](https://github.com/testing-library/angular-testing-library) instead of using `TestBed` directly.
+For example, some Angular developers use [Jest](https://jestjs.io/) instead of Jasmine and Karma. Some use [Spectator](../testing-components-with-spectator/#testing-components-with-spectator) or the [Angular Testing Library](https://github.com/testing-library/angular-testing-library) instead of using `TestBed` directly.
 
-These alternatives are not better or worse, they simply make different trade-offs. This guide uses Jasmine and Karma for unit and integration tests. Later, you will learn about Spectator. For end-to-end tests, this guide deviates from the standard setup by recommending Cypress.
+These alternatives are not better or worse, they simply make different trade-offs. This guide uses Jasmine and Karma for unit and integration tests. Later, you will learn about Spectator.
 
 Once you have reached the limits of a particular setup, you should investigate whether alternatives make testing your application easier, faster and more reliable.
 

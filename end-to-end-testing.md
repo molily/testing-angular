@@ -87,8 +87,8 @@ Not all frameworks build on WebDriver. Some frameworks integrate more directly i
 
 In this guide, we will learn about two frameworks, one of each category:
 
-- *Protractor*, which is based on WebDriver,
-- *Cypress*, which does not use WebDriver.
+- **Protractor**, which is based on WebDriver,
+- **Cypress**, which does not use WebDriver.
 
 <div class="book-sources" markdown="1">
 - [WebDriver protocol](https://www.w3.org/TR/webdriver/)
@@ -98,37 +98,31 @@ In this guide, we will learn about two frameworks, one of each category:
 
 ## Introducing Protractor
 
-Protractor is an end-to-end testing framework based on WebDriver, made for Angular applications.
+Protractor is an end-to-end testing framework based on WebDriver, made for Angular applications. Like the Angular framework itself, Protractor originates from Google.
 
-<aside class="margin-note">Well-integrated</aside>
+<aside class="margin-note">Deprecated</aside>
 
-Protractor is an official Angular project and also originates from Google. In a project created with the Angular CLI, Protractor is already installed as the default end-to-end testing framework.
+Up until Angular version 12, Protractor was the default end-to-end testing framework in projects created with Angular CLI. Since Angular 12, [Protractor is deprecated](https://github.com/angular/protractor/issues/5502). In new CLI projects, there is no default end-to-end testing solution configured.
 
-Just like the unit and integration tests we have written, Protractor uses Jasmine for test suites and specs. If you are familiar with Jasmine, you quickly get into writing Protractor tests.
+The main reason for Protractor’s deprecation is that it was not maintained for years. During that time, new browser automation standards and better end-to-end testing frameworks have emerged.
 
-Protractor integrates well with an Angular app under test. Protractor waits for Angular to update the page before continuing with the next WebDriver command. This feature seeks to make testing Angular applications more robust.
+Protractor has two outstanding features designed for testing Angular applications. But as we will learn, you cannot benefit from these optimizations any longer.
+
+<aside class="margin-note">Angular-specific features</aside>
+
+First, Protractor hooks into the Angular app under tests. After sending a WebDriver command, Protractor waits for Angular to update the page. Then it continues with the next command. By synchronizing the test and the application, the test gets faster and more reliable.
+
+Second, Protractor has a feature called *control flow*. While WebDriver commands are asynchronous by nature, the control flow allows you to write tests as if they ran synchronously.
+
+Protractor’s control flow implementation led to inconsistencies and bugs. The underlying WebDriverJS library removed the feature, so Protractor had to deprecate it as well. This means you need to use `async` / `await` to explicitly wait for a command to finish.
+
+As a result, Protrator lost a useful feature. Protractor’s contenders, namely Cypress and WebDriver.io, still allow to write asynchronous test code in a synchronous manner.
+
+Without the control flow, you practically need to disable the “wait for Angular” feature as well. This means both key Protractor features have lapsed.
 
 <aside class="margin-note">Not recommended</aside>
 
-Despite all these benefits, **this guide does not recommend using Protractor for new projects**. Why so?
-
-First of all, Protractor is practically unmaintained. The future of the project is unclear. It seems to have lost the Google backing.
-
-Second, the project underwent fundamental changes that curtail its usability.
-
-Protractor has a feature called *WebDriver control flow*. While WebDriver commands are in fact asynchronous, this feature allows you to write tests as if they were synchronous.
-
-The control flow implementation has lead to inconsistencies and bugs. The underlying WebDriverJS library removed the feature, so Protractor deprecated it as well. Today, Protractor recommends to embrace the asynchronous nature of end-to-end tests.
-
-<aside class="margin-note">Asynchronous commands</aside>
-
-All Protractor commands return Promises. You are advised to use `async` / `await` to wait for a command to finish. But most Protractor examples, tutorials and the default configuration still propagate the control flow.
-
-Declaring the control flow obsolete was inevitable, but eliminated a useful feature. Protractor’s contenders, namely Cypress and WebDriver.io, still have such a feature.
-
-If you disable the control flow, you practically need to disable the “wait for Angular” feature as well. This means both key Protractor features have lapsed.
-
-Protractor is a solid project, but today there is no compelling reason to choose Protractor over its competitors.
+In view of these events, **this guide recommends against using Protractor for new projects**. Protractor is a solid project, but today there is no compelling reason to choose Protractor over its competitors.
 
 <aside class="margin-note">Tested with Protractor</aside>
 
@@ -137,8 +131,6 @@ If you are looking for Protractor examples, have a look at the Protractor end-to
 <div class="book-sources" markdown="1">
 - [Counter: End-to-end tests with Protractor](https://github.com/9elements/angular-workshop/tree/main/e2e)
 - [Flickr search: End-to-end tests with Protractor](https://github.com/9elements/angular-flickr-search/tree/main/e2e)
-- [Protractor: The WebDriver Control Flow](https://www.protractortest.org/#/control-flow)
-- [Protractor: async/await](https://www.protractortest.org/#/async-await)
 </div>
 
 ## Introducing Cypress
@@ -161,13 +153,12 @@ The company generates revenue with an additional paid service: The Cypress dashb
 
 <aside class="margin-note">Trade-offs</aside>
 
-From our perspective, Cypress has several drawbacks.
+From our perspective, Cypress has a few drawbacks.
 
-- Cypress requires some initial setup. While Cypress works well with Angular applications, it is not pre-installed like Protractor.
 - In place of Jasmine, Cypress uses the Mocha and Chai libraries for writing tests. While both serve the same purpose, you have to learn the subtle differences. If you use Jasmine for unit and integration tests, there will be an inconsistency in your tests.
 - At the time of writing, Cypress only supports Firefox as well as Chromium-based browsers like Google Chrome and Microsoft Edge. It does not support Safari, legacy Edge or even Internet Explorer.
 
-Cypress is not simply better than WebDriver-based frameworks. It tries to solve their problems by narrowing the scope and making trade-offs.
+Cypress is not simply better than WebDriver-based frameworks. It tries to solve their problems by narrowing the scope and by making trade-offs.
 
 <aside class="margin-note">Recommended</aside>
 
@@ -200,36 +191,38 @@ This command does three important things:
 The output looks like this:
 
 ```
-Installing packages for tooling via npm.
-Installed packages for tooling via npm.
-? Would you like to remove Protractor from the project? No
-CREATE cypress.json (48 bytes)
-CREATE cypress/tsconfig.json (89 bytes)
-CREATE cypress/integration/spec.ts (158 bytes)
-CREATE cypress/plugins/cy-ts-preprocessor.js (425 bytes)
-CREATE cypress/plugins/index.js (158 bytes)
-CREATE cypress/support/commands.ts (1378 bytes)
+ℹ Using package manager: npm
+✔ Found compatible package version: @briebug/cypress-schematic@5.0.0.
+✔ Package information loaded.
+
+The package @briebug/cypress-schematic@5.0.0 will be installed and executed.
+Would you like to proceed? Yes
+✔ Package successfully installed.
+? Would you like to remove Protractor from the project? Yes
+CREATE cypress.json (299 bytes)
+CREATE cypress/tsconfig.json (139 bytes)
+CREATE cypress/integration/spec.ts (103 bytes)
+CREATE cypress/plugins/index.js (37 bytes)
+CREATE cypress/support/commands.ts (1377 bytes)
 CREATE cypress/support/index.ts (651 bytes)
-UPDATE package.json (1396 bytes)
-UPDATE angular.json (4378 bytes)
+UPDATE package.json (1142 bytes)
+UPDATE angular.json (4179 bytes)
 ✔ Packages installed successfully.
 ```
 
-The schematic asks if you would like to remove Protractor from the project.
+The installer asks if you would like to remove Protractor from the project. The choice only makes a difference if the project was created with Angular CLI prior to version 12. If you opt for “Yes”, any existing `e2e` directory from Protractor will be removed.
 
-- If you opt for “Yes”, the Protractor directory `e2e` is removed and the `ng e2e` command will start Cypress instead.
-- If you opt for “No”, the `e2e` directory will remain untouched.
-
-If you are unsure, just answer “No” so you can revive the Protractor tests at any time if you feel the need.
+If there are any Protractor tests in the project, you probably want to revive them later and use them as a reference. In this case, answer “No”. Otherwise, it is safe to answer “Yes”.
 
 ## Writing an end-to-end test with Cypress
 
 In the project directory, you will find a sub-directory called `cypress`. It contains:
 
-- A `tsconfig.json` TypeScript configuration file for all `.ts` files in the directory,
+- A `tsconfig.json` configuration for all TypeScript files in the directory,
+- an `integration` directory for the end-to-end tests.
 - a `support` directory for custom commands,
-- a `plugin` directory for Cypress plugins and
-- an `integration` directory for the actual end-to-end tests.
+- a `plugin` directory for Cypress plugins,
+- a `fixtures` directory for test data.
 
 The test files in `integration` are TypeScript files with the extension `.ts`.
 
@@ -239,7 +232,7 @@ Mocha and Chai is a popular combination. They roughly do the same as Jasmine, bu
 
 <aside class="margin-note">Test suites</aside>
 
-If you have written unit tests with Jasmine before, the Mocha structure will be familiar to you. A test file contains one or more suites declared with `describe('…', () => { /* … */})`. Typically, one file contains one `describe` block, possible with nested `describe` blocks.
+If you have [written unit tests with Jasmine](../test-suites-with-jasmine/#test-suites-with-jasmine) before, the Mocha structure will be familiar to you. A test file contains one or more suites declared with `describe('…', () => { /* … */})`. Typically, one file contains one `describe` block, possible with nested `describe` blocks.
 
 Inside `describe`, the blocks `beforeEach`, `afterEach`, `beforeAll`, `afterAll` and `it` can be used similar to Jasmine tests.
 
@@ -301,7 +294,7 @@ Later, we are going to set a `baseUrl` in the Cypress configuration so we can us
 
 <aside class="margin-note">Chainers</aside>
 
-`cy.title` returns the page title. To be specific, it returns a Cypress **Chainer** that wraps a string. A Chainer is an asynchronous wrapper around values, mostly DOM elements but also other values.
+`cy.title` returns the page title. To be specific, it returns a Cypress **Chainer**. This is an asynchronous wrapper around an arbitrary value. Most of the time, a Chainer wraps DOM elements. In the case of `cy.title`, it wraps a string.
 
 <aside class="margin-note">Assertions</aside>
 
@@ -313,7 +306,7 @@ cy.title().should('equal', 'Angular Workshop: Counters');
 
 We pass two parameters, `'equal'` and the expected title string. `equal` creates an assertion that the subject value (the page title) equals to the given value (`'Angular Workshop: Counters'`). `equal` uses the familiar `===` comparison.
 
-This `should` style of assertions is different from Jasmine expectations, like `expect(…).toBe(…)`. Confusingly, Chai supports three different assertion styles: `should`, `assert`, but also `expect`. In Cypress, you will typically use the `should` method on Chainers and `expect` on other values.
+This `should` style of assertions differs from Jasmine expectations, which use the `expect(…).toBe(…)` style. In fact, Chai supports three different assertion styles: `should`, `assert`, but also `expect`. In Cypress you will typically use `should` on Chainers and `expect` on unwrapped values.
 
 <div class="book-sources" markdown="1">
 - [Cypress API reference: cy.visit](https://docs.cypress.io/api/commands/visit.html)
@@ -368,9 +361,9 @@ This will open the test runner:
   <img src="/assets/img/cypress-open.png" alt="Interactive Cypress test runner" class="image-max-full" loading="lazy">
 </a>
 
-In the main window pane, all tests are listed. To run a single test, just click on it. To run all, click the “Run all specs”.
+In the main window pane, all tests are listed. To run a single test, just click on it. To run all, click the “Run all specs” button.
 
-On the top-right, you can select the browser. Chrome, Firefox and Edge will appear in the list given you have installed them on your machine.
+In a dropdown menu on the top-right, you can select the browser. Chrome, Firefox and Edge will appear in the list given you have installed them on your machine.
 
 This graphical user interface is an Electron application, a framework based on Chromium, the open source foundation of the Chrome browser. You can always run your tests in Electron since it ships with Cypress.
 
@@ -406,9 +399,11 @@ Cypress provides a helpful error message, pointing to the assertion that failed.
 
 <aside class="margin-note">Time travel</aside>
 
-A unique feature of the in-browser test runner is the ability to see the state of the page at a certain point in time. Cypress creates DOM snapshot when a command is run or an assertion verified.
+A unique feature of the in-browser test runner is the ability to see the state of the page at a certain point in time. Cypress creates DOM snapshot whenever a command is run or an assertion verified.
 
 By hovering over a command or assertion, you can travel back in time. The page on the right side then reflects the page when the command or assertion was processed.
+
+The time travel feature is invaluable when writing and debugging end-to-end tests. Use it to understand how your test interacts with the application and how the application reacts. When a test fails, use it to reconstruct what circumstances lead to the failure.
 
 <div class="book-sources" markdown="1">
 - [Cypress documentation: The Test Runner](https://docs.cypress.io/guides/core-concepts/test-runner.html)
@@ -463,20 +458,20 @@ In our first Cypress test, we have checked the page title successfully. Let us t
 
 The test needs to perform the following steps:
 
-1. Navigate to /
-2. Find the element with the current count and read its text content
-3. Expect that the text is “5”, since this is the start count for the first counter
-4. Find the increment button and click it
-5. Find the element with the current count and read its text content (again)
-6. Expect that the text now reads “6”
+1. Navigate to “/”.
+2. Find the element with the current count and read its text content.
+3. Expect that the text is “5”, since this is the start count for the first counter.
+4. Find the increment button and click it.
+5. Find the element with the current count and read its text content (again).
+6. Expect that the text now reads “6”.
 
-We already now how to navigate to an address with `cy.visit('http://localhost:4200')`.
+We have already used `cy.visit('http://localhost:4200')` to navigate to an address.
+
+<aside class="margin-note">Base URL</aside>
 
 Cypress supports a `baseUrl` configuration option so we do not have to hard-code and repeat the full URL. We set `baseUrl` to `'http://localhost:4200'` so we can simply write `cy.visit('/')`.
 
-The `baseUrl` setting allows you to run the tests against different versions of the application, for example development, staging and production.
-
-<aside class="margin-note">Base URL</aside>
+By setting a `baseUrl` instead of hard-coding a full URL, you can run the tests against different installations of the application. For example, the `baseUrl` would be `'http://localhost:4200'` for development, `'https://staging.example.com'` for staging and `'https://example.com` for production.
 
 Edit the Cypress configuration file `cypress.json` in the Angular project directory. Add a property `baseUrl` and set it to the development server URL:
 
@@ -487,7 +482,7 @@ Edit the Cypress configuration file `cypress.json` in the Angular project direct
 }
 ```
 
-From now on, Cypress will expand the URL passed to `cy.visit` to a full URL using the `baseUrl`. The `baseUrl` configuration option can still be overridden on the command line if necessary.
+From now on, Cypress will expand the URL passed to `cy.visit` to a full URL using the `baseUrl`. The `baseUrl` configuration option can still be overridden on the command line, for example when testing staging and production.
 
 ## Finding elements
 
@@ -497,9 +492,9 @@ The next step is to find an element in the current page. Cypress provides severa
 cy.get('.example')
 ```
 
-`cy.get` returns a Chainer, an asynchronous wrapper around the found elements with useful methods.
+`cy.get` returns a Chainer, an asynchronous wrapper around the found elements, enriched with useful methods.
 
-Just like with unit and integration test, the immediate question is: Which way to find an element should we use? By id, name, class or by other means?
+Just like with unit and integration test, the immediate question is: How should we find an element – by id, name, class or by other means?
 
 <aside class="margin-note">Find by test id</aside>
 
@@ -534,7 +529,7 @@ cy.get('[data-testid="count"]')
 
 <aside class="margin-note">Presence and content</aside>
 
-The `cy.get` command already has an assertion built-in: It expects to find at least one element. Otherwise, the test fails.
+The `cy.get` command already has an assertion built-in: It expects to find at least one element matching the selector. Otherwise, the test fails.
 
 Next, we check the element’s text content to verify the start count. Again, we use the `should` method to create an assertion.
 
@@ -812,14 +807,14 @@ See the Flickr photo search in action
 </p>
 </script>
 
-Before writing any code, let us make a plan what the end-to-end test needs to do:
+Before writing any code, let us plan what the end-to-end test needs to do:
 
-1. Navigate to /
-2. Find the search input field and enter a search term, e.g. “flower”
-3. Find the submit button and click on it
-4. Expect photo item links to flickr.com to appear
-5. Click on a photo item
-6. Expect the full photo details to appear
+1. Navigate to “/”.
+2. Find the search input field and enter a search term, e.g. “flower”.
+3. Find the submit button and click on it.
+4. Expect photo item links to flickr.com to appear.
+5. Click on a photo item.
+6. Expect the full photo details to appear.
 
 <aside class="margin-note">Nondeterministic API</aside>
 
@@ -827,10 +822,10 @@ The application under test queries a third-party API with production data. The t
 
 There are two ways to deal with this dependency during testing:
 
-- Test against the real Flickr API
-- Fake the Flickr API and return a fixed response
+1. Test against the *real* Flickr API
+2. *Fake* the Flickr API and return a fixed response
 
-If we test against the real Flickr API, we cannot be specific in our expectations due to changing search results. We can only test the search results and the full photo superficially. We merely know that the clicked photo has “flower” in its title or tags.
+If we test against the real Flickr API, we cannot be specific in our expectations due to changing search results. We can superficially test the search results and the full photo. We merely know that the clicked photo has “flower” in its title or tags.
 
 <aside class="margin-note">Real vs. fake API</aside>
 
@@ -1223,11 +1218,9 @@ The end-to-end test we wrote for the Flickr search uses the live Flickr API. As 
 
 The test provides confidence that the application works hand in hand with the third-party API. But it makes the test slower and only allows unspecific assertions.
 
-<aside class="margin-note">Intercept XMLHttpRequest</aside>
+<aside class="margin-note">Intercept HTTP requests</aside>
 
 With Cypress, we can uncouple the dependency. Cypress allows us to intercept HTTP requests and respond with fake data.
-
-The requests have to originate from JavaScript using XMLHttpRequest. Luckily, this is what Angular’s HTTP module (`@angular/common/http`) uses under the hood.
 
 First of all, we need to set up the fake data. We have already created fake photo objects for the [`FlickrService` unit test](../testing-services/#testing-a-service-that-sends-http-requests). For simplicity, we just import them:
 
@@ -1240,13 +1233,6 @@ import {
 } from '../../src/app/spec-helpers/photo.spec-helper';
 ```
 
-Next, we need the URL of the request we want to intercept. This is a long string with numerous query parameters like the search term.
-
-```typescript
-const encodedSearchTerm = encodeURIComponent(searchTerm);
-const expectedUrl = `https://www.flickr.com/services/rest/?tags=${encodedSearchTerm}&method=flickr.photos.search&format=json&nojsoncallback=1&tag_mode=all&media=photos&per_page=15&extras=tags,date_taken,owner_name,url_q,url_m&api_key=XYZ`;
-```
-
 Using the fake photos, we create a fake response object that mimics the relevant part of the Flickr response.
 
 ```typescript
@@ -1257,36 +1243,55 @@ const flickrResponse = {
 };
 ```
 
-Now we instruct Cypress to intercept the Flickr API request and answer it with fake data. This setup happens in the test’s `beforeEach` block.
-
 <aside class="margin-note">Fake server with route</aside>
 
-First, we call `cy.server` to enable the interception of XMLHttpRequests. Second, we call `cy.route` to register a route for the Flickr API URL.
+Now we instruct Cypress to intercept the Flickr API request and answer it with fake data. This setup happens in the test’s `beforeEach` block. The corresponding Cypress command is `cy.intercept`.
 
 ```typescript
 beforeEach(() => {
   cy.visit('/');
 
-  cy.server();
-  cy.route({
-    url: expectedUrl,
-    response: flickrResponse,
-    headers: {
-      'Access-Control-Allow-Origin': '*',
+  cy.intercept(
+    {
+      method: 'GET',
+      url: 'https://www.flickr.com/services/rest/',
+      query: {
+        tags: searchTerm,
+        method: 'flickr.photos.search',
+        format: 'json',
+        nojsoncallback: '1',
+        tag_mode: 'all',
+        media: 'photos',
+        per_page: '15',
+        extras: 'tags,date_taken,owner_name,url_q,url_m',
+        // Omit api_key, it is likely to change
+      },
     },
-  }).as('flickrSearchRequest');
+    {
+      body: flickrResponse,
+      headers: {
+        'Access-Control-Allow-Origin': '*',
+      },
+    },
+  ).as('flickrSearchRequest');
 });
 ```
 
-`cy.route` can be called in different ways. Here, we pass a configuration object. We want to match a GET request with the given URL. (GET is the default method, we do not have to pass `method: 'GET'` explicitly.)
+`cy.intercept` can be called in different ways. Here, we pass two objects: First, a *route matcher* describing the requests to intercept. Second, a *route handler* describing the fake response.
+
+The route matcher contains the HTTP GET method, the base URL and a whole bunch of query string parameters.
 
 <aside class="margin-note">Response and headers</aside>
 
-The `response` property specifies the fake response Cypress should send. Since the request to Flickr is a cross-origin, we also need to set the `Access-Control-Allow-Origin: *` header so Angular at the origin `http://localhost:4200` is allowed to read the response from the origin `https://www.flickr.com/`.
+The route handler specifies the response Cypress should send. As JSON response body, we pass the fake `flickrResponse` object.
 
-Finally, we give the request a name by calling `.as('flickrSearchRequest')`. This makes it possible to refer to the request later using the `@flickrSearchRequest` alias.
+Since the request to Flickr is a cross-origin, we also need to set the `Access-Control-Allow-Origin: *` header so our Angular application at the origin `http://localhost:4200` is allowed to read the response from the origin `https://www.flickr.com/`.
 
-After this change, Cypress catches the request to Flickr and handles it by itself. The original Flickr API is not reached.
+<aside class="margin-note">Alias</aside>
+
+Finally, we give the request an **alias** by calling `.as('flickrSearchRequest')`. This makes it possible to refer to the request later using the `@flickrSearchRequest` alias.
+
+After this setup, Cypress intercepts the request to Flickr and handles it by itself. The original Flickr API is not reached.
 
 The existing, rather generic specs still pass. Before we make them more specific, we need to verify that Cypress found a match and intercepted the HTTP request. Because if it did not, the test would still pass.
 
@@ -1305,7 +1310,7 @@ it('searches for a term', () => {
 });
 ```
 
-`cy.wait('@flickrSearchRequest')` tells Cypress to wait for an XMLHttpRequest that matches the specified criteria. `@flickrSearchRequest` refers to the route we have defined above.
+`cy.wait('@flickrSearchRequest')` tells Cypress to wait for a request that matches the specified criteria. `@flickrSearchRequest` refers to the alias we have defined above.
 
 If Cypress does not find a matching request until a timeout, the test fails. If Cypress caught the request,
 we know that the Angular application received the photos specified in the `photos` array.
@@ -1315,21 +1320,28 @@ we know that the Angular application received the photos specified in the `photo
 Let us write specific assertions that compare the photos in the result list to those in the `photos` array.
 
 ```typescript
-cy.byTestId('photo-item-link')
-  .should('have.length', 2)
-  .each((link, index) => {
-    expect(link.attr('href')).to.equal(
-      `https://www.flickr.com/photos/${photos[index].owner}/${photos[index].id}`,
-    );
-  });
-cy.byTestId('photo-item-image')
-  .should('have.length', 2)
-  .each((image, index) => {
-    expect(image.attr('src')).to.equal(photos[index].url_q);
-  });
+it('searches for a term', () => {
+  cy.byTestId('search-term-input').first().clear().type(searchTerm);
+  cy.byTestId('submit-search').first().click();
+
+  cy.wait('@flickrSearchRequest');
+
+  cy.byTestId('photo-item-link')
+    .should('have.length', 2)
+    .each((link, index) => {
+      expect(link.attr('href')).to.equal(
+        `https://www.flickr.com/photos/${photos[index].owner}/${photos[index].id}`,
+      );
+    });
+  cy.byTestId('photo-item-image')
+    .should('have.length', 2)
+    .each((image, index) => {
+      expect(image.attr('src')).to.equal(photos[index].url_q);
+    });
+});
 ```
 
-We do the same for the other spec.
+We do the same for the full photo spec.
 
 ```typescript
 it('shows the full photo', () => {
@@ -1347,27 +1359,20 @@ it('shows the full photo', () => {
 });
 ```
 
-The spec ensures that the application under test outputs the data from the Flickr API. The `have.text` checks an element’s text content, whereas `have.attr` checks the `src` and `href` attributes.
+The specs now ensure that the application under test outputs the data from the Flickr API. `have.text` checks an element’s text content, whereas `have.attr` checks the `src` and `href` attributes.
 
-We are done! Our end-to-end test fakes an API request in order to inspect the application deeply.
+We are done! Our end-to-end test intercepts an API request and responds with fake data in order to inspect the application deeply.
 
 <aside class="margin-note">Intercept all requests</aside>
 
 In the case of the Flickr search, we have intercepted an HTTP request to a third-party API. But Cypress allows to fake any request, including those to your own HTTP APIs.
 
-The `cy.server` and `cy.route` commands only support intercepting XMLHttpRequest. In addition, Cypress has a new command named `cy.intercept` for intercepting all kinds of requests. Plus, `intercept` is easier to use and more powerful.
-
-In the Flickr search repository, you will find the same test with `cy.server` / `cy.route` as well as with `cy.intercept` for comparison.
-
 <div class="book-sources" markdown="1">
-- [Flickr search E2E test with cy.server and cy.route](https://github.com/9elements/angular-flickr-search/blob/main/cypress/integration/flickr-search-stub-network.ts)
 - [Flickr search E2E test with cy.intercept](https://github.com/9elements/angular-flickr-search/blob/main/cypress/integration/flickr-search-stub-network-intercept.ts)
 - [Photo spec helper](https://github.com/9elements/angular-flickr-search/blob/main/src/app/spec-helpers/photo.spec-helper.ts)
 - [Cypress documentation: Network Requests](https://docs.cypress.io/guides/guides/network-requests.html)
-- [Cypress API reference: server](https://docs.cypress.io/api/commands/server.html)
-- [Cypress API reference: route](https://docs.cypress.io/api/commands/route.html)
-- [Cypress API reference: wait](https://docs.cypress.io/api/commands/wait.html)
 - [Cypress API reference: intercept](https://docs.cypress.io/api/commands/intercept.html)
+- [Cypress API reference: wait](https://docs.cypress.io/api/commands/wait.html)
 </div>
 
 ## End-to-end testing: Summary
