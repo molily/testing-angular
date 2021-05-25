@@ -1214,7 +1214,7 @@ You can use the page object pattern when you feel the need to tidy up complex, r
 
 ## Faking the Flickr API
 
-The end-to-end test we wrote for the Flickr search uses the live Flickr API. As discussed, this makes the test realistic.
+The end-to-end test we wrote for the Flickr search uses the real Flickr API. As discussed, this makes the test realistic.
 
 The test provides confidence that the application works hand in hand with the third-party API. But it makes the test slower and only allows unspecific assertions.
 
@@ -1315,9 +1315,11 @@ it('searches for a term', () => {
 If Cypress does not find a matching request until a timeout, the test fails. If Cypress caught the request,
 we know that the Angular application received the photos specified in the `photos` array.
 
-<aside class="margin-note">Deterministic fake API</aside>
+<aside class="margin-note">Specific assertions</aside>
 
-Let us write specific assertions that compare the photos in the result list to those in the `photos` array.
+By faking the Flickr API, we gain complete control over the response. We chose to return fixed data. The application under test processes the data deterministically. As discussed, this allows us to verify that the application correctly renders the photos the API returned.
+
+Let us write specific assertions that compare the photos in the result list with those in the `photos` array.
 
 ```typescript
 it('searches for a term', () => {
@@ -1341,7 +1343,9 @@ it('searches for a term', () => {
 });
 ```
 
-We do the same for the full photo spec.
+Here, we walk through the links and images to ensure that the URLs originate from the fake data. Previously, when testing against the real API, we tested the links only superficially. We could not test the image URLs at all.
+
+Likewise, for the full photo spec, we make the assertions more specific.
 
 ```typescript
 it('shows the full photo', () => {
@@ -1365,7 +1369,9 @@ We are done! Our end-to-end test intercepts an API request and responds with fak
 
 <aside class="margin-note">Intercept all requests</aside>
 
-In the case of the Flickr search, we have intercepted an HTTP request to a third-party API. But Cypress allows to fake any request, including those to your own HTTP APIs.
+In the case of the Flickr search, we have intercepted an HTTP request to a third-party API. Cypress allows to fake any request, including those to your own HTTP APIs.
+
+This is useful for returning deterministic responses crucial for the feature under test. But it is also useful for suppressing requests that are irrelevant for your test, like marginal images and web analytics.
 
 <div class="book-sources" markdown="1">
 - [Flickr search E2E test with cy.intercept](https://github.com/9elements/angular-flickr-search/blob/main/cypress/integration/flickr-search-stub-network-intercept.ts)
