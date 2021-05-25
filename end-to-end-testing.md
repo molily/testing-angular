@@ -1285,11 +1285,11 @@ The route matcher contains the HTTP GET method, the base URL and a whole bunch o
 
 The route handler specifies the response Cypress should send. As JSON response body, we pass the fake `flickrResponse` object.
 
-Since the request to Flickr is a cross-origin, we also need to set the `Access-Control-Allow-Origin: *` header so our Angular application at the origin `http://localhost:4200` is allowed to read the response from the origin `https://www.flickr.com/`.
+Since the request to Flickr is cross-origin, we need to set the `Access-Control-Allow-Origin: *` header. This allows our Angular application at the origin `http://localhost:4200` to read the response from the origin `https://www.flickr.com/`.
 
 <aside class="margin-note">Alias</aside>
 
-Finally, we give the request an **alias** by calling `.as('flickrSearchRequest')`. This makes it possible to refer to the request later using the `@flickrSearchRequest` alias.
+Finally, we give the request an *alias* by calling `.as('flickrSearchRequest')`. This makes it possible to refer to the request later using the `@flickrSearchRequest` alias.
 
 After this setup, Cypress intercepts the request to Flickr and handles it by itself. The original Flickr API is not reached.
 
