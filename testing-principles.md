@@ -191,9 +191,9 @@ Because of their inherent complexity, end-to-end tests tend to be unreliable. Th
 
 <aside class="margin-note">Setup costs</aside>
 
-End-to-end test use a real browser and run against the full software stack. Therefore the testing setup is immense. You need to deploy front-end, back-end, databases, caches, etc. to testing machines and then have machines to run the end-to-end tests.
+End-to-end tests use a real browser and run against the full software stack. Therefore the testing setup is immense. You need to deploy front-end, back-end, databases, caches, etc. to testing machines and then have machines to run the end-to-end tests.
 
-In comparison, integration tests are simpler and unit tests even more so. Since they have less moving parts and fewer dependencies, they run faster and the results are reproducible. The setup is relatively simple. Integration and unit tests typically run on one machine with a build of the code under test.
+In comparison, integration tests are simpler and unit tests even more so. Since they have less moving parts and fewer dependencies, they run faster and the results are reproducible. The setup is relatively simple. Integration and unit tests typically run on one machine against a build of the code under test.
 
 <aside class="margin-note">Cost vs. benefit</aside>
 

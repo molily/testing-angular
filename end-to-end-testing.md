@@ -104,7 +104,7 @@ Protractor is an end-to-end testing framework based on WebDriver, made for Angul
 
 Up until Angular version 12, Protractor was the default end-to-end testing framework in projects created with Angular CLI. Since Angular 12, [Protractor is deprecated](https://github.com/angular/protractor/issues/5502). In new CLI projects, there is no default end-to-end testing solution configured.
 
-The main reason for Protractor’s deprecation is that it was not maintained for years. During that time, new browser automation standards and better end-to-end testing frameworks have emerged.
+The main reason for Protractor’s deprecation is that it was not maintained for years. During that time, new browser automation standards and better end-to-end testing frameworks emerged.
 
 Protractor has two outstanding features designed for testing Angular applications. But as we will learn, you cannot benefit from these optimizations any longer.
 
