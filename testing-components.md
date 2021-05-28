@@ -167,11 +167,11 @@ describe('CounterComponent', () => {
 });
 ```
 
-Using `describe`, we define a test suite for the `CounterComponent`. Inside, there are two `beforeEach` blocks. The first `beforeEach` block configures the `TestBed`. The second renders the Component.
+Using `describe`, we define a test suite for the `CounterComponent`. In contains a `beforeEach` block that configures the `TestBed` and renders the Component.
 
 <aside class="margin-note">Async compilation</aside>
 
-You might wonder why the function in the `beforeEach` block is marked as an `async` function. It is because `compileComponents` is an asynchronous operation. To compile the Components, Angular needs to fetch external the template files referenced by `templateUrl`.
+You might wonder why the function passed to `beforeEach` is marked as an `async` function. It is because `compileComponents` is an asynchronous operation. To compile the Components, Angular needs to fetch external the template files referenced by `templateUrl`.
 
 If you are using the Angular CLI, which is most likely, the template files are already included in the test bundle. So they are available instantly. If you are not using the CLI, the files have to be loaded asynchronously.
 
@@ -183,11 +183,11 @@ This is an implementation detail that might change in the future. The safe way i
 
 Per default, Jasmine expects that your testing code is synchronous. The functions you pass to `it` but also `beforeEach`, `beforeAll`, `afterEach`, `afterAll` need to finish in a certain amount of time, also known as timeout. Jasmine also supports asynchronous specs. If you pass an `async` function, Jasmine waits for it to finish.
 
-Now we have built the scaffold for our test using the `TestBed`, we need to write the first spec. `createComponent` returns a fixture, an instance of `ComponentFixture`. What is the fixture and what does it provide?
-
 ## ComponentFixture and DebugElement
 
-The term fixture is borrowed from real-world testing of mechanical parts or electronic devices. A fixture is a standardized frame into which the test object is mounted. The fixture holds the device under test and connects to electrical contacts so measurements can be taken.
+`TestBed.createComponent(CounterComponent)` returns a fixture, an instance of `ComponentFixture`. What is the fixture and what does it provide?
+
+The term fixture is borrowed from real-world testing of mechanical parts or electronic devices. A fixture is a standardized frame into which the test object is mounted. The fixture holds the object and connects to electrical contacts in order to provide power and to take measurements.
 
 <aside class="margin-note">
   <p><code>Component&#xAD;Fixture</code></p>

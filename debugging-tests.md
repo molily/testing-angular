@@ -69,7 +69,7 @@ For example, to include only tests called `counter.component.spec.ts`, we call `
 ng test --include **/counter.component.spec.ts
 ```
 
-`**/counter.component.spec.ts` means all files called `counter.component.spec.ts` and any subdirectory.
+`**/counter.component.spec.ts` means all files called `counter.component.spec.ts` in any subdirectory.
 
 The bundling is now fast and the feedback is almost instant when we change implementation or test code.
 
