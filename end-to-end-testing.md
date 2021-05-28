@@ -1249,12 +1249,10 @@ Now we instruct Cypress to intercept the Flickr API request and answer it with f
 
 ```typescript
 beforeEach(() => {
-  cy.visit('/');
-
   cy.intercept(
     {
       method: 'GET',
-      url: 'https://www.flickr.com/services/rest/',
+      url: 'https://www.flickr.com/services/rest/*',
       query: {
         tags: searchTerm,
         method: 'flickr.photos.search',
@@ -1264,7 +1262,7 @@ beforeEach(() => {
         media: 'photos',
         per_page: '15',
         extras: 'tags,date_taken,owner_name,url_q,url_m',
-        // Omit api_key, it is likely to change
+        api_key: '*',
       },
     },
     {
@@ -1274,18 +1272,17 @@ beforeEach(() => {
       },
     },
   ).as('flickrSearchRequest');
+
+  cy.visit('/');
 });
 ```
 
-`cy.intercept` can be called in different ways. Here, we pass two objects: First, a *route matcher* describing the requests to intercept. Second, a *route handler* describing the fake response.
+`cy.intercept` can be called in different ways. Here, we pass two objects:
 
-The route matcher contains the HTTP GET method, the base URL and a whole bunch of query string parameters.
+1. A *route matcher* describing the requests to intercept. It contains the HTTP GET method, the base URL and a whole bunch of query string parameters. In the URL and the `api_key` query parameter, the `*` character is a wildcard that matches any string.
+2. A *route handler* describing the response Cypress should send. As JSON response body, we pass the `flickrResponse` fake object.
 
-<aside class="margin-note">Response and headers</aside>
-
-The route handler specifies the response Cypress should send. As JSON response body, we pass the fake `flickrResponse` object.
-
-Since the request to Flickr is cross-origin, we need to set the `Access-Control-Allow-Origin: *` header. This allows our Angular application at the origin `http://localhost:4200` to read the response from the origin `https://www.flickr.com/`.
+   Since the request to Flickr is cross-origin, we need to set the `Access-Control-Allow-Origin: *` header. This allows our Angular application at the origin `http://localhost:4200` to read the response from the origin `https://www.flickr.com/`.
 
 <aside class="margin-note">Alias</aside>
 
