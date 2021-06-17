@@ -23,7 +23,7 @@ If you write hundreds or thousands of specs, you will find that these helper fun
 
 <aside class="margin-note">Unified testing API</aside>
 
-**[Spectator](https://github.com/ngneat/spectator)** is an opinionated library for testing Angular application. Technically, it sits on top of `TestBed`, `ComponentFixture` and `DebugElement`. But the main idea is to unify all these APIs in one consistent, powerful and user-friendly interface – the `Spectator` object.
+**[Spectator](https://github.com/ngneat/spectator)** is an opinionated library for testing Angular applications. Technically, it sits on top of `TestBed`, `ComponentFixture` and `DebugElement`. But the main idea is to unify all these APIs in one consistent, powerful and user-friendly interface – the `Spectator` object.
 
 Spectator simplifies testing Components, Services, Directives, Pipes, routing and HTTP communication. Spectator’s strength are Component tests with Inputs, Outputs, children, event handling, Service dependencies and more.
 
@@ -37,7 +37,7 @@ In this chapter, we will discuss testing the Flickr search with Spectator.
 
 ## Component with an Input
 
-Let us start with the [`FullPhotoComponent`](https://github.com/9elements/angular-flickr-search/tree/main/src/app/components/full-photo) because it is a [presentational Component](../testing-components-with-children/#testing-components-with-children), a leaf in the Component tree. It expects a `Photo` object as input and renders an image as well as the photo metadata. No Outputs, no children, no Service dependencies.
+Let us start with the [`FullPhotoComponent`](https://github.com/9elements/angular-flickr-search/tree/main/src/app/components/full-photo) because it is a [presentational Component](../testing-components-with-children/#testing-components-with-children), a leaf in the Component tree. It expects a `Photo` object as Input and renders an image as well as the photo metadata. No Outputs, no children, no Service dependencies.
 
 The [`FullPhotoComponent` suite with our helpers](https://github.com/9elements/angular-flickr-search/blob/main/src/app/components/full-photo/full-photo.component.spec.ts) looks like this:
 
@@ -251,7 +251,7 @@ Spectator avoids wrapping DOM elements, but offers convenient Jasmine matchers f
 
 Spectator really shines when testing [container Components](../testing-components-with-children/#testing-components-with-children). These are Components with children and Service dependencies.
 
-In the Flickr search, the topmost `FlickrSearchComponent` calls the `FlickrService` and holds the state. It orchestrates three other Components, passes down the state and listens for Outputs.
+In the Flickr search, the topmost [`FlickrSearchComponent`](https://github.com/9elements/angular-flickr-search/tree/main/src/app/components/flickr-search) calls the `FlickrService` and holds the state. It orchestrates three other Components, passes down the state and listens for Outputs.
 
 The `FlickrSearchComponent` template:
 
@@ -311,9 +311,9 @@ export class FlickrSearchComponent {
 Since this is the Component where all things come together, there is much to test.
 
 1. Initially, the `SearchFormComponent` and the `PhotoListComponent` are rendered, not the `FullPhotoComponent`. The photo list is empty.
-2. When the `SearchFormComponent` emits the `search` output, the `FlickrService` is called with the search term.
-3. The search term and the photo list are passed down to the `PhotoListComponent` via Input.
-4. When the `PhotoListComponent` emits the `focusPhoto` output, the `FullPhotoComponent` is rendered. The selected photo is passed down via Input.
+2. When the `SearchFormComponent` emits the `search` Output, the `FlickrService` is called with the search term.
+3. The search term and the photo list are passed down to the `PhotoListComponent` via Inputs.
+4. When the `PhotoListComponent` emits the `focusPhoto` Output, the `FullPhotoComponent` is rendered. The selected photo is passed down via Input.
 
 <aside class="margin-note">Without Spectator</aside>
 
@@ -438,7 +438,7 @@ describe('FlickrSearchComponent with spectator', () => {
 });
 ```
 
-Again we use Spectator’s `createComponentFactory`. This time, we replace the child Components with fakes using ng-mocks’ `MockComponents` function.
+Again, we use Spectator’s `createComponentFactory`. This time, we replace the child Components with fakes created by ng-mocks’ `MockComponents` function.
 
 <aside class="margin-note" markdown="1">
   `mockProvider`
@@ -484,7 +484,7 @@ describe('FlickrSearchComponent with spectator', () => {
 
 Note that `searchForm`, `photoList` and `fullPhoto` are typed as Component instances, not `DebugElement`s. This is accurate because the fakes have the same public interfaces, the same Inputs and Output.
 
-Due to the equivalence of fake and original, we can access Inputs with the pattern `componentInstance.input`. And we let an Output emit with the pattern `componentInstance.output.emit(…)`.
+Due to the [equivalence of fake and original](../faking-dependencies/#equivalence-of-fake-and-original), we can access Inputs with the pattern `componentInstance.input`. And we let an Output emit with the pattern `componentInstance.output.emit(…)`.
 
 The first spec checks the initial state:
 
@@ -507,7 +507,7 @@ Unfortunately, `expect` is not a [TypeScript type guard](https://www.typescriptl
 
 We cannot call `expect(photoList).not.toBe(null)` and continue with `expect(photoList.title).toBe('')`. The first expectation throws an error in the `null` case, but TypeScript does not know this. TypeScript still assumes the type `PhotoListComponent | null`, so it would complain about `photoList.title`.
 
-This is why we manually throw an error when `photoList` is `null`. TypeScript infers that in the rest of the spec, the type must be `PhotoListComponent`.
+This is why we manually throw an error when `photoList` is `null`. TypeScript infers that the type must be `PhotoListComponent` in the rest of the spec.
 
 In contrast, our `findComponent` helper function throws an exception directly if no match was found, failing the test early. To verify that a child Component is absent, we had to expect this exception:
 

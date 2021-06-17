@@ -54,9 +54,12 @@ The `GreetPipe` take the string `'Julie'` and computes a new string, `'Hello, Ju
 There are two important ways to test a Pipe:
 
 1. Create an instance of the Pipe class manually. Then call the `transform` method.
+
+   This way is fast and straight-forward. It requires minimal setup.
+
 2. Set up a `TestBed`. Render a host Component that uses the Pipe. Then check the text content in the DOM.
 
-The first way requires minimal setup, is fast and straight-forward. The second closely mimics how the Pipe is used in practice. It also tests the name of the Pipe, declared in the `@Pipe()` decorator.
+   This way closely mimics how the Pipe is used in practice. It also tests the name of the Pipe, as declared in the `@Pipe()` decorator.
 
 Both ways allow to test Pipes that depend on Services. Either we provide the original dependencies, writing an integration test. Or we provide fake dependencies, writing a unit test.
 
