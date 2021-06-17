@@ -55,6 +55,21 @@ html {
 }
 
 /**
+ * @section Base styles for new HTML5 elements, for old browsers
+ *
+ */
+
+ main,
+ section,
+ nav,
+ article,
+ aside,
+ header,
+ footer {
+   display: block;
+ }
+
+ /**
  * @section Headings
  *
  */
