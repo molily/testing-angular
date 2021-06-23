@@ -174,7 +174,7 @@ In case you do need a WebDriver-based framework, have a look at Webdriver.io ins
 
 ## Installing Cypress
 
-An easy way to add Cypress to an existing Angular CLI project is the [Cypress Angular Schematic](https://github.com/briebug/cypress-schematic).
+An easy way to add Cypress to an existing Angular CLI project is the [Cypress Angular Schematic](https://www.npmjs.com/package/@cypress/schematic).
 
 In your Angular project directory, run this shell command:
 
