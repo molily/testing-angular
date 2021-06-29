@@ -116,7 +116,7 @@ Second, Protractor has a feature called *control flow*. While WebDriver commands
 
 Protractor’s control flow implementation led to inconsistencies and bugs. The underlying WebDriverJS library removed the feature, so Protractor had to deprecate it as well. This means you need to use `async` / `await` to explicitly wait for a command to finish.
 
-As a result, Protrator lost a useful feature. Protractor’s contenders, namely Cypress and WebDriver.io, still allow to write asynchronous test code in a synchronous manner.
+As a result, Protractor lost a useful feature. Protractor’s contenders, namely Cypress and WebDriver.io, still allow to write asynchronous test code in a synchronous manner.
 
 Without the control flow, you practically need to disable the “wait for Angular” feature as well. This means both key Protractor features have lapsed.
 
@@ -174,43 +174,44 @@ In case you do need a WebDriver-based framework, have a look at Webdriver.io ins
 
 ## Installing Cypress
 
-An easy way to add Cypress to an existing Angular CLI project is the [Cypress Angular Schematic](https://github.com/briebug/cypress-schematic).
+An easy way to add Cypress to an existing Angular CLI project is the [Cypress Angular Schematic](https://github.com/cypress-io/cypress/tree/develop/npm/cypress-schematic).
 
 In your Angular project directory, run this shell command:
 
 ```
-ng add @briebug/cypress-schematic
+ng add @cypress/schematic
 ```
 
-This command does three important things:
+This command does four important things:
 
-1. Add Cypress and auxiliary npm packages to package.json.
-2. Create a sub-directory named `cypress` with a scaffold for your tests.
+1. Add Cypress and auxiliary npm packages to `package.json`.
+2. Add the Cypress configuration file `cypress.json`.
 3. Change the `angular.json` configuration file to add `ng run` commands.
+4.. Create a sub-directory named `cypress` with a scaffold for your tests.
 
 The output looks like this:
 
 ```
 ℹ Using package manager: npm
-✔ Found compatible package version: @briebug/cypress-schematic@5.0.0.
+✔ Found compatible package version: @cypress/schematic@1.4.2.
 ✔ Package information loaded.
 
-The package @briebug/cypress-schematic@5.0.0 will be installed and executed.
+The package @cypress/schematic@1.4.2 will be installed and executed.
 Would you like to proceed? Yes
 ✔ Package successfully installed.
-? Would you like to remove Protractor from the project? Yes
-CREATE cypress.json (299 bytes)
+? Would you like the default `ng e2e` command to use Cypress? [ Protractor to Cypress Migration Guide: https://on.cypress.io/protractor-to-cypress?cli=true ] Yes
+CREATE cypress.json (298 bytes)
 CREATE cypress/tsconfig.json (139 bytes)
-CREATE cypress/integration/spec.ts (103 bytes)
-CREATE cypress/plugins/index.js (37 bytes)
+CREATE cypress/integration/spec.ts (178 bytes)
+CREATE cypress/plugins/index.ts (180 bytes)
 CREATE cypress/support/commands.ts (1377 bytes)
 CREATE cypress/support/index.ts (651 bytes)
-UPDATE package.json (1142 bytes)
-UPDATE angular.json (4179 bytes)
+UPDATE package.json (1225 bytes)
+UPDATE angular.json (3952 bytes)
 ✔ Packages installed successfully.
 ```
 
-The installer asks if you would like to remove Protractor from the project. The choice only makes a difference if the project was created with Angular CLI prior to version 12. If you opt for “Yes”, any existing `e2e` directory from Protractor will be removed.
+The installer asks if you would like the `ng e2e` command to start Cypress. The choice only makes a difference if the project was created with Angular CLI prior to version 12, where `ng e2e` used to start Protractor.
 
 If there are any Protractor tests in the project, you probably want to revive them later and use them as a reference. In this case, answer “No”. Otherwise, it is safe to answer “Yes”.
 
@@ -219,7 +220,7 @@ If there are any Protractor tests in the project, you probably want to revive th
 In the project directory, you will find a sub-directory called `cypress`. It contains:
 
 - A `tsconfig.json` configuration for all TypeScript files in the directory,
-- an `integration` directory for the end-to-end tests.
+- an `integration` directory for the end-to-end tests,
 - a `support` directory for custom commands,
 - a `plugin` directory for Cypress plugins,
 - a `fixtures` directory for test data.
@@ -275,7 +276,7 @@ As a start, let us write a minimal test that checks the document title. In the p
 ```typescript
 describe('Counter', () => {
   beforeEach(() => {
-    cy.visit('http://localhost:4200');
+    cy.visit('/');
   });
 
   it('has the correct title', () => {
@@ -288,9 +289,7 @@ describe('Counter', () => {
 
 Cypress commands are methods of the `cy` namespace object. Here, we are using two commands, `visit` and `title`.
 
-`cy.visit` orders the browser to visit the given URL. For now, we use the full URL of the development server.
-
-Later, we are going to set a `baseUrl` in the Cypress configuration so we can use paths like `/`. Then, Cypress will append the path to the `baseUrl`.
+`cy.visit` orders the browser to visit the given URL. Above, we use the path `/`. Cypress appends the path to the `baseUrl`. Per default, the `baseUrl` is set to `http://localhost:4200` in Cypress’ configuration file, `cypress.json`.
 
 <aside class="margin-note">Chainers</aside>
 
@@ -324,13 +323,13 @@ Cypress has two shell commands to run the end-to-end tests:
 
 <aside class="margin-note">Test runner</aside>
 
-1. **`npx cypress run` – Non-interactive test runner**. Runs the tests in a “headless” browser. This means the browser window is not visible.
+- **`npx cypress run` – Non-interactive test runner**. Runs the tests in a “headless” browser. This means the browser window is not visible.
 
    The tests are run once, then the browser is closed and the shell command finishes. You can see the test results in the shell output.
 
    This command is typically used in a continuous integration environment.
 
-2. **`npx cypress open` – Interactive test runner**. Opens a window where you can select which tests to run and which browser to use. The browser window is visible and it remains visible after completion.
+- **`npx cypress open` – Interactive test runner**. Opens a window where you can select which tests to run and which browser to use. The browser window is visible and it remains visible after completion.
 
    You can see the test results the browser window. If you make changes on the test files, Cypress automatically re-runs the tests.
 
@@ -340,22 +339,19 @@ Cypress has two shell commands to run the end-to-end tests:
 
 The Cypress schematic we have installed wraps these commands so they integrate with Angular.
 
-- `ng run $project-name$:cypress-run` – Starts an Angular development server (`ng serve`), then calls `npx cypress run`.
-- `ng run $project-name$:cypress-open` – Starts an Angular development server (`ng serve`), then calls `npx cypress open`.
+- **`ng run $project-name$:cypress-run`** – Starts an Angular development server (`ng serve`), then calls `npx cypress run`.
+- **`ng run $project-name$:cypress-open`** – Starts an Angular development server (`ng serve`), then calls `npx cypress open`.
 
 `$project-name$` is a placeholder. Insert the name of the respective Angular project. This is typically the same as the directory name. If not, it can be found in `angular.json` in the `projects` object.
 
-For example, the Counter example has the project name `angular-workshop`. Therefore, the commands are `ng run angular-workshop:cypress-run` and `ng run angular-workshop:cypress-open`.
+For example, the Counter example has the project name `angular-workshop`. Therefore, the commands are:
 
-To run our first Counter end-to-end test, run:
-
-```
-ng run angular-workshop:cypress-open
-```
+- `ng run angular-workshop:cypress-run`
+- `ng run angular-workshop:cypress-open`
 
 <aside class="margin-note">Launch window</aside>
 
-This will open the test runner:
+The `cypress open` command will open the test runner:
 
 <a href="/assets/img/cypress-open.png">
   <img src="/assets/img/cypress-open.png" alt="Interactive Cypress test runner" class="image-max-full" loading="lazy">
@@ -465,24 +461,7 @@ The test needs to perform the following steps:
 5. Find the element with the current count and read its text content (again).
 6. Expect that the text now reads “6”.
 
-We have already used `cy.visit('http://localhost:4200')` to navigate to an address.
-
-<aside class="margin-note">Base URL</aside>
-
-Cypress supports a `baseUrl` configuration option so we do not have to hard-code and repeat the full URL. We set `baseUrl` to `'http://localhost:4200'` so we can simply write `cy.visit('/')`.
-
-By setting a `baseUrl` instead of hard-coding a full URL, you can run the tests against different installations of the application. For example, the `baseUrl` would be `'http://localhost:4200'` for development, `'https://staging.example.com'` for staging and `'https://example.com` for production.
-
-Edit the Cypress configuration file `cypress.json` in the Angular project directory. Add a property `baseUrl` and set it to the development server URL:
-
-```javascript
-{
-  "baseUrl": "http://localhost:4200",
-  /* … */
-}
-```
-
-From now on, Cypress will expand the URL passed to `cy.visit` to a full URL using the `baseUrl`. The `baseUrl` configuration option can still be overridden on the command line, for example when testing staging and production.
+We have used `cy.visit('/')` to navigate to an address. The path “/” translates to `http://localhost:4200/` since this is the configured `baseUrl`.
 
 ## Finding elements
 
@@ -715,20 +694,9 @@ Cypress.Commands.add(
 );
 ```
 
-You do not have to understand the type definitions in detail. They simply make sure that you can pass the same `options` to `cy.byTestId` that you can pass to `cy.get`.
-
-Save `commands.ts`, then edit `cypress/support/index.ts` and activate the line that imports `command.ts`.
+For proper type checking, we need to tell the TypeScript compiler that we have extended the `cy` namespace. In `commands.ts`, we extend the `Chainable` interface with a method declaration for `byTestId`.
 
 ```typescript
-import './commands';
-```
-
-For proper type checking, we need to tell the TypeScript compiler that we have extended the `cy` namespace. We create the file `cypress/support/index.d.ts` and paste the following type definition:
-
-```typescript
-// Types for custom commands
-/// <reference types="cypress" />
-
 declare namespace Cypress {
   interface Chainable {
     /**
@@ -745,6 +713,14 @@ declare namespace Cypress {
     ): Cypress.Chainable<JQuery<E>>;
   }
 }
+```
+
+You do not have to understand these type definitions in detail. They simply make sure that you can pass the same `options` to `cy.byTestId` that you can pass to `cy.get`.
+
+Save `commands.ts`, then edit `cypress/support/index.ts` and activate the line that imports `command.ts`.
+
+```typescript
+import './commands';
 ```
 
 This is it! We now have a strictly typed command `cy.byTestId`. Using the command, we can declutter the test.
