@@ -187,7 +187,7 @@ This command does four important things:
 1. Add Cypress and auxiliary npm packages to `package.json`.
 2. Add the Cypress configuration file `cypress.json`.
 3. Change the `angular.json` configuration file to add `ng run` commands.
-4.. Create a sub-directory named `cypress` with a scaffold for your tests.
+4. Create a sub-directory named `cypress` with a scaffold for your tests.
 
 The output looks like this:
 
