@@ -163,7 +163,7 @@ it('decrements the count', () => {
   expect(actualCount).toBe(-1);
 });
 
-it('resets the count',, () => {
+it('resets the count', () => {
   const newCount = 123;
   counterService.reset(newCount);
 
