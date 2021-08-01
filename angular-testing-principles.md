@@ -270,7 +270,7 @@ client: {
 },
 ```
 
-This guide recommends to activate one useful Jasmine configuration option: `failSpecWithNoExpectations` lets the test fail if it does not contain ant least one expectation. (More on [expectations](../test-suites-with-jasmine/#expectations) later.) In almost all cases, specs without expectations stem from an error in the test code.
+This guide recommends to activate one useful Jasmine configuration option: `failSpecWithNoExpectations` lets the test fail if it does not contain at least one expectation. (More on [expectations](../test-suites-with-jasmine/#expectations) later.) In almost all cases, specs without expectations stem from an error in the test code.
 
 ```javascript
 client: {
