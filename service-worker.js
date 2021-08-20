@@ -1,4 +1,4 @@
-const VERSION = 'v4';
+const VERSION = 'v5';
 const PAGES_CACHE = `${VERSION}_PAGES`;
 const OFFLINE_PAGE = 'offline.html';
 const CACHED_RESOURCES = [
@@ -31,12 +31,12 @@ const CACHED_RESOURCES = [
   '/about/',
   '/license/',
   '/assets/css/book.css',
-  '/assets/img/flying-probe-800-cavif-q60.avif',
-  '/assets/img/flying-probe-1600-cavif-q50.avif',
-  '/assets/img/flying-probe-800-cwebp-q80.webp',
-  '/assets/img/flying-probe-1600.webp',
-  '/assets/img/flying-probe-800-85.jpg',
-  '/assets/img/flying-probe-1600-65.jpg',
+  '/assets/img/flying-probe-672-cavif-q60.avif',
+  '/assets/img/flying-probe-1344-cavif-q50.avif',
+  '/assets/img/flying-probe-672-cwebp-q80.webp',
+  '/assets/img/flying-probe-1344-cwebp-q80.webp',
+  '/assets/img/flying-probe-672-q85.jpg',
+  '/assets/img/flying-probe-1344-q65.jpg',
   '/assets/fonts/noto-sans-normal-normal-latin.woff2',
   '/assets/fonts/noto-sans-italic-normal-latin.woff2',
   '/assets/fonts/noto-sans-normal-bold-latin.woff2',
