@@ -36,7 +36,19 @@ Again, both are valid approaches we are going to discuss.
 
 ## Shallow vs. deep rendering
 
-In the counter example application, the [`HomeComponent`](https://github.com/9elements/angular-workshop/blob/main/src/app/components/home/home.component.ts) contains `CounterComponent`s, `ServiceCounterComponent`s and `NgRxCounterComponent`s. From the [template](https://github.com/9elements/angular-workshop/blob/main/src/app/components/home/home.component.html):
+In the counter example application, the [`HomeComponent`](https://github.com/9elements/angular-workshop/blob/main/src/app/components/home/home.component.ts) contains `CounterComponent`s, `ServiceCounterComponent`s and `NgRxCounterComponent`s.
+
+<button class="load-iframe">
+See the HomeComponent in action
+</button>
+
+<script type="text/x-template">
+<p class="responsive-iframe">
+<iframe src="https://9elements.github.io/angular-workshop/" class="responsive-iframe__iframe"></iframe>
+</p>
+</script>
+
+From the [template](https://github.com/9elements/angular-workshop/blob/main/src/app/components/home/home.component.html):
 
 ```html
 <app-counter
@@ -51,7 +63,7 @@ In the counter example application, the [`HomeComponent`](https://github.com/9el
 
 These custom `app-*` elements end up in the DOM tree. They become the *host elements* of the child Components.
 
-<aside class="margin-note">Ignore child Components</aside>
+<aside class="margin-note">Check wiring only</aside>
 
 A **unit test of `HomeComponent`** does not render these children. The host elements are rendered, but they remain empty. You might wonder, what is the point of such a test? What does it do after all?
 
@@ -67,7 +79,11 @@ An **integration test of `HomeComponent`** renders the child Components. The hos
 
 We need to decide the level of detail for testing the nested Components. If separate unit tests for them exist, we do not need to click on each respective increment button. After all, the integration test needs to prove that the four Component work together, without going into the child Component details.
 
-<aside class="margin-note">Unit test</aside>
+<div class="book-sources" markdown="1">
+- [HomeComponent: implementation and test code](https://github.com/9elements/angular-workshop/blob/main/src/app/components/home/)
+</div>
+
+## Unit test
 
 Let us write a unit test for `HomeComponent` first. The setup looks familiar to the `CounterComponent` test suite. We are using `TestBed` to configure a testing Module and to render the Component under test.
 
@@ -98,6 +114,8 @@ describe('HomeComponent', () => {
 This suite has one spec that acts as a *smoke test*. It checks the presence of a Component instance. It does not assert anything specific about the Component behavior yet. It merely proves that the Component renders without errors.
 
 If the smoke test fails, you know that something is wrong with the testing setup.
+
+<aside class="margin-note">Unknown custom elements</aside>
 
 From Angular 9 on, the spec passes but produces a bunch of warnings on the shell:
 
@@ -358,6 +376,7 @@ What if `HomeComponent` uses a wrong element name and the test copies that error
 
 <div class="book-sources" markdown="1">
 - [HomeComponent: implementation and test code](https://github.com/9elements/angular-workshop/blob/main/src/app/components/home/)
+- [Element spec helpers: full code](https://github.com/9elements/angular-workshop/blob/main/src/app/spec-helpers/element.spec-helper.ts)
 </div>
 
 ## Faking a child Component

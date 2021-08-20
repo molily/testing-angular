@@ -31,7 +31,7 @@ See the CounterComponent in action
 
 <script type="text/x-template">
 <p class="responsive-iframe">
-<iframe src="https://9elements.github.io/angular-workshop/" class="responsive-iframe__iframe"></iframe>
+<iframe src="https://9elements.github.io/angular-workshop/counter-component" class="responsive-iframe__iframe"></iframe>
 </p>
 </script>
 
@@ -126,7 +126,7 @@ const fixture = TestBed.createComponent(CounterComponent);
 
 `createComponent` returns a `ComponentFixture`, essentially a wrapper around the Component with useful testing tools. We will learn more about the `ComponentFixture` later.
 
-`createComponent` renders the Component into a root element in the HTML DOM. Alas, something is missing. The Component is not fully rendered. All the static HTML is present, but the dynamic HTML is missing. The template bindings, like `{% raw %}{{ count }}{% endraw %}` in the example, are not evaluated.
+`createComponent` renders the Component into a `div` container element in the HTML DOM. Alas, something is missing. The Component is not fully rendered. All the static HTML is present, but the dynamic HTML is missing. The template bindings, like `{% raw %}{{ count }}{% endraw %}` in the example, are not evaluated.
 
 <aside class="margin-note">Manual change detection</aside>
 
@@ -182,6 +182,11 @@ This is an implementation detail that might change in the future. The safe way i
 </aside>
 
 Per default, Jasmine expects that your testing code is synchronous. The functions you pass to `it` but also `beforeEach`, `beforeAll`, `afterEach`, `afterAll` need to finish in a certain amount of time, also known as timeout. Jasmine also supports asynchronous specs. If you pass an `async` function, Jasmine waits for it to finish.
+
+
+<div class="book-sources" markdown="1">
+- [Test suites with Jasmine](../test-suites-with-jasmine/#test-suites-with-jasmine)
+</div>
 
 ## ComponentFixture and DebugElement
 
@@ -938,13 +943,17 @@ describe('CounterComponent', () => {
 
 The `CounterComponent` expects a `number` Input and renders it into the DOM. When reading text from the DOM, we always deal with strings. That is why we pass in a number `123` but expect to find the string `'123'`.
 
+<div class="book-sources" markdown="1">
+- [CounterComponent: test code](https://github.com/9elements/angular-workshop/blob/main/src/app/components/counter/counter.component.spec.ts)
+</div>
+
 ## Testing Outputs
 
 While Inputs pass data from parent to child, Outputs send data from child to parent. In combination, a Component can perform a specific operation just with the required data.
 
 For example, a Component may render a form so the user can edit or review the data. Once completed, the Component emits the data as an Output.
 
-Outputs are not a user-facing feature, but a vital part of the public Component API. Technically, Outputs are a Component instance properties. A unit test must inspect the Outputs thoroughly to proof that the Component plays well with other Components.
+Outputs are not a user-facing feature, but a vital part of the public Component API. Technically, Outputs are Component instance properties. A unit test must inspect the Outputs thoroughly to proof that the Component plays well with other Components.
 
 The `CounterComponent` has an output named `countChange`. Whenever the count changes, the `countChange` Output emits the new value.
 
@@ -1075,6 +1084,10 @@ it('emits countChange events on reset', () => {
 });
 ```
 
+<div class="book-sources" markdown="1">
+- [CounterComponent: test code](https://github.com/9elements/angular-workshop/blob/main/src/app/components/counter/counter.component.spec.ts)
+</div>
+
 ## Repetitive Component specs
 
 Testing the `countChange` Output with three specs works fine, but the code is highly repetitive. A testing helper can reduce the repetition. Experts disagree on whether repetitive testing code is a problem at all.
@@ -1085,7 +1098,7 @@ On the other hand, abstractions like helper functions make tests more complex an
 
 <aside class="margin-note">Duplication vs. abstraction</aside>
 
-There is a controversial debate in software development regarding “do not repeat yourself” and the value of abstractions. [As Sandi Metz famously stated](https://www.sandimetz.com/blog/2016/1/20/the-wrong-abstraction), “duplication is far cheaper than the wrong abstraction”.
+There is a controversial debate in software development regarding repetition and the value of abstractions. [As Sandi Metz famously stated](https://www.sandimetz.com/blog/2016/1/20/the-wrong-abstraction), “duplication is far cheaper than the wrong abstraction”.
 
 This is especially true when writing specs. You should try to eliminate duplication and boilerplate code with `beforeEach`/`beforeAll`, simple helper functions and even testing libraries. But do not try to apply your optimization habits and skills to test code.
 
