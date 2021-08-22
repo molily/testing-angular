@@ -6,6 +6,14 @@ description: Recommendations on how to approach testing Angular applications
 
 # Summary
 
+<aside class="learning-objectives" markdown="1">
+Learning objectives
+
+- Reducing the frustration from implementing and testing an application
+- Taking small steps when learning testing techniques and expanding test coverage
+- Growing as a developer and as a team by practicing automated testing
+</aside>
+
 Writing tests is often a frustrating experience that comes on top of implementation troubles. The logical and technical complexity is overwhelming and intimidating. All this drains motivation.
 
 The goal of this guide is to dispel the fear of testing. While testing Angular applications is a complex matter, this guide breaks it down into small, approachable steps and aims to give a well-balanced overview.

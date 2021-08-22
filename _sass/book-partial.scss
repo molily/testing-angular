@@ -35,6 +35,7 @@ $dark-highlight-background-color-inverted: adjust-color(
 );
 
 $font-size-small: percentage(16 / 18);
+$font-size-smallest: percentage(15 / 18);
 
 /**
  * @section Root element and Body
@@ -87,7 +88,7 @@ th {
 }
 
 .wide-table {
-  font-size: 80%;
+  font-size: $font-size-small;
 }
 
 /**
@@ -153,7 +154,7 @@ pre {
   margin: -1rem -1rem 1rem;
   height: 2.5rem;
   background-color: $sticky-menu-background;
-  font-size: 0.8rem;
+  font-size: $font-size-small;
   text-align: center;
 
   @include large {
@@ -165,11 +166,6 @@ pre {
     background-color: $sticky-menu-background-inverted;
   }
 
-  .tokyo-tower {
-    font-size: 250%;
-    line-height: 1;
-  }
-
   a:link {
     flex: 1;
     display: flex;
@@ -179,10 +175,6 @@ pre {
     padding: 0 1rem;
     text-decoration: none;
     line-height: 1.4;
-  }
-
-  .link-type {
-    display: none;
   }
 }
 
@@ -304,7 +296,7 @@ pre {
 #toc-tree {
   ol {
     margin: 0.5rem 0;
-    font-size: 0.95rem;
+    font-size: $font-size-small;
   }
 
   .collapsed {
@@ -356,10 +348,6 @@ pre {
       background-color: $link-color-inverted;
     }
   }
-
-  .link-type {
-    display: none;
-  }
 }
 
 #cover-toc-tree {
@@ -384,7 +372,7 @@ pre {
 
   @include medium {
     // Slightly larger font size than the default
-    font-size: 1.125rem;
+    font-size: (18 / 16) * 1rem;
     letter-spacing: 0.2px;
     word-spacing: 0.2px;
   }
@@ -443,7 +431,7 @@ pre {
  */
 
 #page-footer {
-  font-size: 90%;
+  font-size: $font-size-small;
 
   @include dark-scheme {
   }
@@ -468,7 +456,7 @@ pre {
 #cover-image {
   margin: 2rem 0;
   text-align: center;
-  font-size: 0.75rem;
+  font-size: $font-size-small;
 }
 
 /* Placeholder with the right aspect ratio
@@ -561,20 +549,6 @@ h1#cover-heading {
 }
 
 /**
- * @section Link types
- *
- */
-
-.link-type {
-  font-size: 0.8rem;
-  color: gray;
-
-  @include dark-scheme {
-    color: inherit;
-  }
-}
-
-/**
  * @section Erroneous code
  *
  */
@@ -601,6 +575,48 @@ h1#cover-heading {
   width: 3rem;
   height: 3rem;
   color: #e0e0e0;
+}
+
+/**
+ * @section Learning objectives
+ */
+
+.learning-objectives {
+  margin-bottom: 2rem;
+  font-size: $font-size-small;
+
+  @include dark-scheme {
+    margin-left: -1rem;
+    margin-right: -1rem;
+    padding: 1rem;
+    background-color: $highlight-background-color-inverted;
+    border-radius: 0.5px;
+
+    @include large {
+      margin-left: -2rem;
+      margin-right: -2rem;
+      padding-left: 2rem;
+      padding-right: 2rem;
+    }
+  }
+
+  p {
+    margin-left: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    word-spacing: 1px;
+    page-break-after: avoid;
+    color: $heading-color;
+
+    @include dark-scheme {
+      color: $heading-color-inverted;
+    }
+  }
+
+  ul, li {
+    margin-bottom: 0;
+    list-style-type: square;
+  }
 }
 
 /**
@@ -736,7 +752,7 @@ $margin-note-breakpoint: $toc-width + $main-max-width +
 
 .margin-note {
   margin: 0 0 1rem 0;
-  font-size: 80%;
+  font-size: $font-size-smallest;
   line-height: 2;
   text-transform: uppercase;
   text-align: center;
@@ -775,7 +791,7 @@ $margin-note-breakpoint: $toc-width + $main-max-width +
 
 #next-chapter-link {
   margin: 4rem 0;
-  font-size: 1.1rem;
+  font-size: 1.2rem;
 
   a {
     display: block;

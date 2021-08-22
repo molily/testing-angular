@@ -6,6 +6,15 @@ description: How to measure test coverage of Angular applications
 
 # Measuring code coverage
 
+<aside class="learning-objectives" markdown="1">
+Learning objectives
+
+- Understanding the code coverage metric
+- Generating and inspecting a code coverage report
+- Finding code that is not yet covered by automated tests
+- Enforcing code coverage thresholds and improving code coverage
+</aside>
+
 Code coverage, also called test coverage, tells you which parts of your code are executed by running the unit and integration tests. Code coverage is typically expressed as percent values, for example, 79% statements, 53% branches, 74% functions, 78% lines.
 
 Statements are, broadly speaking, control structures like `if` and `for` as well as expressions separated by semicolon. Branches refers to the two branches of `if (…) {…} else {…}` and `… ? … : …` conditions. Functions and lines are self-explanatory.

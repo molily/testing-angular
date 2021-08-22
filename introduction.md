@@ -6,6 +6,15 @@ description: Why is automated testing so controversial and contested?
 
 # Introduction
 
+<aside class="learning-objectives" markdown="1">
+Learning objectives
+
+- The benefits of automated software testing
+- Why testing is difficult to learn
+- The difference between implementation and testing
+- Establishing a steady testing practice
+</aside>
+
 Most web developers come across automated tests in their career. They fancy the idea of writing code to scrutinize a web application and put it to an acid test. As web developers, as business people, we want to know whether the site works for the user, our customers.
 
 Does the site allow the user to complete their tasks? Is the site still functional after new features have been introduced or internals have been refactored? How does the site react to usage errors or system failure? Testing gives answers to these questions.

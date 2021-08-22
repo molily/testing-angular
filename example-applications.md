@@ -6,6 +6,13 @@ description: Fully-tested Angular projects used as example in this book
 
 # Example applications
 
+<aside class="learning-objectives" markdown="1">
+Learning objectives
+
+- Example Angular applications used in the book
+- Features demonstrated by the examples
+</aside>
+
 In this guide, we will explore the different aspects of testing Angular applications by looking at two examples.
 
 ## The counter Component

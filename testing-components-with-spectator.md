@@ -6,6 +6,16 @@ description: How to use the Spectator testing library for testing Angular Compon
 
 # Testing Components with Spectator
 
+<aside class="learning-objectives" markdown="1">
+Learning objectives
+
+- Simplifying Component tests with the Spectator library
+- Using the unified Spectator interface
+- Interacting with the Component and the rendered DOM
+- Dispatching synthetic DOM events to simulate user input
+- Using Spectator and ng-mocks to fake child Components and Services
+</aside>
+
 We have used Angular’s testing tools to set up modules, render Components, query the DOM and more. These tools are `TestBed`, `ComponentFixture` and `DebugElement`, also `HttpClientTestingModule` and `RouterTestingModule`.
 
 <aside class="margin-note">Structural weaknesses</aside>

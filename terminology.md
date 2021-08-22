@@ -6,6 +6,13 @@ description: How this book uses Angular technical terms
 
 # Terminology
 
+<aside class="learning-objectives" markdown="1">
+Learning objectives
+
+- Terms used in this book
+- Notation conventions
+</aside>
+
 Before we dive in, a quick note regarding the technical terms.
 
 Some words have a special meaning in the context of Angular. In the broader JavaScript context, they have plenty other meanings. This guide tries to distinguish these meanings by using a different letter case.

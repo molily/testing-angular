@@ -6,6 +6,15 @@ description: How to test the logic and accessibility of Angular Reactive Forms
 
 # Testing complex forms
 
+<aside class="learning-objectives" markdown="1">
+Learning objectives
+
+- Filling out and submitting forms in a Component test
+- Testing synchronous and asynchronous field validation and error messages
+- Testing dynamic form logic
+- Using tools to ensure that forms are accessible to everyone
+</aside>
+
 Forms are the powerhouses of large web applications. Especially enterprise applications revolve around entering and editing data via forms. Therefore, implementing complex forms is a vital feature of the Angular framework.
 
 We have already learned how to [fill out form fields](../testing-components/#filling-out-forms) when testing the counter Component. In doing so, we developed the `setFieldValue` testing helper.
@@ -446,6 +455,10 @@ await setup({
 
 Such a `setup` function is just one way to create fakes and avoid repetition. You might come up with a different solution that serves the same purpose.
 
+<div class="book-sources" markdown="1">
+- [SignupFormComponent: test code](https://github.com/molily/angular-form-testing/blob/main/client/src/app/components/signup-form/signup-form.component.spec.ts)
+</div>
+
 ## Successful form submission
 
 The first case we need to test is the successful form submission. If the user fills out all required fields and the validations pass, we expect the Component to call `SignupService`’s `signup` method with the entered form data.
@@ -693,6 +706,10 @@ it('does not submit an invalid form', fakeAsync(async () => {
 
 This spec does less than the previous. We wait for a second and submit the form without entering data. Finally, we expect that no `SignupService` method has been called.
 
+<div class="book-sources" markdown="1">
+- [SignupFormComponent: test code](https://github.com/molily/angular-form-testing/blob/main/client/src/app/components/signup-form/signup-form.component.spec.ts)
+</div>
+
 ## Form submission failure
 
 We have already tested the successful form submission. Now let us test the form submission failure.
@@ -779,6 +796,10 @@ it('handles signup failure', fakeAsync(async () => {
   expect(signupService.signup).toHaveBeenCalledWith(signupData);
 }));
 ```
+
+<div class="book-sources" markdown="1">
+- [SignupFormComponent: test code](https://github.com/molily/angular-form-testing/blob/main/client/src/app/components/signup-form/signup-form.component.spec.ts)
+</div>
 
 ## Required fields
 
@@ -1177,13 +1198,17 @@ As a second indicator, we check for the `ng-invalid` class. This class is set by
 
 Alternatively, we could check for the presence of an error message, like we in the required fields spec.
 
+<div class="book-sources" markdown="1">
+- [SignupFormComponent: test code](https://github.com/molily/angular-form-testing/blob/main/client/src/app/components/signup-form/signup-form.component.spec.ts)
+</div>
+
 ## Password type toggle
 
 Another small feature of the sign-up form is the password type switcher. This button toggles the visibility of the entered password. Under the hood, it changes the input type from `password` to `text` and vice versa.
 
 The Component class stores the visibility in a boolean property:
 
-```ts
+```typescript
 public showPassword = false;
 ```
 
@@ -1270,6 +1295,10 @@ it('toggles the password display', async () => {
   expect(passwordEl.attributes.type).toBe('password');
 });
 ```
+
+<div class="book-sources" markdown="1">
+- [SignupFormComponent: test code](https://github.com/molily/angular-form-testing/blob/main/client/src/app/components/signup-form/signup-form.component.spec.ts)
+</div>
 
 ## Testing form accessibility
 

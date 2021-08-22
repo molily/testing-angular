@@ -6,6 +6,14 @@ description: How to write automated tests for Attribute and Structural Directive
 
 # Testing Directives
 
+<aside class="learning-objectives" markdown="1">
+Learning objectives
+
+- Testing the effect of an Attribute Directive
+- Testing complex Structural Directives with Inputs and templates
+- Providing a host Component for testing Attribute and Structural Directives
+</aside>
+
 Angular beginners quickly encounter four core concepts: Modules, Components, Services and Pipes. A lesser known core concept are Directives. Without knowing, even beginners are using Directives, because Directives are everywhere.
 
 In Angular, there are three types of Directives:

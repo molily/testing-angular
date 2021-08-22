@@ -6,6 +6,15 @@ description: Why do we test? How to test? What makes a good test?
 
 # Testing principles
 
+<aside class="learning-objectives" markdown="1">
+Learning objectives
+
+- The goals of testing and how to achieve them
+- Establishing regular testing practice in your team
+- Classify tests by their proximity to the code
+- Classify tests by their knowledge of code internals
+</aside>
+
 There is a gap between practical introductions – how to test a feature – and fundamental discussions on the core concepts – what does testing achieve, which types of tests are beneficial, etc. Before we dive into the tutorial, we need to reflect on a few basics about testing.
 
 ## What makes a good test

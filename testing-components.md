@@ -6,6 +6,17 @@ description: Introduction to testing Angular Components with Angular’s TestBed
 
 # Testing Components
 
+<aside class="learning-objectives" markdown="1">
+Learning objectives
+
+- Setting up a Component test using Angular’s testing Module
+- Getting familiar with Angular’s Component testing abstractions
+- Accessing the rendered DOM and checking text content
+- Simulating user input like clicks and form field input
+- Testing Component Input and Outputs
+- Using helpers functions for common Component testing tasks
+</aside>
+
 Components are the power houses of an Angular application. Components are composed to form the user interface.
 
 A Component deals with several concerns, among others:

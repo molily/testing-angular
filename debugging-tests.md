@@ -6,6 +6,14 @@ description: How to find flaws in your Angular unit and integration tests
 
 # Debugging tests
 
+<aside class="learning-objectives" markdown="1">
+Learning objectives
+
+- Narrowing down problems in your test
+- Applying familiar debugging techniques to tests
+- Using Jasmine debugging features
+</aside>
+
 Writing tests is as arduous as writing implementation code. You will be stuck quite often and ask yourself why the test fails – and sometimes why the test passes when it should rather fail.
 
 The good news is that you can apply familiar debugging techniques to tests as well.

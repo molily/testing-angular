@@ -6,6 +6,13 @@ description: How to test simple and complex, pure and impure Angular Pipes
 
 # Testing Pipes
 
+<aside class="learning-objectives" markdown="1">
+Learning objectives
+
+- Verifying the output of synchronous, pure Pipes
+- Testing asynchronous, impure Pipes that load data from a Service
+</aside>
+
 An Angular Pipe is a special function that is called from a Component template. Its purpose is to transform a value: You pass a value to the Pipe, the Pipe computes a new value and returns it.
 
 The name Pipe originates from the vertical bar “\|” that sits between the value and the Pipe’s name. The concept as well as the “\|” syntax originate from Unix pipes and Unix shells.

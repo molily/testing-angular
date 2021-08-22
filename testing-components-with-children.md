@@ -6,6 +6,15 @@ description: How to write unit and integration tests for Components with childre
 
 # Testing Components with children
 
+<aside class="learning-objectives" markdown="1">
+Learning objectives
+
+- Rendering a Component with or without its children
+- Checking that the parent and its children are wired up correctly
+- Replacing child Components with fakes
+- Using the ng-mocks library to fake dependencies
+</aside>
+
 <aside class="margin-note">Presentational Components</aside>
 
 So far, we have tested an independent Component that renders plain HTML elements, but no child Components. Such low-level Components are the workhorses of an Angular application.

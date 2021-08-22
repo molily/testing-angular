@@ -6,6 +6,16 @@ description: Using Cypress to test Angular applications
 
 # End-to-end testing
 
+<aside class="learning-objectives" markdown="1">
+Learning objectives
+
+- Writing valueable tests that cover all parts of your application
+- Understanding different approaches to end-to-end testing
+- Setting up Cypress for testing your Angular project
+- Orchestrating a web browser to load and inspect your application
+- Intercepting API calls to return fixed data
+</aside>
+
 We have successfully written unit and integration tests using Karma, Jasmine and Angular’s own testing tools. These precise tests give confidence that a single application part – like a Component or Service - or a group of connected parts work as intended.
 
 <aside class="margin-note">User perspective</aside>

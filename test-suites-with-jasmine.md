@@ -6,6 +6,15 @@ description: How to create and structure efficient tests using the Jasmine libra
 
 # Test suites with Jasmine
 
+<aside class="learning-objectives" markdown="1">
+Learning objectives
+
+- Introducing the Jasmine testing framework
+- Writing test suites, specs and assertions
+- Structuring a spec with Arrange, Act, Assert
+- Efficient test suites with setup and teardown logic
+</aside>
+
 Angular ships with Jasmine, a JavaScript framework that enables you to write and execute unit and integration tests. Jasmine consists of three important parts:
 
 1. A library with classes and functions for constructing tests.

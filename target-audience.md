@@ -6,6 +6,14 @@ description: What you should know when reading this book
 
 # Target audience
 
+<aside class="learning-objectives" markdown="1">
+Learning objectives
+
+- Angular topics you need to know when reading this book
+- Where to learn about Angular core concepts
+- Picking chapters you are interested in
+</aside>
+
 The target audience of this guide are intermediate Angular developers. You should be familiar with Angular’s core concepts.
 
 <aside class="margin-note">Testing, not implementation</aside>

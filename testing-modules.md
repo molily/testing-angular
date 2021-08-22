@@ -6,6 +6,13 @@ description: Automated smoke tests for Angular Modules
 
 # Testing Modules
 
+<aside class="learning-objectives" markdown="1">
+Learning objectives
+
+- Deciding whether and how to test Angular Modules
+- Writing smoke tests to catch Module errors early
+</aside>
+
 Modules are central parts of Angular applications. Often they contain important setup code. Yet they are hard to test since there is no typical logic, only sophisticated configuration.
 
 <aside class="margin-note">Only metadata</aside>

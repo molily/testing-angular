@@ -6,7 +6,7 @@ description: Thanks to those who helped me writing this book
 
 # Acknowledgements
 
-This book would not be possible without the support and input from many individuals. I would like to thank all people in the Angular, JavaScript and web development communities who not only share their knowledge, work on tutorials and open source tools, but also advocate for inclusive communities and inclusive software.
+This book would not be possible without the support and input from many individuals. I would like to thank everyone in the Angular, JavaScript and web development communities who not only shares their knowledge and works on open source tools, but also advocates for inclusive communities and software.
 
 Thanks to the teams at 9elements, Diebold Nixdorf and Keysight Technologies for the opportunity to work on first-class Angular applications. Thanks for the challenges, resources and patience that allowed me to research automated testing in detail.
 

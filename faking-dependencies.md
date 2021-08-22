@@ -6,6 +6,15 @@ description: How to mock dependencies to test Components and Services in isolati
 
 # Faking dependencies
 
+<aside class="learning-objectives" markdown="1">
+Learning objectives
+
+- Testing a code unit in isolation
+- Replacing dependencies with fakes
+- Rules for creating fakes to avoid pitfalls
+- Using Jasmine spies to fake functions and methods
+</aside>
+
 When testing a piece of code, you need to decide between an [integration test](../testing-principles/#integration-tests) and a [unit test](../testing-principles/#unit-tests). To recap, the integration test includes (“integrates”) the dependencies. In contrast, the unit test replaces the dependencies with fakes in order to isolate the code under test.
 
 <aside class="margin-note">Also known as mocking</aside>

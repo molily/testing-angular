@@ -6,6 +6,15 @@ description: How to write unit and integration tests for Components with Service
 
 # Testing Components depending on Services
 
+<aside class="learning-objectives" markdown="1">
+Learning objectives
+
+- Choosing between a unit or an integration test for Components that talk to Services
+- Creating fake Services to test the Component in isolation
+- Verifying that the Component correctly interacts with the Service
+- Understanding different approaches for faking a Service dependency
+</aside>
+
 We have successfully tested the independent `CounterComponent` as well as the container `HomeComponent`. The next Component on our list is the [ServiceCounterComponent](https://github.com/9elements/angular-workshop/tree/main/src/app/components/service-counter).
 
 <button class="load-iframe">

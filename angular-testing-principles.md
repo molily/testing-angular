@@ -6,6 +6,14 @@ description: Dependency injection, mocking, starting the Karma test suite
 
 # Angular testing principles
 
+<aside class="learning-objectives" markdown="1">
+Learning objectives
+
+- Angular’s architectural principles that facilitate testing
+- Standard and alternative testing tools
+- Running and configuring unit and integration tests with Karma and Jasmine
+</aside>
+
 ## Testability
 
 In contrast to other popular front-end JavaScript libraries, Angular is an opinionated, comprehensive framework that covers all important aspects of developing a JavaScript web application. Angular provides high-level structure, low-level building blocks and means to bundle everything together into a usable application.

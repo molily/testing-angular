@@ -6,6 +6,15 @@ description: How to write automated tests for Angular Services that send HTTP re
 
 # Testing Services
 
+<aside class="learning-objectives" markdown="1">
+Learning objectives
+
+- Writing tests for Services with internal state
+- Testing Observables returned by Services
+- Verifying HTTP requests and payload processing
+- Covering HTTP success and error cases
+</aside>
+
 In an Angular application, Services are responsible for fetching, storing and processing data. Services are singletons, meaning there is only one instance of a Service during runtime. They are fit for central data storage, HTTP and WebSocket communication as well as data validation.
 
 <aside class="margin-note">Singleton</aside>
