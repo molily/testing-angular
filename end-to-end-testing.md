@@ -34,7 +34,7 @@ As discussed in [distribution of testing efforts](../testing-principles/#distrib
 
 <aside class="margin-note">Real conditions</aside>
 
-When all parts of the application come together, a new type of bugs appears. Often these bugs have to do with timing and order of events, like network latency and race conditions.
+When all parts of the application come together, a new type of bug appears. Often these bugs have to do with timing and order of events, like network latency and race conditions.
 
 The unit and integration tests we wrote worked with a fake back-end. We send fake HTTP requests and respond with fake data. We made an effort to keep the originals and fakes on par.
 
@@ -58,7 +58,7 @@ Since this guide is not about DevOps, we will not go into details here and focus
 
 ## How end-to-end tests work
 
-An end-to-end test tries to mimic how a user interacts with the application. Typically, the test engine launches an ordinary browser and controls it remotely.
+An end-to-end test mimics how a user interacts with the application. Typically, the test engine launches an ordinary browser and controls it remotely.
 
 <aside class="margin-note">Simulate user actions</aside>
 
@@ -166,7 +166,7 @@ The company generates revenue with an additional paid service: The Cypress dashb
 From our perspective, Cypress has a few drawbacks.
 
 - In place of Jasmine, Cypress uses the Mocha and Chai libraries for writing tests. While both serve the same purpose, you have to learn the subtle differences. If you use Jasmine for unit and integration tests, there will be an inconsistency in your tests.
-- At the time of writing, Cypress only supports Firefox as well as Chromium-based browsers like Google Chrome and Microsoft Edge. It does not support Safari, legacy Edge or even Internet Explorer.
+- Cypress only supports Firefox as well as Chromium-based browsers like Google Chrome and Microsoft Edge. It does not support Safari, legacy Edge or even Internet Explorer.
 
 Cypress is not simply better than WebDriver-based frameworks. It tries to solve their problems by narrowing the scope and by making trade-offs.
 
