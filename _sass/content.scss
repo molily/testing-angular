@@ -10,7 +10,6 @@
   *
   */
 
-@import 'clearfix';
 @import 'accessible-hide';
 @import 'dark-scheme';
 
@@ -69,7 +68,7 @@ html {
    display: block;
  }
 
- /**
+/**
  * @section Headings
  *
  */
@@ -133,7 +132,6 @@ ul,
 ol,
 dl,
 pre,
-address,
 blockquote {
   margin: 0 0 1rem 0;
   line-height: $content-line-height;
@@ -252,16 +250,6 @@ blockquote {
 }
 
 /**
- * @section Addresses
- *
- */
-
-address {
-  font-size: 80%;
-  font-style: normal;
-}
-
-/**
  * @section Links
  *
  */
@@ -331,19 +319,6 @@ q {
 }
 
 /**
- * @section Abbreviations
- *
- */
-
-abbr,
-acronym {
-  text-decoration: underline dotted $darker-text-color;
-  border-bottom-style: none;
-  cursor: help;
-  font-style: normal;
-}
-
-/**
  * @section Data tables
  *
  */
@@ -382,30 +357,12 @@ td p:last-child {
 }
 
 /**
- * @section Clearfix utility class
- *
- */
-
-.clearfix {
-  @extend %clearfix;
-}
-
-/**
  * @section Accessible hide utility class
  *
  */
 
 .accessible-hide {
   @extend %accessible-hide;
-}
-
-/**
- * @section Less important annotations
- *
- */
-
-.unwichtig {
-  font-size: 90%;
 }
 
 /**
