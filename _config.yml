@@ -1,5 +1,6 @@
 # Site settings
 title: Testing Angular
+subtitle: A Guide to Robust Angular Applications
 email: molily@mailbox.org
 description: "Unit, integration and end-to-end tests for Angular web applications. Free online book and e-book."
 keywords: JavaScript, Angular, testing, automated tests, test automation, unit tests, integration tests, end-to-end tests
