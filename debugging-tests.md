@@ -1,7 +1,7 @@
 ---
 layout: chapter
 title: Debugging tests
-description: How to find flaws in your Angular unit and integration tests
+description: How to debug Angular unit and integration tests
 ---
 
 # Debugging tests
@@ -9,7 +9,8 @@ description: How to find flaws in your Angular unit and integration tests
 <aside class="learning-objectives" markdown="1">
 Learning objectives
 
-- Narrowing down problems in your test
+- Fixing problems in your test
+- Finding the cause of a failing test
 - Applying familiar debugging techniques to tests
 - Using Jasmine debugging features
 </aside>
