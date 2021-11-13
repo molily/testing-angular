@@ -1196,7 +1196,7 @@ We have already checked the presence of `aria-required` attributes when testing 
 
 As a second indicator, we check for the `ng-invalid` class. This class is set by Angular itself on invalid form fields without us having to add it via the template. Note that the mere presence of the class does not imply that the invalid state is conveyed visually.
 
-Alternatively, we could check for the presence of an error message, like we in the required fields spec.
+Alternatively, we could check for the presence of an error message, like we did in the required fields spec.
 
 <div class="book-sources" markdown="1">
 - [SignupFormComponent: test code](https://github.com/molily/angular-form-testing/blob/main/client/src/app/components/signup-form/signup-form.component.spec.ts)
@@ -1468,7 +1468,7 @@ We edit package.json, and add two scripts:
 ```json
 {
   "scripts": {
-    "a11y": "start-server-and-test start https-get://localhost:4200/ pa11y-ci",
+    "a11y": "start-server-and-test start http-get://localhost:4200/ pa11y-ci",
     "pa11y-ci": "pa11y-ci"
   },
 }

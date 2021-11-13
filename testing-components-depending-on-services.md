@@ -38,7 +38,7 @@ Again, there are two fundamental ways to test the Component:
 - A unit test that replaces the `CounterService` dependency with a fake.
 - An integration test that includes a real `CounterService`.
 
-This guide will demonstrate both. For your Components, you need to make a decision on an individual basis. These questions may guide you: Which type of test is more beneficial, more meaningful? Which test is easier to set up and to maintain in the long run?
+This guide will demonstrate both. For your Components, you need to make a decision on an individual basis. These questions may guide you: Which type of test is more beneficial, more meaningful? Which test is easier to set up and maintain in the long run?
 
 ## Service dependency integration test
 

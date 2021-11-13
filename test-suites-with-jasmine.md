@@ -176,7 +176,7 @@ if (expectedValue !== actualValue) {
   `expect`
 </aside>
 
-We could write that code in a Jasmine spec, but Jasmine allows us to create expectations in an easier and more concise manner: The `expect` function together with a **Matcher**.
+We could write that code in a Jasmine spec, but Jasmine allows us to create expectations in an easier and more concise manner: The `expect` function together with a **matcher**.
 
 ```typescript
 const expectedValue = 5;
