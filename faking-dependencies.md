@@ -308,11 +308,11 @@ This installs a spy on the global `fetch` method. Under the hood, Jasmine saves 
 `spyOn` returns the created spy, enabling us to set a return value, like we have learned above.
 
 ```typescript
-spyOn(window, 'fetch');
+spyOn(window, 'fetch')
   .and.returnValue(okResponse);
 ```
 
-We can create a version of TodoService that does not rely on construction injection, but uses `fetch` directly:
+We can create a version of `TodoService` that does not rely on construction injection, but uses `fetch` directly:
 
 ```typescript
 class TodoService {

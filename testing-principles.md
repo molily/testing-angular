@@ -23,7 +23,7 @@ When writing tests, you need to keep the goals of testing in mind. You need to j
 
 Automated testing has several technical, economical and organizational benefits. Let us pick a few that are useful to judge a test:
 
-1. **Testing saves time and money.** Testing tries to nip software problems in a bud. Tests prevent bugs before they cause real damage, when they are still manageable and under control.
+1. **Testing saves time and money.** Testing tries to nip software problems in the bud. Tests prevent bugs before they cause real damage, when they are still manageable and under control.
 
    Of course, quality assurance takes time and costs money itself. But it takes less time and is cheaper than letting bugs slip through into the software release.
 
@@ -239,7 +239,7 @@ On the one hand, unit tests are precise and cheap. They are ideal to specify all
 
 <aside class="margin-note">Confidence</aside>
 
-On the other hand, unit test are too low-level to check whether a certain feature works for the user. They give you little confidence that your application works. In addition, unit tests might increase the cost of every code change.
+On the other hand, unit tests are too low-level to check whether a certain feature works for the user. They give you little confidence that your application works. In addition, unit tests might increase the cost of every code change.
 
 Unit tests run the risk of mirroring or even duplicating implementation details. These details change frequently because of new requirements elsewhere or during internal refactoring. If you change a line of code somewhere, some distant unit test suddenly fails.
 
