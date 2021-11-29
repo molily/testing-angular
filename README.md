@@ -4,9 +4,9 @@ A free online book and e-book. [Read the book online](https://testing-angular.co
 
 [Download the book as EPUB (1.8 MB)](https://testing-angular.com/assets/testing-angular.epub)
 
-License: [Creative Commons Attribution-ShareAlike (CC BY-SA 4.0)](https://creativecommons.org/licenses/by-sa/4.0/)
+# Feedback
 
-The example code is released into the public domain. See [Unlicense](https://unlicense.org/).
+Please send feedback and corrections to [mailto:molily@mailbox.org] or [file an issue on GitHub](https://github.com/molily/testing-angular/issues/new). Thanks!
 
 # Example Applications
 
@@ -18,3 +18,10 @@ All example applications are repositories on GitHub:
 - [TranslatePipe](https://github.com/molily/translate-pipe)
 - [ThresholdWarningDirective](https://github.com/molily/threshold-warning-directive)
 - [PaginateDirective](https://github.com/molily/paginate-directive)
+
+# License
+
+License: [Creative Commons Attribution-ShareAlike (CC BY-SA 4.0)](https://creativecommons.org/licenses/by-sa/4.0/)
+
+The example code is released into the public domain. See [Unlicense](https://unlicense.org/).
+
