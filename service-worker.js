@@ -1,4 +1,4 @@
-const VERSION = 'v5';
+const VERSION = 'v6';
 const PAGES_CACHE = `${VERSION}_PAGES`;
 const OFFLINE_PAGE = 'offline.html';
 const CACHED_RESOURCES = [
@@ -37,6 +37,8 @@ const CACHED_RESOURCES = [
   '/assets/img/flying-probe-1344-cwebp-q80.webp',
   '/assets/img/flying-probe-672-q85.jpg',
   '/assets/img/flying-probe-1344-q65.jpg',
+  '/assets/img/favicon.svg',
+  '/assets/img/favicon-194x194.png',
   '/assets/fonts/noto-sans-normal-normal-latin.woff2',
   '/assets/fonts/noto-sans-italic-normal-latin.woff2',
   '/assets/fonts/noto-sans-normal-bold-latin.woff2',
