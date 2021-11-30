@@ -13,14 +13,6 @@ layout: default
 
 <link rel="stylesheet" href="{{ "/assets/css/book.css" | prepend: site.baseurl }}">
 
-<link rel="icon" type="image/x-icon" href="/assets/img/favicons/favicon.ico">
-<link rel="icon" type="image/png" href="/assets/img/favicons/favicon-32x32.png" sizes="32x32">
-<link rel="icon" type="image/png" href="/assets/img/favicons/favicon-194x194.png" sizes="194x194">
-<link rel="icon" type="image/png" href="/assets/img/favicons/favicon-96x96.png" sizes="96x96">
-<link rel="icon" type="image/png" href="/assets/img/favicons/favicon-16x16.png" sizes="16x16">
-<link rel="apple-touch-icon" sizes="144x144" href="/assets/img/favicons/favicon-144x144.png">
-<link rel="apple-touch-icon-precomposed" sizes="144x144" href="/assets/img/favicons/favicon-144x144.png">
-
 {% capture canonical_url %}{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}{% endcapture %}
 
 {% capture description %}
@@ -60,11 +52,12 @@ layout: default
 <meta property="og:description" content="{{ description | strip }}">
 <meta property="og:image" content="{% if page.og_image %}{{ page.og_image }}{% else %}{{ site.og_image }}{% endif %}">
 
-<link rel="icon" type="image/x-icon" href="/assets/img/favicons/favicon.ico">
-<link rel="icon" type="image/png" href="/assets/img/favicons/favicon-32x32.png" sizes="32x32">
-<link rel="icon" type="image/png" href="/assets/img/favicons/favicon-194x194.png" sizes="194x194">
-<link rel="icon" type="image/png" href="/assets/img/favicons/favicon-96x96.png" sizes="96x96">
+<link rel="icon" type="image/svg+xml" href="/assets/img/favicons/favicon.svg">
+<link rel="icon" type="image/x-icon" href="/assets/img/favicons/favicon.ico" sizes="any">
 <link rel="icon" type="image/png" href="/assets/img/favicons/favicon-16x16.png" sizes="16x16">
+<link rel="icon" type="image/png" href="/assets/img/favicons/favicon-32x32.png" sizes="32x32">
+<link rel="icon" type="image/png" href="/assets/img/favicons/favicon-96x96.png" sizes="96x96">
+<link rel="icon" type="image/png" href="/assets/img/favicons/favicon-194x194.png" sizes="194x194">
 <link rel="apple-touch-icon" sizes="144x144" href="/assets/img/favicons/favicon-144x144.png">
 <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/assets/img/favicons/favicon-144x144.png">
 
