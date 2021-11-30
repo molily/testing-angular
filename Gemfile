@@ -5,6 +5,7 @@ gem "jekyll", "~> 4.2.0"
 group :jekyll_plugins do
   gem "jekyll-last-modified-at"
   gem "jekyll-brotli"
+  gem "jekyll-minifier"
 end
 
 platforms :mingw, :x64_mingw, :mswin, :jruby do
