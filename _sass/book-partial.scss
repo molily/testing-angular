@@ -582,22 +582,21 @@ h1#cover-heading {
  */
 
 .learning-objectives {
-  margin-bottom: 2rem;
+  margin: 0 -1rem 2rem;
+  border-radius: 0.5px;
+  padding: 1rem;
   font-size: $font-size-small;
+  background-color: $highlight-background-color;
+
+  @include large {
+    margin-left: -2rem;
+    margin-right: -2rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
 
   @include dark-scheme {
-    margin-left: -1rem;
-    margin-right: -1rem;
-    padding: 1rem;
     background-color: $highlight-background-color-inverted;
-    border-radius: 0.5px;
-
-    @include large {
-      margin-left: -2rem;
-      margin-right: -2rem;
-      padding-left: 2rem;
-      padding-right: 2rem;
-    }
   }
 
   p {
