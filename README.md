@@ -6,7 +6,7 @@ A free online book and e-book. [Read the book online](https://testing-angular.co
 
 # Feedback
 
-Please send feedback and corrections to [mailto:molily@mailbox.org] or [file an issue on GitHub](https://github.com/molily/testing-angular/issues/new). Thanks!
+Please send feedback and corrections to molily@mailbox.org or [file an issue on GitHub](https://github.com/molily/testing-angular/issues/new). Thanks!
 
 # Example Applications
 
