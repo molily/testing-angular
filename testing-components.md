@@ -323,7 +323,7 @@ const { debugElement } = fixture;
 // Find the first h1 element
 const h1 = debugElement.query(By.css('h1'));
 // Find all elements with the class .user
-const userElements = debugElement.query(By.css('.user'));
+const userElements = debugElement.queryAll(By.css('.user'));
 ```
 
 The return value of `query` is a `DebugElement` again, that of `queryAll` is an array of `DebugElement`s (`DebugElement[]` in TypeScript notation).
