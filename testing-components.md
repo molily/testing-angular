@@ -812,6 +812,8 @@ export function setFieldValue<T>(
 }
 ```
 
+You can find the full source code of the involved helper functions in [element.spec-helper.ts](https://github.com/9elements/angular-workshop/blob/main/src/app/spec-helpers/element.spec-helper.ts).
+
 Using the newly created `setFieldValue` helper, we can simplify the spec:
 
 ```typescript
