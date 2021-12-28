@@ -20,11 +20,12 @@ sass:
 
 plugins:
   - jekyll-last-modified-at
+  - jekyll-brotli
   - jekyll-minifier
 
 # Optional. The default date format, used if none is specified in the tag.
 last-modified-at:
-    date-format: '%Y-%m-%d'
+  date-format: '%Y-%m-%d'
 
 jekyll-minifier:
   exclude: 'service-worker.js'
