@@ -111,9 +111,8 @@ describe('HomeComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create the app', () => {
-    const app = fixture.debugElement.componentInstance;
-    expect(app).toBeTruthy();
+  it('renders without errors', () => {
+    expect(component).toBeTruthy();
   });
 });
 ```
