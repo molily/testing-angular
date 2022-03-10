@@ -215,7 +215,7 @@ In theory, the benefit of end-to-end tests is the highest, since they indicate w
 For this reason, some experts argue you should write few end-to-end test, a fair amount of integration tests and many unit tests. If this distribution is visualized, it looks like a pyramid:
 
 <p>
-<svg style="display: block; margin: auto; width: 100%; max-width: 25rem" viewbox="0 0 500 350">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 350" style="display: block; margin: auto; width: 100%; max-width: 25rem">
   <path d="M 250 10 L 490 340 H 10 Z" stroke="gray" stroke-width="2" fill="#d0d0d0" />
   <text x="250" y="65" style="font-size: 20px; text-anchor: middle; dominant-baseline: middle">
     <tspan>End</tspan>
@@ -312,7 +312,7 @@ Once you have identified a piece of code you would like to test, you have to dec
 **Black box testing** does not assume anything about the internal structure. It puts certain values into the box and expects certain output values. The test talks to the publicly exposed, documented API. The inner state and workings are not examined.
 
 <p>
-<svg style="display: block; margin: auto; width: 100%; max-width: 15rem" viewbox="0 0 400 450">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 450" style="display: block; margin: auto; width: 100%; max-width: 15rem">
   <text x="200" y="30" fill="currentColor" transform="rotate(15, 200, 30)" style="font-size: 30px; text-anchor: middle; dominant-baseline: middle">Input</text>
   <path d="
   M 0 100
