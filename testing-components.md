@@ -705,7 +705,7 @@ That is much better to read and less to write! You can tell what the spec is doi
 
 We have tested the increment and decrement button successfully. The remaining user-facing feature we need to test is the reset feature.
 
-In the user interface, there is a reset input field and a reset button. The user enters a new number into to field, then clicks on the button. The Component resets the count to the user-provided number.
+In the user interface, there is a reset input field and a reset button. The user enters a new number into the field, then clicks on the button. The Component resets the count to the user-provided number.
 
 <aside class="margin-note">Set field value</aside>
 
