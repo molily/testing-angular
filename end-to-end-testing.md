@@ -177,14 +177,14 @@ That being said, this guide **recommends to use Cypress for testing Angular appl
 In case you do need a WebDriver-based framework, have a look at Webdriver.io instead.
 
 <div class="book-sources" markdown="1">
-- [Cypress: Trade-offs](https://docs.cypress.io/guides/references/trade-offs.html)
-- [Cypress: Key differences](https://docs.cypress.io/guides/overview/key-differences.html)
+- [Cypress: Trade-offs](https://docs.cypress.io/guides/references/trade-offs)
+- [Cypress: Key differences](https://docs.cypress.io/guides/overview/key-differences)
 - [Webdriver.io](https://webdriver.io/)
 </div>
 
 ## Installing Cypress
 
-An easy way to add Cypress to an existing Angular CLI project is the [Cypress Angular Schematic](https://github.com/cypress-io/cypress/tree/develop/npm/cypress-schematic).
+An easy way to add Cypress to an existing Angular CLI project is the [Cypress Angular Schematic](https://www.npmjs.com/package/@cypress/schematic).
 
 In your Angular project directory, run this shell command:
 
@@ -195,47 +195,47 @@ ng add @cypress/schematic
 This command does four important things:
 
 1. Add Cypress and auxiliary npm packages to `package.json`.
-2. Add the Cypress configuration file `cypress.json`.
-3. Change the `angular.json` configuration file to add `ng run` commands.
+2. Add the Cypress configuration file `cypress.config.ts`.
+3. Change the `angular.json` configuration file in order to add `ng run` commands.
 4. Create a sub-directory named `cypress` with a scaffold for your tests.
 
 The output looks like this:
 
 ```
 ℹ Using package manager: npm
-✔ Found compatible package version: @cypress/schematic@1.4.2.
+✔ Found compatible package version: @cypress/schematic@2.0.2.
 ✔ Package information loaded.
 
-The package @cypress/schematic@1.4.2 will be installed and executed.
+The package @cypress/schematic@2.0.2 will be installed and executed.
 Would you like to proceed? Yes
-✔ Package successfully installed.
-? Would you like the default `ng e2e` command to use Cypress? [ Protractor to Cypress Migration Guide: https://on.cypress.io/protractor-to-cypress?cli=true ] Yes
-CREATE cypress.json (298 bytes)
+✔ Packages successfully installed.
+? Would you like the default `ng e2e` command to use Cypress? [ Protractor to Cypress Migration Guide:
+https://on.cypress.io/protractor-to-cypress?cli=true ] Yes
+CREATE cypress.config.ts (127 bytes)
 CREATE cypress/tsconfig.json (139 bytes)
-CREATE cypress/integration/spec.ts (178 bytes)
-CREATE cypress/plugins/index.ts (180 bytes)
+CREATE cypress/e2e/spec.cy.ts (143 bytes)
+CREATE cypress/fixtures/example.json (85 bytes)
 CREATE cypress/support/commands.ts (1377 bytes)
-CREATE cypress/support/index.ts (651 bytes)
-UPDATE package.json (1225 bytes)
-UPDATE angular.json (3952 bytes)
+CREATE cypress/support/e2e.ts (655 bytes)
+UPDATE package.json (1187 bytes)
+UPDATE angular.json (3757 bytes)
 ✔ Packages installed successfully.
 ```
 
-The installer asks if you would like the `ng e2e` command to start Cypress. The choice only makes a difference if the project was created with Angular CLI prior to version 12, where `ng e2e` used to start Protractor.
+The installer asks if you would like the `ng e2e` command to start Cypress. If you are setting up a new project without end-to-end tests yet, it is safe to answer “Yes”.
 
-If there are any Protractor tests in the project, you probably want to revive them later and use them as a reference. In this case, answer “No”. Otherwise, it is safe to answer “Yes”.
+In Angular CLI prior to version 12, `ng e2e` used to start Protractor. If you have any legacy Protractor tests in the project and want to continue to run them using `ng e2e`, answer “No” to the question.
 
 ## Writing an end-to-end test with Cypress
 
 In the project directory, you will find a sub-directory called `cypress`. It contains:
 
-- A `tsconfig.json` configuration for all TypeScript files in the directory,
-- an `integration` directory for the end-to-end tests,
-- a `support` directory for custom commands,
-- a `plugin` directory for Cypress plugins,
+- A `tsconfig.json` configuration for all TypeScript files specifically in this directory,
+- an `e2e` directory for the end-to-end tests,
+- a `support` directory for custom commands and other testing helpers,
 - a `fixtures` directory for test data.
 
-The test files in `integration` are TypeScript files with the extension `.ts`.
+The test files reside in the `e2e` directory. Each test is TypeScript file with the extension `.cy.ts`.
 
 The tests itself are structured with the test framework **Mocha**. The assertions (also called expectations) are written using **Chai**.
 
@@ -281,7 +281,7 @@ See the counter Component app in action
 </p>
 </script>
 
-As a start, let us write a minimal test that checks the document title. In the project directory, we create a file called `cypress/integration/counter.ts`. It looks like this:
+As a start, let us write a minimal test that checks the document title. In the project directory, we create a file called `cypress/e2e/counter.cy.ts`. It looks like this:
 
 ```typescript
 describe('Counter', () => {
@@ -299,11 +299,11 @@ describe('Counter', () => {
 
 Cypress commands are methods of the `cy` namespace object. Here, we are using two commands, `visit` and `title`.
 
-`cy.visit` orders the browser to visit the given URL. Above, we use the path `/`. Cypress appends the path to the `baseUrl`. Per default, the `baseUrl` is set to `http://localhost:4200` in Cypress’ configuration file, `cypress.json`.
+`cy.visit` orders the browser to visit the given URL. Above, we use the path `/`. Cypress appends the path to the `baseUrl`. Per default, the `baseUrl` is set to `http://localhost:4200` in Cypress’ configuration file, `cypress.config.ts`.
 
 <aside class="margin-note">Chainers</aside>
 
-`cy.title` returns the page title. To be specific, it returns a Cypress **Chainer**. This is an asynchronous wrapper around an arbitrary value. Most of the time, a Chainer wraps DOM elements. In the case of `cy.title`, it wraps a string.
+`cy.title` returns the page title. To be specific, it returns a Cypress **Chainer**. This is an asynchronous wrapper around an arbitrary value. Most of the time, a Chainer wraps DOM elements. In the case, `cy.title` wraps a string.
 
 <aside class="margin-note">Assertions</aside>
 
@@ -318,16 +318,16 @@ We pass two parameters, `'equal'` and the expected title string. `equal` creates
 This `should` style of assertions differs from Jasmine expectations, which use the `expect(…).toBe(…)` style. In fact, Chai supports three different assertion styles: `should`, `assert`, but also `expect`. In Cypress you will typically use `should` on Chainers and `expect` on unwrapped values.
 
 <div class="book-sources" markdown="1">
-- [Cypress API reference: cy.visit](https://docs.cypress.io/api/commands/visit.html)
-- [Cypress API reference: cy.title](https://docs.cypress.io/api/commands/title.html)
-- [Cypress API reference: cy.visit](https://docs.cypress.io/guides/references/assertions.html)
+- [Cypress API reference: cy.visit](https://docs.cypress.io/api/commands/visit)
+- [Cypress API reference: cy.title](https://docs.cypress.io/api/commands/title)
+- [Cypress documentation: Assertions](https://docs.cypress.io/guides/references/assertions)
 - [Chai API reference: should style assertions](https://www.chaijs.com/api/bdd/)
 - [Chai API reference: equal](https://www.chaijs.com/api/bdd/#method_equal)
 </div>
 
 ## Running the Cypress tests
 
-Save the minimal test from the last chapter as `cypress/integration/counter.ts`.
+Save the minimal test from the last chapter as `cypress/e2e/counter.cy.ts`.
 
 Cypress has two shell commands to run the end-to-end tests:
 
@@ -339,7 +339,7 @@ Cypress has two shell commands to run the end-to-end tests:
 
    This command is typically used in a continuous integration environment.
 
-- **`npx cypress open` – Interactive test runner**. Opens a window where you can select which tests to run and which browser to use. The browser window is visible and it remains visible after completion.
+- **`npx cypress open` – Interactive test runner**. Opens a window where you can select which browser to use and which tests to run. The browser window is visible and it remains visible after completion.
 
    You can see the test results the browser window. If you make changes on the test files, Cypress automatically re-runs the tests.
 
@@ -347,48 +347,62 @@ Cypress has two shell commands to run the end-to-end tests:
 
 <aside class="margin-note">Serve and run tests</aside>
 
-The Cypress schematic we have installed wraps these commands so they integrate with Angular.
+The Cypress schematic that we have installed wraps these commands so they integrate well with Angular.
 
-- **`ng run $project-name$:cypress-run`** – Starts an Angular development server (`ng serve`), then calls `npx cypress run`.
-- **`ng run $project-name$:cypress-open`** – Starts an Angular development server (`ng serve`), then calls `npx cypress open`.
+- **`ng run $project-name$:cypress-run`** – Starts the non-interactive test runner.
+- **`ng run $project-name$:cypress-open`** – Starts the interactive test runner.
 
 `$project-name$` is a placeholder. Insert the name of the respective Angular project. This is typically the same as the directory name. If not, it can be found in `angular.json` in the `projects` object.
 
-For example, the Counter example has the project name `angular-workshop`. Therefore, the commands are:
+For example, the Counter example has the project name `angular-workshop`. Hence, the commands read:
 
 - `ng run angular-workshop:cypress-run`
 - `ng run angular-workshop:cypress-open`
 
+Whatever method of starting Cypress you use, you need to start Angular’s development server with `ng serve` in a separate shell first. Cypress tries to connect to the `baseUrl` (`http://localhost:4200`) and will let you know if the server is not reachable.
+
 <aside class="margin-note">Launch window</aside>
 
-The `cypress open` command will open the test runner:
+The `cypress open` command will open the test runner. First, you need to choose the type of testing, which is “E2E testing” in our case.
 
-<a href="/assets/img/cypress-open.png">
-  <img src="/assets/img/cypress-open.png" alt="Interactive Cypress test runner" class="image-max-full" loading="lazy">
+<a href="/assets/img/cypress-choose-testing-type.png">
+  <img src="/assets/img/cypress-choose-testing-type.png" alt="Cypress welcome screen. It allows to to choose end-to-end (E2E) testing or Component testing." class="image-max-full" loading="lazy" style="aspect-ratio: auto 1682 / 1164">
 </a>
 
-In the main window pane, all tests are listed. To run a single test, just click on it. To run all, click the “Run all specs” button.
+On the next screen, you need to choose the browser for running the tests.
 
-In a dropdown menu on the top-right, you can select the browser. Chrome, Firefox and Edge will appear in the list given you have installed them on your machine.
-
-This graphical user interface is an Electron application, a framework based on Chromium, the open source foundation of the Chrome browser. You can always run your tests in Electron since it ships with Cypress.
-
-<aside class="margin-note">In-browser runner</aside>
-
-Suppose you run the tests in Chrome, the in-browser test runner looks like this:
-
-<a href="/assets/img/cypress-browser.png">
-  <img src="/assets/img/cypress-browser.png" alt="Cypress test runner in the browser" class="image-max-full" loading="lazy">
+<a href="/assets/img/cypress-choose-browser.png">
+  <img src="/assets/img/cypress-choose-browser.png" alt="Cypress browser choice screen. It lists all found browsers. In this screenshot, Chrome, Electron and Firefox can be selected." class="image-max-full" loading="lazy" style="aspect-ratio: auto 1628 / 1070">
 </a>
 
-On the left side, the specs are listed. On the right side, the web page under test is seen.
+Cypress automatically lists all browsers it finds on your system. In addition, you can run your tests in Electron. Cypress’ user interface is an Electron application. Electron is based on Chromium, the open source foundation of the Chrome browser.
+
+Select a browser and click on the “Start E2E Testing” button. This launches the browser and opens the test runner, Cypress’ primary user interface. (The screenshot shows Chrome.)
+
+<a href="/assets/img/cypress-tests.png">
+  <img src="/assets/img/cypress-tests.png" alt="Cypress test runner. In the sidebar on the left, Specs, Runs and Settings can be selected. Currently, Specs are selected. In the main section on the right, all found E2E specs are listed. Cypress found our spec counter.cy.ts in the directory cypress/e2e/." class="image-max-full" loading="lazy" style="aspect-ratio: auto 2090 / 1056">
+</a>
+
+In the main window pane, all tests are listed. To run a single test, click on it.
+
+<aside class="margin-note">Test runner</aside>
+
+Suppose you run the tests in Chrome and run the test `counter.cy.ts`, the in-browser test runner looks like this:
+
+<a href="/assets/img/cypress-runner.png">
+  <img src="/assets/img/cypress-runner.png" alt="Cypress test runner in the browser" class="image-max-full" loading="lazy" style="aspect-ratio: auto 2792 / 1464">
+</a>
+
+In the “Specs” column, the tests of this test run are listed. For each test, you can see the specs.
+
+On the right side, the web page under test is seen. The web page is scaled to fit into the window, but uses a default viewport width of 1000 pixels.
 
 <aside class="margin-note">Spec log</aside>
 
 By clicking on a spec name, you can see all commands and assertions in the spec.
 
-<a href="/assets/img/cypress-test-runner-tests.png">
-  <img src="/assets/img/cypress-test-runner-tests.png" alt="Opened Cypress spec with commands" class="image-max-full" loading="lazy">
+<a href="/assets/img/cypress-spec.png">
+  <img src="/assets/img/cypress-spec.png" alt="Opened Cypress spec with commands. The spec “Counter has a correct title” has visit command in a beforeEach block. In the test body, there is a title command as well one assertion." class="image-max-full" loading="lazy" style="aspect-ratio: auto 1474 / 591">
 </a>
 
 You can watch Cypress running the specs command by command. This is especially useful when a spec fails. Let us break the spec on purpose to see Cypress’ output.
@@ -397,11 +411,13 @@ You can watch Cypress running the specs command by command. This is especially u
 cy.title().should('equal', 'Fluffy Golden Retrievers');
 ```
 
+This change leads to a failing spec:
+
 <a href="/assets/img/cypress-spec-failed.png">
-  <img src="/assets/img/cypress-spec-failed.png" alt="Failed spec in Cypress: Time out retrying: expected 'Angular Workshop: Counters' to equal 'Fluffy Golden Retrievers'. Error in counter.ts" class="image-max-full" loading="lazy">
+  <img src="/assets/img/cypress-spec-failed.png" alt="Failed spec in Cypress: Time out retrying: expected 'Angular Workshop: Counters' to equal 'Fluffy Golden Retrievers'. Error in counter.cy.ts, line 7." class="image-max-full" loading="lazy" style="aspect-ratio: auto 1655 / 1047">
 </a>
 
-Cypress provides a helpful error message, pointing to the assertion that failed. You can click on “Open in IDE” to jump to the spec in your code editor.
+Cypress provides a helpful error message, pointing to the assertion that failed. You can click on the file name with line and column, `cypress/e2e/counter.cy.ts:7:16` in the example, to jump right to the assertion in your code editor.
 
 <aside class="margin-note">Time travel</aside>
 
@@ -412,14 +428,14 @@ By hovering over a command or assertion, you can travel back in time. The page o
 The time travel feature is invaluable when writing and debugging end-to-end tests. Use it to understand how your test interacts with the application and how the application reacts. When a test fails, use it to reconstruct what circumstances lead to the failure.
 
 <div class="book-sources" markdown="1">
-- [Cypress documentation: The Test Runner](https://docs.cypress.io/guides/core-concepts/test-runner.html)
+- [Cypress documentation: The Test Runner](https://docs.cypress.io/guides/core-concepts/cypress-app#The-Test-Runner)
 </div>
 
 ## Asynchronous tests
 
 Every Cypress command takes some time to execute. But from the spec point of view, the execution happens instantly.
 
-<aside class="margin-note">Declarative code</aside>
+<aside class="margin-note">Command queue</aside>
 
 In fact, Cypress commands are merely declarative. The execution happens asynchronously. By calling `cy.visit` and `cy.title`, we add commands to a queue. The queue is processed later.
 
@@ -427,9 +443,20 @@ As a consequence, we do not need to wait for the result of `cy.visit`. Cypress a
 
 For the same reason, `cy.title` does not immediately return a string, but a Chainer that allows more declarations.
 
-In the Jasmine unit and integration tests we wrote, we had to manage time ourselves. When dealing with asynchronous commands and values, we had to use `async` / `await`, `fakeAsync` and other means explicitly.
+In the Jasmine unit and integration tests we wrote before, we had to manage time ourselves. When dealing with asynchronous commands and values, we had to use `async` / `await`, `fakeAsync` and other means explicitly.
 
 This is not necessary when writing Cypress tests. The Cypress API is designed for expressiveness and readability. Cypress hides the fact that all commands take time.
+
+<aside class="margin-note">Synchronous assertions</aside>
+
+Sometimes it is necessary to access and inspect a value synchronously. Cypress allows this in form of callback functions that are executed after a certain command was processed. You can pass a callback function to the `should` command or the more general `then` command.
+
+Inside these callbacks, assertions on plain, unwrapped values are written using Chai’s `expect` function. We will get to know this practise later.
+
+<div class="book-sources" markdown="1">
+- [Cypress API reference: should with callback function](https://docs.cypress.io/api/commands/should#Function)
+- [Cypress API reference: then command](https://docs.cypress.io/api/commands/then)
+</div>
 
 ## Automatic retries and waiting
 
@@ -452,10 +479,10 @@ If a spec fails despite these retries and waiting, Cypress can be configured to 
 These features makes end-to-end tests more reliable, but also easier to write. In other frameworks, you have to wait manually and there is no automatic retry of commands, assertions or specs.
 
 <div class="book-sources" markdown="1">
-- [Cypress introduction: Commands are asynchronous](https://docs.cypress.io/guides/core-concepts/introduction-to-cypress.html#Commands-Are-Asynchronous)
-- [Cypress documentation: Interacting with Elements](https://docs.cypress.io/guides/core-concepts/interacting-with-elements.html)
-- [Cypress documentation: Retry-ability](https://docs.cypress.io/guides/core-concepts/retry-ability.html)
-- [Cypress documentation: Test Retries](https://docs.cypress.io/guides/guides/test-retries.html)
+- [Cypress introduction: Commands are asynchronous](https://docs.cypress.io/guides/core-concepts/introduction-to-cypress#Commands-Are-Asynchronous)
+- [Cypress documentation: Interacting with Elements](https://docs.cypress.io/guides/core-concepts/interacting-with-elements)
+- [Cypress documentation: Retry-ability](https://docs.cypress.io/guides/core-concepts/retry-ability)
+- [Cypress documentation: Test Retries](https://docs.cypress.io/guides/guides/test-retries)
 </div>
 
 ## Testing the counter increment
@@ -497,15 +524,15 @@ cy.get('[data-testid="example"]')
 
 <aside class="margin-note">Find by type</aside>
 
-Test ids are recommended, but other ways to find elements are still useful in some cases. For example, you might want to check the presence and the content of an `h1` element. This element has a special meaning and you should not find it with by arbitrary test id.
+Test ids are recommended, but other ways to find elements are still useful in some cases. For example, you might want to check the presence and the content of an `h1` element. This element has a special meaning and you should not find it with an arbitrary test id.
 
 The benefit of a test id is that it can be used on any element. Using a test id means ignoring the element type (like `h1`) and other attributes. The test does not fail if those change.
 
 But if there is a reason for this particular element type or attribute, your test should verify the usage.
 
 <div class="book-sources" markdown="1">
-- [Cypress API reference: cy.get](https://docs.cypress.io/api/commands/get.html)
-- [Cypress Best Practices: Selecting Elements](https://docs.cypress.io/guides/references/best-practices.html#Selecting-Elements)
+- [Cypress API reference: cy.get](https://docs.cypress.io/api/commands/get)
+- [Cypress Best Practices: Selecting Elements](https://docs.cypress.io/guides/references/best-practices#Selecting-Elements)
 </div>
 
 ## Interacting with elements
@@ -518,7 +545,7 @@ cy.get('[data-testid="count"]')
 
 <aside class="margin-note">Presence and content</aside>
 
-The `cy.get` command already has an assertion built-in: It expects to find at least one element matching the selector. Otherwise, the test fails.
+The `cy.get` command already has an assertion built-in: It expects to find at least one element matching the selector. Otherwise, the spec fails.
 
 Next, we check the element’s text content to verify the start count. Again, we use the `should` method to create an assertion.
 
@@ -573,7 +600,7 @@ Last but not least, we test the reset feature. The user can enter a new count in
 
 <aside class="margin-note">Fill out form</aside>
 
-The Cypress Chainer has a generic method for sending keys to an element that is keyboard-interactable: `type`.
+The Cypress Chainer has a generic method for sending keys to an element that the keyboard can interact with: `type`.
 
 To enter text into the form field, we pass a string to the `type` method.
 
@@ -591,7 +618,7 @@ it('resets the count', () => {
 });
 ```
 
-This is full test suite:
+This is the full test suite:
 
 ```typescript
 describe('Counter', () => {
@@ -622,7 +649,7 @@ describe('Counter', () => {
 });
 ```
 
-On the start page of the counter project, there are in fact nine counters instance. The `cy.get` command therefore returns nine elements instead of one.
+On the start page of the counter project, there are in fact nine counter instances. The `cy.get` command therefore returns nine elements instead of one.
 
 <aside class="margin-note">First match</aside>
 
@@ -641,11 +668,11 @@ This also applies to the other specs. If the element under test only appears onc
 All counter features are now tested. In the next chapters, we will refactor the code to improve its readability and maintainability.
 
 <div class="book-sources" markdown="1">
-- [Counter E2E test code](https://github.com/9elements/angular-workshop/blob/main/cypress/integration/counter.ts)
-- [Cypress API reference: click](https://docs.cypress.io/api/commands/click.html)
-- [Cypress API reference: type](https://docs.cypress.io/api/commands/type.html)
-- [Cypress API reference: first](https://docs.cypress.io/api/commands/first.html)
-- [Cypress FAQ: How do I get an element’s text contents?](https://docs.cypress.io/faq/questions/using-cypress-faq.html#How-do-I-get-an-element%E2%80%99s-text-contents)
+- [Counter E2E test code](https://github.com/9elements/angular-workshop/blob/main/cypress/e2e/counter.cy.ts)
+- [Cypress API reference: click](https://docs.cypress.io/api/commands/click)
+- [Cypress API reference: type](https://docs.cypress.io/api/commands/type)
+- [Cypress API reference: first](https://docs.cypress.io/api/commands/first)
+- [Cypress FAQ: How do I get an element’s text contents?](https://docs.cypress.io/faq/questions/using-cypress-faq#How-do-I-get-an-element%E2%80%99s-text-contents)
 </div>
 
 ## Custom Cypress commands
@@ -670,7 +697,7 @@ This would allow us to write `findEl('count')` instead of `cy.get('[data-testid=
 
 This works fine, but we opt for a another way. Cypress supports adding **custom commands** to the `cy` namespace. We are going to add the command `byTestId` so we can write `cy.byTestId('count')`.
 
-Custom commands are placed in `cypress/support/commands.ts` created by the Angular schematic. Using `Cypress.Commands.add`, we add our own command as a method of `cy`. The first parameter is the command name, the second is the implementation as a function.
+Custom commands are placed in `cypress/support/commands.ts`. This file is automatically created by the Angular schematic. Using `Cypress.Commands.add`, we add our own command as a method of `cy`. The first parameter is the command name, the second is the implementation as a function.
 
 <aside class="margin-note" markdown="1">
   `cy.byTestId`
@@ -699,7 +726,7 @@ Cypress.Commands.add(
     options?: Partial<
       Cypress.Loggable & Cypress.Timeoutable & Cypress.Withinable & Cypress.Shadow
     >,
-  ): Cypress.Chainable<JQuery<E>> =>
+  ): Cypress.Chainable<JQuery<E>> =
     cy.get(`[data-testid="${id}"]`, options),
 );
 ```
@@ -727,7 +754,7 @@ declare namespace Cypress {
 
 You do not have to understand these type definitions in detail. They simply make sure that you can pass the same `options` to `cy.byTestId` that you can pass to `cy.get`.
 
-Save `commands.ts`, then edit `cypress/support/index.ts` and activate the line that imports `command.ts`.
+Save `commands.ts`, then open `cypress/support/e2e.ts` and activate the line that imports `command.ts`.
 
 ```typescript
 import './commands';
@@ -767,11 +794,10 @@ describe('Counter (with helpers)', () => {
 Keep in mind that all these `first` calls are only necessary since there are multiple counters on the example page under test. If there is only one element with the given test id on the page, you do not need them.
 
 <div class="book-sources" markdown="1">
-- [Counter E2E test with helpers](https://github.com/9elements/angular-workshop/blob/main/cypress/integration/counter-helpers.ts)
+- [Counter E2E test with helpers](https://github.com/9elements/angular-workshop/blob/main/cypress/e2e/counter-helpers.cy.ts)
 - [Full code: commands.ts](https://github.com/9elements/angular-workshop/blob/main/cypress/support/commands.ts)
-- [Full code: index.d.ts](https://github.com/9elements/angular-workshop/blob/main/cypress/support/index.d.ts)
-- [Cypress documentation: Custom commands](https://docs.cypress.io/api/cypress-api/custom-commands.html)
-- [Cypress documentation: Types for custom commands](https://docs.cypress.io/guides/tooling/typescript-support.html#Types-for-custom-commands)
+- [Cypress documentation: Custom commands](https://docs.cypress.io/api/cypress-api/custom-commands)
+- [Cypress documentation: Types for custom commands](https://docs.cypress.io/guides/tooling/typescript-support#Types-for-custom-commands)
 </div>
 
 ## Testing the Flickr search
@@ -808,8 +834,8 @@ The application under test queries a third-party API with production data. The t
 
 There are two ways to deal with this dependency during testing:
 
-1. Test against the *real* Flickr API
-2. *Fake* the Flickr API and return a fixed response
+1. Test against the *real* Flickr API.
+2. *Fake* the Flickr API and return a fixed response.
 
 If we test against the real Flickr API, we cannot be specific in our expectations due to changing search results. We can superficially test the search results and the full photo. We merely know that the clicked photo has “flower” in its title or tags.
 
@@ -827,11 +853,11 @@ With Cypress, both type of tests are possible. For a start, we will test against
 
 ### Testing the search form
 
-We create a file called `cypress/integration/flickr-search.ts`. We start with a test suite.
+We create a file called `cypress/e2e/flickr-search.cy.ts`. We start with a test suite.
 
 ```typescript
 describe('Flickr search', () => {
-  const SEARCH_TERM = 'flower';
+  const searchTerm = 'flower';
 
   beforeEach(() => {
     cy.visit('/');
@@ -850,7 +876,7 @@ it('searches for a term', () => {
   cy.byTestId('search-term-input')
     .first()
     .clear()
-    .type(SEARCH_TERM);
+    .type(searchTerm);
   cy.byTestId('submit-search').first().click();
   /* … */
 });
@@ -899,7 +925,7 @@ Cypress has three surprises for us.
 
 2. `link` has the type `JQuery<HTMLElement>`. This is an element wrapped with the popular jQuery library. Cypress chose jQuery because many JavaScript developers are already familiar with it. To read the `href` attribute, we use `link.attr('href')`.
 
-3. We cannot use Cypress’ `should` method since it only exists on Cypress Chainers. But we are dealing with a jQuery object here. We have to use a standard Chai assertion – `expect` or `assert` style. We use `expect` together with `to.contain`.
+3. We cannot use Cypress’ `should` method since it only exists on Cypress Chainers. But we are dealing with a jQuery object here. We have to use a standard Chai assertion. We use `expect` together with `to.contain`.
 
 This brings us to:
 
@@ -917,7 +943,7 @@ The test now looks like this:
 
 ```typescript
 describe('Flickr search', () => {
-  const SEARCH_TERM = 'flower';
+  const searchTerm = 'flower';
 
   beforeEach(() => {
     cy.visit('/');
@@ -927,7 +953,7 @@ describe('Flickr search', () => {
     cy.byTestId('search-term-input')
       .first()
       .clear()
-      .type(SEARCH_TERM);
+      .type(searchTerm);
     cy.byTestId('submit-search').first().click();
 
     cy.byTestId('photo-item-link')
@@ -942,20 +968,18 @@ describe('Flickr search', () => {
 });
 ```
 
-To start the tests, we run the shell command:
+To start the tests, we first start the development server with `ng serve` and then start Cypress:
 
 ```
 ng run flickr-search:cypress-open
 ```
 
-This opens the test runner where we can click on the test `flickr-search.ts` to run it.
-
-Alternatively, you can start the development server (`ng serve`) in one shell and the test runner (`npx cypress open`) in a second shell.
+This opens the test runner where we click on `flickr-search.cy.ts`.
 
 <div class="book-sources" markdown="1">
-- [Flickr search E2E test code](https://github.com/9elements/angular-flickr-search/blob/main/cypress/integration/flickr-search.ts)
-- [Cypress API reference: clear](https://docs.cypress.io/api/commands/clear.html)
-- [Cypress API reference: each](https://docs.cypress.io/api/commands/each.html)
+- [Flickr search E2E test code](https://github.com/9elements/angular-flickr-search/blob/main/cypress/e2e/flickr-search.cy.ts)
+- [Cypress API reference: clear](https://docs.cypress.io/api/commands/clear)
+- [Cypress API reference: each](https://docs.cypress.io/api/commands/each)
 - [jQuery API reference: attr](https://api.jquery.com/attr/)
 - [Chai API reference: include (contain)](https://www.chaijs.com/api/bdd/#method_include)
 </div>
@@ -975,7 +999,7 @@ it('shows the full photo', () => {
 First, it searches for “flower”, just like the spec before.
 
 ```typescript
-cy.byTestId('search-term-input').first().clear().type(SEARCH_TERM);
+cy.byTestId('search-term-input').first().clear().type(searchTerm);
 cy.byTestId('submit-search').first().click();
 ```
 
@@ -990,7 +1014,7 @@ The click lets the photo details appear. As mentioned above, we cannot check for
 Since we have searched for “flower”, the term is either in the photo title or tags. We check the text content of the wrapper element with the test id `full-photo`.
 
 ```typescript
-cy.byTestId('full-photo').should('contain', SEARCH_TERM);
+cy.byTestId('full-photo').should('contain', searchTerm);
 ```
 
 <aside class="margin-note">Contain vs. have&#xA0;text</aside>
@@ -1014,11 +1038,11 @@ The spec now looks like this:
 
 ```typescript
 it('shows the full photo', () => {
-  cy.byTestId('search-term-input').first().clear().type(SEARCH_TERM);
+  cy.byTestId('search-term-input').first().clear().type(searchTerm);
   cy.byTestId('submit-search').first().click();
 
   cy.byTestId('photo-item-link').first().click();
-  cy.byTestId('full-photo').should('contain', SEARCH_TERM);
+  cy.byTestId('full-photo').should('contain', searchTerm);
   cy.byTestId('full-photo-title').should('not.have.text', '');
   cy.byTestId('full-photo-tags').should('not.have.text', '');
   cy.byTestId('full-photo-image').should('exist');
@@ -1030,8 +1054,8 @@ The assertions `contain`, `text` and `exist` are defined by Chai-jQuery, an asse
 Congratulations, we have successfully tested the Flickr search! This example demonstrates several Cypress commands and assertions. We also caught a glimpse of Cypress internals.
 
 <div class="book-sources" markdown="1">
-- [Flickr search E2E test code](https://github.com/9elements/angular-flickr-search/blob/main/cypress/integration/flickr-search.ts)
-- [Cypress documentation: Chai-jQuery assertions](https://docs.cypress.io/guides/references/assertions.html#Chai-jQuery)
+- [Flickr search E2E test code](https://github.com/9elements/angular-flickr-search/blob/main/cypress/e2e/flickr-search.cy.ts)
+- [Cypress documentation: Chai-jQuery assertions](https://docs.cypress.io/guides/references/assertions#Chai-jQuery)
 </div>
 
 ## Page objects
@@ -1078,7 +1102,7 @@ In the test, we import the class and create an instance in a `beforeEach` block.
 import { FlickrSearch } from '../pages/flickr-search.page';
 
 describe('Flickr search (with page object)', () => {
-  const SEARCH_TERM = 'flower';
+  const searchTerm = 'flower';
 
   let page: FlickrSearch;
 
@@ -1144,7 +1168,7 @@ Next, we rewrite the end-to-end test to use the page object methods.
 import { FlickrSearch } from '../pages/flickr-search.page';
 
 describe('Flickr search (with page object)', () => {
-  const SEARCH_TERM = 'flower';
+  const searchTerm = 'flower';
 
   let page: FlickrSearch;
 
@@ -1154,7 +1178,7 @@ describe('Flickr search (with page object)', () => {
   });
 
   it('searches for a term', () => {
-    page.searchFor(SEARCH_TERM);
+    page.searchFor(searchTerm);
     page
       .photoItemLinks()
       .should('have.length', 15)
@@ -1167,9 +1191,9 @@ describe('Flickr search (with page object)', () => {
   });
 
   it('shows the full photo', () => {
-    page.searchFor(SEARCH_TERM);
+    page.searchFor(searchTerm);
     page.photoItemLinks().first().click();
-    page.fullPhoto().should('contain', SEARCH_TERM);
+    page.fullPhoto().should('contain', searchTerm);
     page.fullPhotoTitle().should('not.have.text', '');
     page.fullPhotoTags().should('not.have.text', '');
     page.fullPhotoImage().should('exist');
@@ -1177,7 +1201,7 @@ describe('Flickr search (with page object)', () => {
 });
 ```
 
-For the Flickr search above, a page object is probably too much of a good thing. Still the example demonstrates the key ideas of page objects:
+For the Flickr search above, a page object is probably too much of a good thing. Still, the example demonstrates the key ideas of page objects:
 
 - Identify repetitive high-level interactions and map them to methods of the page object.
 - Move the finding of elements into the page object. The test ids, tag names, etc. used for finding should live in a central place.
@@ -1194,7 +1218,7 @@ The goal of this refactoring is not brevity. Using page objects does not necessa
 You can use the page object pattern when you feel the need to tidy up complex, repetitive tests. Once you are familiar with the pattern, it also helps you to avoid writing such tests in the first place.
 
 <div class="book-sources" markdown="1">
-- [Flickr search E2E test with page object](https://github.com/9elements/angular-flickr-search/blob/main/cypress/integration/flickr-search-with-po.ts)
+- [Flickr search E2E test with page object](https://github.com/9elements/angular-flickr-search/blob/main/cypress/e2e/flickr-search-with-po.cy.ts)
 - [Flickr search page object](https://github.com/9elements/angular-flickr-search/blob/main/cypress/pages/flickr-search.page.ts)
 </div>
 
@@ -1357,11 +1381,11 @@ In the case of the Flickr search, we have intercepted an HTTP request to a third
 This is useful for returning deterministic responses crucial for the feature under test. But it is also useful for suppressing requests that are irrelevant for your test, like marginal images and web analytics.
 
 <div class="book-sources" markdown="1">
-- [Flickr search E2E test with cy.intercept](https://github.com/9elements/angular-flickr-search/blob/main/cypress/integration/flickr-search-stub-network-intercept.ts)
+- [Flickr search E2E test with cy.intercept](https://github.com/9elements/angular-flickr-search/blob/main/cypress/e2e/flickr-search-stub-network-intercept.cy.ts)
 - [Photo spec helper](https://github.com/9elements/angular-flickr-search/blob/main/src/app/spec-helpers/photo.spec-helper.ts)
-- [Cypress documentation: Network Requests](https://docs.cypress.io/guides/guides/network-requests.html)
-- [Cypress API reference: intercept](https://docs.cypress.io/api/commands/intercept.html)
-- [Cypress API reference: wait](https://docs.cypress.io/api/commands/wait.html)
+- [Cypress documentation: Network Requests](https://docs.cypress.io/guides/guides/network-requests)
+- [Cypress API reference: intercept](https://docs.cypress.io/api/commands/intercept)
+- [Cypress API reference: wait](https://docs.cypress.io/api/commands/wait)
 </div>
 
 ## End-to-end testing: Summary
