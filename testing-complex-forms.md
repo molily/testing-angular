@@ -287,7 +287,7 @@ We are going to test the `SignupFormComponent` in conjunction with `ControlError
 <div class="book-sources" markdown="1">
 - [Angular guide: Validating form input](https://angular.io/guide/form-validation)
 - [MDN: Introduction to ARIA](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA)
-- [MDN: Using the aria-invalid attribute](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/ARIA_Techniques/Using_the_aria-invalid_attribute)
+- [MDN: aria-invalid](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-invalid)
 - [ARIA specification: aria-errormessage](https://www.w3.org/TR/wai-aria-1.1/#aria-errormessage)
 - [ErrorMessageDirective: full code](https://github.com/molily/angular-form-testing/blob/main/client/src/app/directives/error-message.directive.ts)
 - [ControlErrorsComponent: full code](https://github.com/molily/angular-form-testing/tree/main/client/src/app/components/control-errors)

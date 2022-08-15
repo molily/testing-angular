@@ -89,7 +89,7 @@ An **integration test of `HomeComponent`** renders the child Components. The hos
 We need to decide the level of detail for testing the nested Components. If separate unit tests for them exist, we do not need to click on each respective increment button. After all, the integration test needs to prove that the four Component work together, without going into the child Component details.
 
 <div class="book-sources" markdown="1">
-- [HomeComponent: implementation and test code](https://github.com/9elements/angular-workshop/blob/main/src/app/components/home/)
+- [HomeComponent: implementation and test code](https://github.com/9elements/angular-workshop/tree/main/src/app/components/home)
 </div>
 
 ## Unit test
@@ -383,7 +383,7 @@ However, the unit test gives little confidence that `HomeComponent` works in pro
 What if `HomeComponent` uses a wrong element name and the test copies that error? The test would pass incorrectly. We need to render the involved Components together to spot the error.
 
 <div class="book-sources" markdown="1">
-- [HomeComponent: implementation and test code](https://github.com/9elements/angular-workshop/blob/main/src/app/components/home/)
+- [HomeComponent: implementation and test code](https://github.com/9elements/angular-workshop/blob/main/src/app/components/home)
 - [Element spec helpers: full code](https://github.com/9elements/angular-workshop/blob/main/src/app/spec-helpers/element.spec-helper.ts)
 </div>
 
@@ -604,7 +604,7 @@ We are going to address these shortcomings in the next chapter.
 
 We have manually created a Component fake. This is an important exercise to understand how faking Components works, but it does not produce a robust, versatile fake. In this guide, we cannot discuss all necessary bits and pieces of creating airtight fake Components.
 
-Instead, we will use a mature solution: [ng-mocks](https://github.com/ike18t/ng-mocks) is a feature-rich library for
+Instead, we will use a mature solution: [ng-mocks](https://github.com/help-me-mom/ng-mocks) is a feature-rich library for
 testing Components with fake dependencies. (Remember, this guide uses the umbrella term “fake” while other articles and tools use terms like “mock” or “stub”.)
 
 <aside class="margin-note">Create fake from original</aside>
@@ -713,7 +713,7 @@ This was only a glimpse of ng-mocks. The library not only helps with nested Comp
 
 <div class="book-sources" markdown="1">
 - [HomeComponent spec with ng-mocks](https://github.com/9elements/angular-workshop/blob/main/src/app/components/home/home-component.ng-mocks.spec.ts)
-- [ng-mocks](https://github.com/ike18t/ng-mocks)
+- [ng-mocks](https://github.com/help-me-mom/ng-mocks)
 </div>
 
 <p id="next-chapter-link"><a href="../testing-components-depending-on-services/#testing-components-depending-on-services">Testing Components depending on Services</a></p>

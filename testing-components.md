@@ -1111,7 +1111,7 @@ On the other hand, abstractions like helper functions make tests more complex an
 
 <aside class="margin-note">Duplication vs. abstraction</aside>
 
-There is a controversial debate in software development regarding repetition and the value of abstractions. [As Sandi Metz famously stated](https://www.sandimetz.com/blog/2016/1/20/the-wrong-abstraction), “duplication is far cheaper than the wrong abstraction”.
+There is a controversial debate in software development regarding repetition and the value of abstractions. [As Sandi Metz famously stated](https://sandimetz.com/blog/2016/1/20/the-wrong-abstraction), “duplication is far cheaper than the wrong abstraction”.
 
 This is especially true when writing specs. You should try to eliminate duplication and boilerplate code with `beforeEach`/`beforeAll`, simple helper functions and even testing libraries. But do not try to apply your optimization habits and skills to test code.
 

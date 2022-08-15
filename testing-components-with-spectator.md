@@ -581,7 +581,7 @@ Again, the main difference is that we directly work with Inputs and Outputs.
 
 <div class="book-sources" markdown="1">
 - [FlickrSearchComponent: implementation code and the two tests](https://github.com/9elements/angular-flickr-search/tree/main/src/app/components/flickr-search)
-- [ng-mocks: How to mock a component](https://github.com/ike18t/ng-mocks#how-to-create-a-mock-component)
+- [ng-mocks: How to mock a component](https://github.com/help-me-mom/ng-mocks#how-to-create-a-mock-component)
 - [Spectator: Mocking providers](https://github.com/ngneat/spectator#mocking-providers)
 </div>
 
@@ -675,7 +675,7 @@ Once you are familiar with the standard tools, you should try out alternatives l
 
 <div class="book-sources" markdown="1">
 - [Spectator project site](https://github.com/ngneat/spectator)
-- [ng-mocks project site](https://github.com/ike18t/ng-mocks)
+- [ng-mocks project site](https://github.com/help-me-mom/ng-mocks)
 </div>
 
 <p id="next-chapter-link"><a href="../testing-services/#testing-services">Testing Services</a></p>

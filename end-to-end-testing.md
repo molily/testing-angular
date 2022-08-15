@@ -102,7 +102,7 @@ In this guide, we will learn about two frameworks, one of each category:
 
 <div class="book-sources" markdown="1">
 - [WebDriver protocol](https://www.w3.org/TR/webdriver/)
-- [Protractor: Official web site](http://www.protractortest.org/)
+- [Protractor: Official web site](https://www.protractortest.org/)
 - [Cypress: Official web site](https://www.cypress.io/)
 </div>
 
@@ -184,7 +184,7 @@ In case you do need a WebDriver-based framework, have a look at Webdriver.io ins
 
 ## Installing Cypress
 
-An easy way to add Cypress to an existing Angular CLI project is the [Cypress Angular Schematic](https://www.npmjs.com/package/@cypress/schematic).
+An easy way to add Cypress to an existing Angular CLI project is the [Cypress Angular Schematic](https://github.com/cypress-io/cypress/tree/master/npm/cypress-schematic#readme).
 
 In your Angular project directory, run this shell command:
 
@@ -672,7 +672,7 @@ All counter features are now tested. In the next chapters, we will refactor the 
 - [Cypress API reference: click](https://docs.cypress.io/api/commands/click)
 - [Cypress API reference: type](https://docs.cypress.io/api/commands/type)
 - [Cypress API reference: first](https://docs.cypress.io/api/commands/first)
-- [Cypress FAQ: How do I get an element’s text contents?](https://docs.cypress.io/faq/questions/using-cypress-faq#How-do-I-get-an-element%E2%80%99s-text-contents)
+- [Cypress FAQ: How do I get an element’s text contents?](https://docs.cypress.io/faq/questions/using-cypress-faq#How-do-I-get-an-element-s-text-contents)
 </div>
 
 ## Custom Cypress commands
@@ -797,7 +797,7 @@ Keep in mind that all these `first` calls are only necessary since there are mul
 - [Counter E2E test with helpers](https://github.com/9elements/angular-workshop/blob/main/cypress/e2e/counter-helpers.cy.ts)
 - [Full code: commands.ts](https://github.com/9elements/angular-workshop/blob/main/cypress/support/commands.ts)
 - [Cypress documentation: Custom commands](https://docs.cypress.io/api/cypress-api/custom-commands)
-- [Cypress documentation: Types for custom commands](https://docs.cypress.io/guides/tooling/typescript-support#Types-for-custom-commands)
+- [Cypress documentation: Types for custom commands](https://docs.cypress.io/guides/tooling/typescript-support#Types-for-Custom-Commands)
 </div>
 
 ## Testing the Flickr search

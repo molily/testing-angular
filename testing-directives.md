@@ -559,7 +559,7 @@ export class PaginateDirective<T> implements OnChanges {
 }
 ```
 
-The inner workings of the `PaginateDirective` are not relevant for testing, so we will not discuss them in detail here. Please refer to the Angular guide [Write a structural directive](https://angular.io/guide/structural-directives#write-a-structural-directive) for a general explanation.
+The inner workings of the `PaginateDirective` are not relevant for testing, so we will not discuss them in detail here. Please refer to the Angular guide [Write a structural directive](https://angular.io/guide/structural-directives#creating-a-structural-directive) for a general explanation.
 
 <div class="book-sources" markdown="1">
 - [PaginateDirective: implementation code](https://github.com/molily/paginate-directive/blob/main/src/app/paginate.directive.ts)

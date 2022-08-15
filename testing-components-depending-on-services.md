@@ -186,7 +186,7 @@ That is correct. But we cannot add private members to an object literal, nor sho
 
 <aside class="margin-note">Pick public members</aside>
 
-Luckily, we can use a TypeScript trick to fix this problem. Using [Pick](https://www.typescriptlang.org/docs/handbook/utility-types.html#picktk) and [keyof](https://www.typescriptlang.org/docs/handbook/advanced-types.html#index-types), we create a derived type that only contains the public members:
+Luckily, we can use a TypeScript trick to fix this problem. Using [Pick](https://www.typescriptlang.org/docs/handbook/utility-types.html#picktype-keys) and [keyof](https://www.typescriptlang.org/docs/handbook/advanced-types.html#index-types), we create a derived type that only contains the public members:
 
 ```typescript
 const fakeCounterService:
