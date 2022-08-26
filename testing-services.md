@@ -163,7 +163,7 @@ The two remaining specs work almost the same. We just call the respective method
 
 ```typescript
 it('decrements the count', () => {
-  counterService.increment();
+  counterService.decrement();
 
   let actualCount: number | undefined;
   counterService.getCount().subscribe((count) => {
