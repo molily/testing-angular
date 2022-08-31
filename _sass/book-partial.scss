@@ -1,6 +1,5 @@
 /**
  * Book styles
- *
  */
 
 @import 'reset';
@@ -11,7 +10,6 @@
 
 /**
  * @section Variables
- *
  */
 
 $toc-width: 25rem;
@@ -39,7 +37,6 @@ $font-size-smallest: percentage(15 / 18);
 
 /**
  * @section Root element and Body
- *
  */
 
 html {
@@ -58,7 +55,6 @@ body {
 
 /**
  * @section Tables
- *
  */
 
 table {
@@ -93,7 +89,6 @@ th {
 
 /**
  * @section Code
- *
  */
 
 pre {
@@ -112,7 +107,6 @@ pre {
 
 /**
  * @section Base layout
- *
  */
 
 @include large {
@@ -139,7 +133,6 @@ pre {
 
 /**
  * @section Sticky menu
- *
  */
 
 #sticky-menu {
@@ -188,7 +181,6 @@ pre {
 
 /**
  * @section Skip navigation links
- *
  */
 
 .skip-navigation {
@@ -219,7 +211,6 @@ pre {
 
 /**
  * @section Table of contents
- *
  */
 
 #toc {
@@ -364,7 +355,6 @@ pre {
 
 /**
  * @section Main
- *
  */
 
 #main {
@@ -388,7 +378,7 @@ pre {
   h4,
   h5,
   h6 {
-    margin: 4rem 0 2rem;
+    margin: 4rem 0 1rem;
 
     @include dark-scheme {
       margin-left: -1rem;
@@ -410,6 +400,7 @@ pre {
   // since #main has its own font-size
 
   h1 {
+    margin-bottom: 2rem;
     font-size: 180%;
   }
 
@@ -450,7 +441,6 @@ pre {
 
 /**
  * @section Cover image
- *
  */
 
 #cover-image {
@@ -487,7 +477,6 @@ to prevent layout shifts */
 
 /**
  * @section Cover heading
- *
  */
 
 // Boost specificity to override #main h1
@@ -550,7 +539,6 @@ h1#cover-heading {
 
 /**
  * @section Erroneous code
- *
  */
 
 .erroneous {
@@ -566,7 +554,6 @@ h1#cover-heading {
 
 /**
  * @section Typographic separator
- *
  */
 
 .separator {
@@ -612,9 +599,17 @@ h1#cover-heading {
     }
   }
 
-  ul, li {
+  ul {
     margin-bottom: 0;
     list-style-type: square;
+  }
+
+  li {
+    margin-bottom: 0.5rem;
+
+    @include large {
+      margin-bottom: 0;
+    }
   }
 }
 
@@ -751,7 +746,7 @@ $margin-note-breakpoint: $toc-width + $main-max-width +
 
 .margin-note {
   margin: 0 0 1rem 0;
-  font-size: $font-size-smallest;
+  font-size: $font-size-small;
   line-height: 2;
   text-transform: uppercase;
   text-align: center;
@@ -770,6 +765,7 @@ $margin-note-breakpoint: $toc-width + $main-max-width +
     width: $margin-note-inner-width;
     margin-left: -$margin-note-outer-width;
     margin-top: 0.3rem;
+    font-size: $font-size-smallest;
     line-height: 1.6;
     text-align: right;
     text-transform: none;
