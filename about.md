@@ -16,6 +16,6 @@ Twitter: [@molily](https://twitter.com/molily)
 
 **Please send feedback and corrections to [molily@mailbox.org](mailto:molily@mailbox.org) or <a href="https://github.com/molily/testing-angular/">file an issue on GitHub</a>.**
 
-Published on <time datetime="2021-02-17">February 17th, 2021</time>.
+First published on <time datetime="2021-02-17">February 17th, 2021</time>.
 
 <p id="next-chapter-link"><a href="../license/#license">License</a></p>
