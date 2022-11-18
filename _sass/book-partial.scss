@@ -142,10 +142,9 @@ pre {
   right: 0;
   display: flex;
   justify-content: space-evenly;
+  margin: -2rem -1rem 1rem;
   border-bottom: 1px solid
     adjust-color($sticky-menu-background, $lightness: -2%);
-  margin: -1rem -1rem 1rem;
-  height: 2.5rem;
   background-color: $sticky-menu-background;
   font-size: $font-size-small;
   text-align: center;
@@ -165,9 +164,9 @@ pre {
     align-items: center;
     justify-content: center;
     border: 0;
-    padding: 0 1rem;
+    padding: 0.25rem 0.5rem;
     text-decoration: none;
-    line-height: 1.4;
+    line-height: 1.5;
   }
 }
 
@@ -221,13 +220,18 @@ pre {
 
 #home-link {
   display: none;
+  font-size: 0.9rem;
 
   @include large {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-evenly;
   }
 
   a {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     text-decoration: none;
   }
 }
@@ -277,6 +281,7 @@ pre {
     padding: 0.5rem;
     text-align: center;
     text-decoration: none;
+    background-color: $highlight-background-color;
 
     @include dark-scheme {
       background-color: $highlight-background-color-inverted;
@@ -444,7 +449,7 @@ pre {
  */
 
 #cover-image {
-  margin: 2rem 0;
+  margin: 0 0 2rem;
   text-align: center;
   font-size: $font-size-small;
 }
