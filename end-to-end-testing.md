@@ -74,7 +74,7 @@ There are two categories of end-to-end testing frameworks: Those that use WebDri
 
 <aside class="margin-note">Browser automation</aside>
 
-The **WebDriver protocol** defines a way to control a browser remotely with a set of commands. It originates from the Selenium browser automation project and is now developed at the World Wide Web Consortium (W3C).
+The **WebDriver protocol** allows to control a browser remotely with a set of commands. It originates from the Selenium browser automation project and is now developed at the World Wide Web Consortium (W3C).
 
 All common browsers support the WebDriver protocol and can be controlled remotely. The most important WebDriver commands are:
 
@@ -87,86 +87,37 @@ All common browsers support the WebDriver protocol and can be controlled remotel
 - Send keyboard input to a form field
 - Execute arbitrary JavaScript code
 
-WebDriver is a key technology most end-to-end testing frameworks depend on. The main benefit of WebDriver is that tests can be run in different browsers, even simultaneously.
-
 WebDriver is a high-level, generic, HTTP-based protocol. It connects the test running on one machine with a browser possibly running on another machine. The level of control over the browser is limited.
 
 <aside class="margin-note">Flexibility vs. reliability</aside>
 
-Not all frameworks build on WebDriver. Some frameworks integrate more directly into the browser. This makes them more reliable, less complex, but also less flexible since they only support few browsers.
+The main benefit of WebDriver is that tests can be run in different browsers, even simultaneously. Yet only some end-to-end testing frameworks build on WebDriver. Those who do not are more directly integrated into the browser – either via plugins or by patching the browser source code. This makes them more reliable, but also less flexible since they only support certain browsers or custom browser builds.
 
-In this guide, we will learn about two frameworks, one of each category:
+Up until version 12, Angular used **Protractor** as its default end-to-end testing framework. Protractor was based on WebDriver. Since Angular 12, Protractor is deprecated. In new CLI projects, there is no default end-to-end testing solution configured.
 
-- **Protractor**, which is based on WebDriver,
-- **Cypress**, which does not use WebDriver.
+In this guide, we will learn to know **Cypress**, a mature end-to-end testing framework that does not use WebDriver.
 
 <div class="book-sources" markdown="1">
 - [WebDriver protocol](https://www.w3.org/TR/webdriver/)
-- [Protractor: Official web site](https://www.protractortest.org/)
 - [Cypress: Official web site](https://www.cypress.io/)
-</div>
-
-## Introducing Protractor
-
-Protractor is an end-to-end testing framework based on WebDriver, made for Angular applications. Like the Angular framework itself, Protractor originates from Google.
-
-<aside class="margin-note">Deprecated</aside>
-
-Up until Angular version 12, Protractor was the default end-to-end testing framework in projects created with Angular CLI. Since Angular 12, [Protractor is deprecated](https://github.com/angular/protractor/issues/5502). In new CLI projects, there is no default end-to-end testing solution configured.
-
-The main reason for Protractor’s deprecation is that it was not maintained for years. During that time, new browser automation standards and better end-to-end testing frameworks emerged.
-
-Protractor has two outstanding features designed for testing Angular applications. But as we will learn, you cannot benefit from these optimizations any longer.
-
-<aside class="margin-note">Angular-specific features</aside>
-
-First, Protractor hooks into the Angular app under tests. After sending a WebDriver command, Protractor waits for Angular to update the page. Then it continues with the next command. By synchronizing the test and the application, the test gets faster and more reliable.
-
-Second, Protractor has a feature called *control flow*. While WebDriver commands are asynchronous by nature, the control flow allows you to write tests as if they ran synchronously.
-
-Protractor’s control flow implementation led to inconsistencies and bugs. The underlying WebDriverJS library removed the feature, so Protractor had to deprecate it as well. This means you need to use `async` / `await` to explicitly wait for a command to finish.
-
-As a result, Protractor lost a useful feature. Protractor’s contenders, namely Cypress and WebDriver.io, still allow to write asynchronous test code in a synchronous manner.
-
-Without the control flow, you practically need to disable the “wait for Angular” feature as well. This means both key Protractor features have lapsed.
-
-<aside class="margin-note">Not recommended</aside>
-
-In view of these events, **this guide recommends against using Protractor for new projects**. Protractor is a solid project, but today there is no compelling reason to choose Protractor over its competitors.
-
-<aside class="margin-note">Tested with Protractor</aside>
-
-If you are looking for Protractor examples, have a look at the Protractor end-to-end tests for the Counter and Flickr search. They are not explained in this guide though.
-
-<div class="book-sources" markdown="1">
-- [Counter: End-to-end tests with Protractor](https://github.com/9elements/angular-workshop/tree/main/e2e)
-- [Flickr search: End-to-end tests with Protractor](https://github.com/9elements/angular-flickr-search/tree/main/e2e)
 </div>
 
 ## Introducing Cypress
 
-Cypress is an end-to-end testing framework that is not based on WebDriver. There are no Angular-specific features. Any web site can be tested with Cypress.
+Cypress is a testing framework that aims to improve the developer experience as well as the performance and reliability of end-to-end tests.
 
-<aside class="margin-note">Reproducible tests</aside>
+Cypress is the product of one company. The test runner we are going to use is open source and free of charge. The company generates revenue with an additional paid service. The Cypress cloud dashboard manages test runs recorded in a continuous integration environment. You do not have to subscribe to this service to write and run Cypress tests.
 
-WebDriver-based testing solutions are flexible and powerful but turned out to be slow and unreliable. Cypress aims to improve both the developing experience and the reliability of end-to-end tests.
+<aside class="margin-note">Architecture</aside>
 
-Cypress employs a fundamentally different architecture. A Node.js application starts the browser. The browser is not controlled remotely, but the tests run directly in the browser, supported by a browser plugin.
-
-The test runner provides a powerful user interface for inspecting and debugging tests right in the browser.
-
-<aside class="margin-note">Test runner</aside>
-
-Cypress is the product of one company, Cypress.io, Inc. The test runner we are going to use is open source and free of charge.
-
-The company generates revenue with an additional paid service: The Cypress dashboard manages test runs recorded in a continuous integration environment. You do not have to subscribe to this service to write and run Cypress tests.
+Since Cypress does not use WebDriver, it features a unique architecture. When starting Cypress, a Node.js application launches the browser. The browser is not controlled remotely, but the tests run directly inside the browser, supported by a browser plugin. The test runner provides a powerful user interface for inspecting and debugging tests right in the browser.
 
 <aside class="margin-note">Trade-offs</aside>
 
 From our perspective, Cypress has a few drawbacks.
 
-- In place of Jasmine, Cypress uses the Mocha and Chai libraries for writing tests. While both serve the same purpose, you have to learn the subtle differences. If you use Jasmine for unit and integration tests, there will be an inconsistency in your tests.
-- Cypress only supports Firefox as well as Chromium-based browsers like Google Chrome and Microsoft Edge. It does not support Safari, legacy Edge or even Internet Explorer.
+- In place of Jasmine, Cypress uses a combination of the libraries Mocha and Chai for writing tests. While both stacks serve the same purpose, you have to learn the subtle differences. If you use Jasmine for unit and integration tests, your Cypress tests will look similar but work differently in detail.
+- Cypress only supports Firefox as well as Chromium-based browsers like Google Chrome and Microsoft Edge. Cypress has experimental support for WebKit, the browser engine used by Safari. Cypress does not support legacy Edge or Internet Explorer.
 
 Cypress is not simply better than WebDriver-based frameworks. It tries to solve their problems by narrowing the scope and by making trade-offs.
 
@@ -174,11 +125,13 @@ Cypress is not simply better than WebDriver-based frameworks. It tries to solve 
 
 That being said, this guide **recommends to use Cypress for testing Angular applications**. Cypress is well-maintained and well-documented. With Cypress, you can write valuable end-to-end tests with little effort.
 
-In case you do need a WebDriver-based framework, have a look at Webdriver.io instead.
+In case you do need an up-to-date WebDriver-based framework, have a look at Webdriver.io instead.
 
 <div class="book-sources" markdown="1">
 - [Cypress: Trade-offs](https://docs.cypress.io/guides/references/trade-offs)
 - [Cypress: Key differences](https://docs.cypress.io/guides/overview/key-differences)
+- [Mocha – JavaScript testing framework](https://mochajs.org/)
+- [Chai – assertion library](https://www.chaijs.com/)
 - [Webdriver.io](https://webdriver.io/)
 </div>
 
@@ -203,22 +156,22 @@ The output looks like this:
 
 ```
 ℹ Using package manager: npm
-✔ Found compatible package version: @cypress/schematic@2.0.2.
+✔ Found compatible package version: @cypress/schematic@2.5.0.
 ✔ Package information loaded.
 
-The package @cypress/schematic@2.0.2 will be installed and executed.
+The package @cypress/schematic@2.5.0 will be installed and executed.
 Would you like to proceed? Yes
 ✔ Packages successfully installed.
-? Would you like the default `ng e2e` command to use Cypress? [ Protractor to Cypress Migration Guide:
-https://on.cypress.io/protractor-to-cypress?cli=true ] Yes
-CREATE cypress.config.ts (127 bytes)
+? Would you like the default `ng e2e` command to use Cypress? [ Protractor to Cypress Migration Guide: https://on.cypress.io/protractor-to-cypress?cli=true ] Yes
+? Would you like to add Cypress component testing?  This will add all files needed for Cypress component testing. No
+CREATE cypress.config.ts (134 bytes)
 CREATE cypress/tsconfig.json (139 bytes)
 CREATE cypress/e2e/spec.cy.ts (143 bytes)
 CREATE cypress/fixtures/example.json (85 bytes)
 CREATE cypress/support/commands.ts (1377 bytes)
-CREATE cypress/support/e2e.ts (655 bytes)
+CREATE cypress/support/e2e.ts (649 bytes)
 UPDATE package.json (1187 bytes)
-UPDATE angular.json (3757 bytes)
+UPDATE angular.json (3643 bytes)
 ✔ Packages installed successfully.
 ```
 
@@ -347,7 +300,7 @@ Cypress has two shell commands to run the end-to-end tests:
 
 <aside class="margin-note">Serve and run tests</aside>
 
-The Cypress schematic that we have installed wraps these commands so they integrate well with Angular.
+The Cypress schematic that we have installed wraps these commands so they integrate with Angular.
 
 - **`ng run $project-name$:cypress-run`** – Starts the non-interactive test runner.
 - **`ng run $project-name$:cypress-open`** – Starts the interactive test runner.
@@ -359,11 +312,15 @@ For example, the Counter example has the project name `angular-workshop`. Hence,
 - `ng run angular-workshop:cypress-run`
 - `ng run angular-workshop:cypress-open`
 
-Whatever method of starting Cypress you use, you need to start Angular’s development server with `ng serve` in a separate shell first. Cypress tries to connect to the `baseUrl` (`http://localhost:4200`) and will let you know if the server is not reachable.
+<aside class="margin-note">Development server</aside>
+
+The commands `npx cypress run`, `npx cypress open` and `ng run $project-name$:cypress-open` require you to start Angular’s development server with `ng serve` in a separate shell first. Cypress connects to the `baseUrl` (`http://localhost:4200`) and will let you know if the server is not reachable.
+
+The command `ng run $project-name$:cypress-run` starts the development server, runs the tests and stops the server once the tests have completed.
 
 <aside class="margin-note">Launch window</aside>
 
-The `cypress open` command will open the test runner. First, you need to choose the type of testing, which is “E2E testing” in our case.
+The `npx cypress open` command will open the test runner. First, you need to choose the type of testing, which is “E2E testing” in our case.
 
 <a href="/assets/img/cypress-choose-testing-type.png">
   <img src="/assets/img/cypress-choose-testing-type.png" alt="Cypress welcome screen. It allows to to choose end-to-end (E2E) testing or Component testing." class="image-max-full" loading="lazy" style="aspect-ratio: auto 1682 / 1164">
@@ -437,13 +394,13 @@ Every Cypress command takes some time to execute. But from the spec point of vie
 
 <aside class="margin-note">Command queue</aside>
 
-In fact, Cypress commands are merely declarative. The execution happens asynchronously. By calling `cy.visit` and `cy.title`, we add commands to a queue. The queue is processed later.
+In fact, Cypress commands are merely declarative. The execution happens asynchronously. By calling `cy.visit` and `cy.title`, we add commands to a queue. The queue is processed later, command after command.
 
 As a consequence, we do not need to wait for the result of `cy.visit`. Cypress automatically waits for the page to load before proceeding with the next command.
 
 For the same reason, `cy.title` does not immediately return a string, but a Chainer that allows more declarations.
 
-In the Jasmine unit and integration tests we wrote before, we had to manage time ourselves. When dealing with asynchronous commands and values, we had to use `async` / `await`, `fakeAsync` and other means explicitly.
+In the Jasmine unit and integration tests that we wrote before, we had to manage time ourselves. When dealing with asynchronous commands and values, we had to use `async` / `await`, `fakeAsync` and other means explicitly.
 
 This is not necessary when writing Cypress tests. The Cypress API is designed for expressiveness and readability. Cypress hides the fact that all commands take time.
 
@@ -462,7 +419,7 @@ Inside these callbacks, assertions on plain, unwrapped values are written using 
 
 A key feature of Cypress is that it retries certain commands and assertions.
 
-For example, Cypress queries the document title and compares it with the expected title. If the title does not match instantly, Cypress will retry the `cy.title` command and the `should` assertion for four seconds. When the timeout is reached, the spec fails.
+For example, Cypress queries the document title and compares it with the expected title. If the title does not match straight away, Cypress will retry the `cy.title` command and the `should` assertion for four seconds. When the timeout is reached, the spec fails.
 
 <aside class="margin-note">Wait automatically</aside>
 
@@ -1390,21 +1347,17 @@ This is useful for returning deterministic responses crucial for the feature und
 
 ## End-to-end testing: Summary
 
-End-to-end tests used to be expensive while the outcome was poor. It was hard to write tests that pass reliably when the application is working correctly. This time could not be invested in writing useful tests that uncover bugs and regressions.
+End-to-end tests used to be expensive while the outcome was poor. It was hard to write tests that reliably pass even when the application is working correctly. This time could not be invested in writing useful tests that uncover bugs and regressions.
 
-For years, Protractor was the end-to-end testing framework most Angular developers relied on. With Cypress, a framework arose that sets new standards. Compared to Protractor, Cypress excels in developer experience and cost-effectiveness.
+For years, Protractor was the end-to-end testing framework many Angular developers relied on. With Cypress, a framework arose that sets new standards.
 
-<aside class="margin-note">Protractor and Cypress examples</aside>
-
-While this guide recommends to start with Cypress, WebDriver-based frameworks are still useful if you need to test a broad range of browsers. For all Cypress tests in this guide, you will find equivalent Protractor tests in the example repositories.
+This guide recommends to start with Cypress because it excels in developer experience and cost-effectiveness. Still, WebDriver-based frameworks like Webdriver.io are useful if you need to test a broad range of browsers.
 
 Even with Cypress, end-to-end tests are much more complex and error-prone than unit and integration tests with Jasmine and Karma. Then again, end-to-end tests are highly effective to test a feature under realistic circumstances.
 
 <div class="book-sources" markdown="1">
 - [Counter: Cypress tests](https://github.com/9elements/angular-workshop/tree/main/cypress)
-- [Counter: Protractor tests](https://github.com/9elements/angular-workshop/tree/main/e2e)
 - [Flickr search: Cypress tests](https://github.com/9elements/angular-flickr-search/tree/main/cypress)
-- [Flickr search: Protractor tests](https://github.com/9elements/angular-flickr-search/tree/main/e2e)
 </div>
 
 <p id="next-chapter-link"><a href="../summary/#summary">Summary</a></p>
