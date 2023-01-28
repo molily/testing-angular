@@ -103,27 +103,17 @@ The command for starting the unit and integration tests is:
 ng test
 ```
 
-This command does several things at once.
+First, this command finds all files in the directory tree that match the pattern `.spec.ts`. Using Webpack, it compiles them into a JavaScript bundle, together with its dependencies. The bundle code also initializes the Angular testing environment – the `TestBed`.
 
-<aside class="margin-note" markdown="1">
-  `test.ts`
-</aside>
+Typically, an Angular application loads and starts an `AppModule`. This startup is called bootstrapping. The `AppModule` then imports other Modules, Components, Services, etc. This way, the bundler finds all parts of the application.
 
-First, `ng test` uses Webpack to compile your code into a JavaScript bundle. The entry point for the bundle is `src/test.ts`. This file initializes the Angular testing environment – the `TestBed` – and then imports all files in the directory tree that match the pattern `.spec.ts`.
-
-<aside class="margin-note" markdown="1">
-  `main.ts`
-</aside>
-
-You might be familiar with the entry point for the application, `src/main.ts`. This file also initializes Angular, but then it typically bootstraps (loads and starts) the `AppModule`. The `AppModule` imports other Modules, Components, Services, etc. This way, the bundler finds all parts of the application.
-
-The test bundle with the entry point `test.ts` works differently. It does not start with one Module and walks through all its dependencies. It merely imports all files whose name ends with `.spec.ts`.
+The test bundle works differently. It does not start with one Module in order to walk through its dependencies. It merely imports all files whose name ends with `.spec.ts`.
 
 <aside class="margin-note" markdown="1">
   `.spec.ts`
 </aside>
 
-Each **`.spec.ts` file** represents a test. Typically, one `.spec.ts` file contains at least one Jasmine test suite (more on that in the next chapter). The files are co-located with the implementation code.
+Each **`.spec.ts` file** represents a test. Typically, one `.spec.ts` file contains at least one Jasmine test suite (more on that in the next chapter). The `.spec.ts` files are located in the same directory as the implementation code.
 
 In our example application, the `CounterComponent` is located in [src/app/components/counter/counter.component.ts](https://github.com/9elements/angular-workshop/blob/main/src/app/components/counter/counter.component.ts). The corresponding test file sits in [src/app/components/counter/counter.component.spec.ts](https://github.com/9elements/angular-workshop/blob/main/src/app/components/counter/counter.component.spec.ts). This is an Angular convention, not a technical necessity, and we are going to stick to it.
 
@@ -169,13 +159,19 @@ Test-driven development means letting the red-green cycle guide your development
 
 ## Configuring Karma and Jasmine
 
-Karma and Jasmine are configured in the file `karma.conf.js` in the project’s root directory. There are many configuration options and plenty of plugins, so we will only mention a few.
+Karma and Jasmine are configured in the file `karma.conf.js` in the project’s root directory. Since Angular 15, the Angular CLI does not create this file per default. If it does not exist, you can create it using this shell command:
+
+```
+ng generate config karma
+```
+
+There are many configuration options and plenty of plugins, so we will only look at a few.
 
 <aside class="margin-note">Launchers</aside>
 
-As mentioned, the standard configuration opens Chrome. To run the tests in other browsers, we need to install different **launchers**.
+As mentioned, the standard configuration runs the tests in the Chrome browser. To run the tests in other browsers, we need to install different **launchers**.
 
-The launcher needs to be loaded in the `plugins` array:
+Each launcher needs to be loaded in the `plugins` array:
 
 ```javascript
 plugins: [
@@ -208,13 +204,15 @@ plugins: [
 ],
 ```
 
-If we want Karma to launch Firefox when the tests run, we also need to add it to the list of browsers: `browsers: ['Chrome']` becomes `browsers: ['Chrome', 'Firefox']`.
+To run the tests in Firefox as well, we need to add the Firefox to the browsers list: `browsers: ['Chrome']` becomes `browsers: ['Chrome', 'Firefox']`.
+
+Karma will now start two browsers to run the tests in parallel.
 
 <aside class="margin-note">Reporters</aside>
 
 Another important concept of Karma are **reporters**. They format and output the test results. In the default configuration, three reporters are active:
 
-1. The built-in `progress` reporter is responsible for the text output on the shell. While the tests run, it outputs the progress:
+1. The built-in `progress` reporter outputs text on the shell. While the tests are running, it outputs the progress:
 
    `Chrome 84.0.4147.135 (Mac OS 10.15.6): Executed 9 of 46 SUCCESS (0.278 secs / 0.219 secs)`
 
@@ -262,19 +260,21 @@ Finally, add the reporter:
 reporters: ['progress', 'kjhtml', 'junit'],
 ```
 
-When we run the tests with `ng test`, we will find an XML report file in the project directory.
+After running the tests with `ng test`, you will find an XML report file in the project directory.
 
 <aside class="margin-note">Jasmine configuration</aside>
 
-The configuration for the Jasmine adapter is located in the `client` object. To configure Jasmine itself, we need to add the `jasmine` property:
+The configuration for the Jasmine adapter is located in `jasmine` object inside the `client` object:
 
 ```javascript
 client: {
-  // leave Jasmine Spec Runner output visible in browser
-  clearContext: false,
   jasmine: {
-    // Jasmine configuration goes here!
+    // you can add configuration options for Jasmine here
+    // the possible options are listed at https://jasmine.github.io/api/edge/Configuration.html
+    // for example, you can disable the random execution with `random: false`
+    // or set a specific seed with `seed: 4321`
   },
+  clearContext: false // leave Jasmine Spec Runner output visible in browser
 },
 ```
 
@@ -282,17 +282,16 @@ This guide recommends to activate one useful Jasmine configuration option: `fail
 
 ```javascript
 client: {
-  // leave Jasmine Spec Runner output visible in browser
-  clearContext: false,
   jasmine: {
     failSpecWithNoExpectations: true,
   },
+  clearContext: false // leave Jasmine Spec Runner output visible in browser
 },
 ```
 
 <div class="book-sources" markdown="1">
-- [Karma documentation: Configuration File](https://karma-runner.github.io/5.2/config/configuration-file.html)
-- [Karma documentation: Plugins](https://karma-runner.github.io/5.2/config/plugins.html)
+- [Karma documentation: Configuration File](https://karma-runner.github.io/6.4/config/configuration-file.html)
+- [Karma documentation: Plugins](https://karma-runner.github.io/6.4/config/plugins.html)
 - [npm: List of Karma plugins](https://www.npmjs.com/search?q=keywords:karma-plugin)
 - [Jasmine reference: Configuration options](https://jasmine.github.io/api/edge/Configuration.html)
 </div>
