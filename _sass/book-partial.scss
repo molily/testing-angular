@@ -245,6 +245,7 @@ pre {
   font-size: 2rem;
   line-height: 1.6;
   text-align: center;
+  text-wrap: balance;
   color: $heading-color;
 
   @include large {
@@ -489,6 +490,7 @@ h1#cover-heading {
   margin: 3rem 0;
   font-size: 2.5rem;
   text-align: center;
+  text-wrap: balance;
 
   @include dark-scheme {
     color: inherit;
