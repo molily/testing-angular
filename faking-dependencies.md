@@ -29,7 +29,7 @@ Creating and injecting fake dependencies is essential for unit tests. This techn
 
 ## Equivalence of fake and original
 
-A fake implementation must have the same shape of the original. If the dependency is a function, the fake must have the same signature, meaning the same parameters and the same return value. If the dependency is an object, the fake must have the same public API, meaning the same public methods and properties.
+A fake implementation must have the same shape as the original. If the dependency is a function, the fake must have the same signature, meaning the same parameters and the same return value. If the dependency is an object, the fake must have the same public API, meaning the same public methods and properties.
 
 <aside class="margin-note">Replaceability</aside>
 
