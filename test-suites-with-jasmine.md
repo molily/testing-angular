@@ -71,7 +71,7 @@ Nested `describe` blocks add a human-readable description to a group of specs. T
   `it`: Spec
 </aside>
 
-Each suit consists of one or more *specifications*, or short, **specs**. A spec is declared with an `it` block:
+Each suite consists of one or more *specifications*, or short, **specs**. A spec is declared with an `it` block:
 
 ```typescript
 describe('Suite description', () => {
