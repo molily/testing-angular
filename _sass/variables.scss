@@ -59,7 +59,7 @@ $link-hover-border-color-inverted: lighten($link-border-color-inverted, 5%);
  */
 
 // Font stack without webfont
-$sans-serif-font: 'Segoe UI', Corbel, '-apple-system', system-ui, BlinkMacSystemFont, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+$sans-serif-font: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 // Font stack with webfont
 $base-font: 'Noto Sans', $sans-serif-font;
 
