@@ -1,3 +1,5 @@
+@use 'sass:math';
+
 /**
  * Book styles
  */
@@ -32,8 +34,8 @@ $dark-highlight-background-color-inverted: adjust-color(
   $lightness: -2%
 );
 
-$font-size-small: percentage(16 / 18);
-$font-size-smallest: percentage(15 / 18);
+$font-size-small: math.percentage(math.div(16, 18));
+$font-size-smallest: math.percentage(math.div(15, 18));
 
 /**
  * @section Root element and Body
@@ -368,7 +370,7 @@ pre {
 
   @include medium {
     // Slightly larger font size than the default
-    font-size: (18 / 16) * 1rem;
+    font-size: math.div(18, 16) * 1rem;
     letter-spacing: 0.2px;
     word-spacing: 0.2px;
   }
@@ -430,17 +432,18 @@ pre {
 #page-footer {
   font-size: $font-size-small;
 
-  @include dark-scheme {
-  }
-
   p {
     margin-bottom: 1rem;
+  }
+
+  @include large {
+    display: flex;
+    justify-content: center;
   }
 }
 
 #page-footer-inner {
   @include large {
-    margin: auto;
     max-width: $main-max-width;
   }
 }
@@ -461,7 +464,7 @@ to prevent layout shifts */
   position: relative;
   display: block;
   margin: auto;
-  padding-top: percentage(504 / 800);
+  padding-top: math.percentage(math.div(504, 800));
   max-width: 800px;
 }
 
@@ -681,10 +684,10 @@ h1#cover-heading {
   margin-right: auto;
   max-width: 1000px;
   height: 0;
-  padding-top: percentage(1 / 1);
+  padding-top: math.percentage(math.div(1, 1));
 
   @include large {
-    padding-top: percentage(9 / 16);
+    padding-top: math.percentage(math.div(9, 16));
   }
 }
 
