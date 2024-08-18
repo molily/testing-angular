@@ -12,7 +12,7 @@ Mathias is a software developer with a focus on web development and JavaScript w
 
 Mathias is working for [9elements](https://9elements.com), a software and design agency.
 
-[@molily on Mastodon](https://mastodon.social/@molily), [@molily on Twitter](https://twitter.com/molily).
+[Follow molily on Mastodon](https://mastodon.social/@molily).
 
 **Please send feedback and corrections to [molily@mailbox.org](mailto:molily@mailbox.org) or <a href="https://github.com/molily/testing-angular/">file an issue on GitHub</a>.**
 
