@@ -178,7 +178,7 @@ describe('CounterComponent', () => {
 });
 ```
 
-Using `describe`, we define a test suite for the `CounterComponent`. In contains a `beforeEach` block that configures the `TestBed` and renders the Component.
+Using `describe`, we define a test suite for the `CounterComponent`. It contains a `beforeEach` block that configures the `TestBed` and renders the Component.
 
 <aside class="margin-note">Async compilation</aside>
 
