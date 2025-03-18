@@ -1,21 +1,18 @@
 /**
  * Content Styles
- *
  */
 
 @import 'variables';
 
 /**
   * @section Mixins
-  *
-  */
+   */
 
 @import 'accessible-hide';
 @import 'dark-scheme';
 
 /**
  * @section Box model fix
- *
  */
 
 *,
@@ -26,7 +23,6 @@
 
 /**
  * @section Text selection
- *
  */
 
 ::selection {
@@ -36,7 +32,6 @@
 
 /**
  * @section Root element
- *
  */
 
 html {
@@ -45,7 +40,6 @@ html {
   font-family: $base-font;
   text-rendering: optimizeLegibility;
   font-variant-ligatures: common-ligatures;
-  text-decoration-skip-ink: auto;
 
   @include dark-scheme {
     background-color: $background-color-inverted;
@@ -55,7 +49,6 @@ html {
 
 /**
  * @section Base styles for new HTML5 elements, for old browsers
- *
  */
 
  main,
@@ -70,7 +63,6 @@ html {
 
 /**
  * @section Headings
- *
  */
 
 h1,
@@ -124,7 +116,6 @@ h6 {
 
 /**
  * @section All copy text elements
- *
  */
 
 p,
@@ -142,7 +133,6 @@ blockquote {
 
 /**
  * @section Lists
- *
  */
 
 ul,
@@ -166,7 +156,6 @@ li p {
 
 /**
  * @section Preformatted text and code
- *
  */
 
 pre,
@@ -219,7 +208,6 @@ td {
 
 /**
  * @section Block quotations
- *
  */
 
 blockquote {
@@ -251,7 +239,6 @@ blockquote {
 
 /**
  * @section Links
- *
  */
 
 a {
@@ -261,6 +248,7 @@ a {
     color: $link-color;
     text-decoration: underline;
     text-decoration-color: $link-border-color;
+    text-underline-offset: 0.14rem;
     transition: text-decoration-color 250ms ease;
 
     @include dark-scheme {
@@ -307,7 +295,6 @@ a {
 
 /**
  * @section Inline quotations
- *
  */
 
 q {
@@ -320,7 +307,6 @@ q {
 
 /**
  * @section Data tables
- *
  */
 
 table {
@@ -358,7 +344,6 @@ td p:last-child {
 
 /**
  * @section Accessible hide utility class
- *
  */
 
 .accessible-hide {
@@ -367,7 +352,6 @@ td p:last-child {
 
 /**
  * @section Images
- *
  */
 
 .image-full {
@@ -383,7 +367,6 @@ td p:last-child {
 
 /**
  * @section Responsive Media (img, picture, video, iframe)
- *
  */
 
 .responsive-media-container {
